@@ -57,6 +57,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0Nzk0M
 GET http://localhost:8090/api/v1/edu/estadisticas HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0Nzk0MjUsImV4cCI6MTcwNzUxNTQyNX0.7O4q6eUnYpPL-BRJHjSh6EJHATEgDqpG_dIfF6qYTd0
+
 ###
 
 ## Editar el perfil de un Usuario
@@ -65,9 +66,14 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0Nzk0MjUsImV4cCI6MTcwNzUxNTQyNX0.7O4q6eUnYpPL-BRJHjSh6EJHATEgDqpG_dIfF6qYTd0
 
 {
-    "nombre": "uardet",
+    "nombre": "uardet12",
     "nickname": "edu",
     "email": "uardet@gmail.com"
 }
+
+###
+## getJugadores: Para el ranking 
+GET http://localhost:8090/api/v1/ranking HTTP/1.1
+Content-Type: application/json
 
 ###

@@ -1,5 +1,6 @@
 .contenedor {
-    height: 100%;
+    height: calc(100vh - 130px - 50px);
+    /* Resta la altura del header (60px en este caso) */
     width: 100%;
     background-image: url('/assets/img/fondo-brandiq.jpg');
     background-repeat: no-repeat;
