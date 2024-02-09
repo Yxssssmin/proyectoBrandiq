@@ -13,5 +13,5 @@ export const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
   { path: 'ranking', component: RankingComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
 ];

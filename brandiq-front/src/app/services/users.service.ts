@@ -54,15 +54,16 @@ export class UsersService {
     return this.http.post(environment.URL_SPRING + 'auth/nuevo', user);
   }
 
-  obtenerEstadisticas(
-  ): Observable<any> {
-
+  obtenerEstadisticas(): Observable<any> {
     const token = localStorage.getItem('authToken');
     const nicknameUser = localStorage.getItem('userNickname');
 
     const headers = { Authorization: `Bearer ${token}` };
 
-    return this.http.get(environment.URL_SPRING + '/api/v1/'+ nicknameUser + '/estadisticas', { headers, },);
+    return this.http.get(
+      environment.URL_SPRING + 'api/v1/' + nicknameUser + '/estadisticas',
+      { headers }
+    );
   }
 
   logout() {
@@ -82,5 +83,20 @@ export class UsersService {
     } else {
       return false;
     }
+  }
+  getProfile(): Observable<any> {
+    // Obtener el token almacenado en el localStorage
+    const authToken = localStorage.getItem('authToken');
+    const nicknameUsuario = localStorage.getItem('userNickname');
+
+    // Configurar el encabezado de la solicitud con el token
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    return this.http.get(
+      environment.URL_SPRING + 'api/v1/' + nicknameUsuario + '/profile',
+      {
+        headers,
+      }
+    );
   }
 }

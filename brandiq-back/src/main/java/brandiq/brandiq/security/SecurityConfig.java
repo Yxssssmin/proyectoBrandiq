@@ -31,53 +31,55 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    
+
     @Autowired
-    UserDetailsServiceImpl userDetailsService; //Convierte la clase UsuarioDb en UsuarioPrincipal (UserDetails)
+    UserDetailsServiceImpl userDetailsService; // Convierte la clase UsuarioDb en UsuarioPrincipal (UserDetails)
 
     @Bean
-    public PasswordEncoder passwordEncoder() { //permite cifrar la contraseña
+    public PasswordEncoder passwordEncoder() { // permite cifrar la contraseña
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    private static final String[] WHITE_LIST_URL = {"/auth/**",
+    private static final String[] WHITE_LIST_URL = { "/auth/**",
             "/api-docs/**",
             "/swagger-ui/**",
-            "/webjars/**"};
+            "/webjars/**" };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //Permitir no estar autenticado en "/auth" y el resto obligar a autenticar
-        //Comprobar el token en cada petición (jwtTokenFilter)
         http
-                .csrf(csrf -> csrf
-                        .disable())
-                        .authorizeHttpRequests(authRequest-> authRequest
+                .cors(cors -> {
+                    CorsConfiguration corsConfig = new CorsConfiguration();
+                    corsConfig.applyPermitDefaultValues();
+                    cors.configurationSource(request -> corsConfig);
+                })
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers(WHITE_LIST_URL).permitAll()
                         .anyRequest().authenticated())
-                        .sessionManagement(sessionManager->sessionManager
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .sessionManagement(
+                        sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
-    //CORS (Cross-origin resource sharing) : Mecanismo que permite que recursos con acceso
-    // restringido puedan ser utilizados desde fuera de la API, por ejemplo desde Angular
     @Bean
-    CorsConfigurationSource CorsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        //Configurar desde donde se puede invocar a la API
-        configuration.setAllowedOrigins(List.of("http://localhost:8005"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT")); // Que métodos pueden utilizarse
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS", "PUT"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Origin", "X-Requested-With",
+                "Access-Control-Request-Method"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-    
+
 }
