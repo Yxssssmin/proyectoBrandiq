@@ -1,0 +1,122 @@
+:root {
+    --color-primario: #086B36;
+    /*Para declarar colores se necesita indicar unicamente el color*/
+    --color-secundario: #A70819;
+    --color-extra: #CEDFF7;
+}
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    line-height: 1.4;
+    /*espacio entre las secciones, elementos, etc*/
+    color: black;
+    width: 100%;
+    height: auto;
+    background: transparent;
+    padding: 20px;
+    /* espaio que limita el contenedorentre el margen y el contenido y delimita el espacio entre elementos: trabaja en las cuatro direcciones*/
+    box-shadow: 2px 7px 15px 3px rgba(89, 87, 87, 0.42);
+    /* box sahdow nos sirve para añadir efectos de sombra alrededor del marco de un elemento. Los 5 valores maximos van a representar loa offset-x y los offset-y asi como blur-radius, spread.radius y color. */
+    border: 0;
+}
+
+a {
+    color: black;
+}
+
+ul {
+    list-style: none;
+    /* quita las viñetas o los numeros de las listas  */
+}
+
+img {
+    max-width: 100%;
+}
+
+.navbar_container {
+    display: flex;
+    /*acopla al tamaño de la pantalla */
+    justify-content: space-between;
+    /*define el navegador como se distribuyen los espacios al rededor de los elemntos que tieme el contenido*/
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.navbar ul {
+    align-items: center;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 15px;
+    font-weight: 700;
+    /*Define el peso o grosor de la fuente*/
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    /* quitamos el subrayado de las barras de navegacion*/
+}
+
+.navbar a:hover {
+    color: rgb(150, 78, 78);
+}
+
+.navbar_logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.navbar-nav-left {
+    text-transform: uppercase;
+    flex: 1;
+    /* nos indica la capacidad de que un elemento flexible puede alterar sus dimensiones y llenar espacios dosponibles cuando solamente se da un velor, este elemento se va a mover de forma horizontal y si se dan dos valores se va a mover de forma vertical*/
+
+    margin-left: 20px;
+}
+
+/*nth-child() selecciona el elemento indicado en una lista o grid*/
+.navbar-nav-right li:nth-child(2) {
+    margin: 0 5px;
+}
+
+
+/*modifica los botones*/
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    background: none;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 7px 16px;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-dark-outline {
+    border-color: black;
+    color: black;
+}
+
+.btn-dark-outline:hover {
+    background-color: rgb(66, 66, 66);
+    color: aliceblue;
+}
+
+.btn-dark {
+    background-color: rgb(109, 87, 87);
+    color: white;
+}

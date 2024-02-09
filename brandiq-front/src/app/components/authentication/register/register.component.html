@@ -1,0 +1,45 @@
+<div class="wrapper active">
+  <div class="form-box register">
+    <h2>Registro</h2>
+    <div *ngIf="errorMessage" id="registerError" class="text-danger mt-3">
+      {{ errorMessage }}
+    </div>
+    <form (ngSubmit)="register()" #registerForm="ngForm"> 
+
+      <div class="input-box">
+        <input type="text" id="nombre" class="form-control" name="nombre" [(ngModel)]="nombre" required>
+        <label>Nombre</label>
+    </div>
+
+      <div class="input-box">
+          <input type="text" id="username" class="form-control" name="nickname" [(ngModel)]="nickname" required>
+          <label>Nickname</label>
+      </div>
+      
+      <div class="input-box">
+        <input type="text" id="signupemail" name="email" [(ngModel)]="email" required/>
+        <label>Email</label>
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="signuppassword"  minlength="8" name="password" class="form-control" [(ngModel)]="password" required />
+        <label>Password</label>
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="inputPassword" minlength="8" name="confirmPassword" [(ngModel)]="confirmPassword" required />
+        <label>Repeat password: </label>
+      </div>
+
+      <button type="submit" id="botonRegistro">Registro</button>
+      
+      <div class="login-register">
+        <p>
+          Already have an account?
+          <a [routerLink]="['login']" class="login-link">Login</a>
+        </p>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

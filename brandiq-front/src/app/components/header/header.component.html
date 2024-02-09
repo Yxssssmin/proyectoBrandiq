@@ -1,0 +1,42 @@
+<nav class="navbar">
+  <div class="navbar_container">
+    <div class="navbar_logo">
+      <a href="#">
+        <img src="/assets/img/logo.png" alt="brandiq" />
+      </a>
+    </div>
+    <ul class="navbar-nav-left">
+      <li><a [routerLink]="['home']">Home</a></li>
+      <li><a href="#">¿Cómo jugar?</a></li>
+      <!-- <li><a href="#">Conócenos</a></li> -->
+      <li><a [routerLink]="['ranking']">Rankings</a></li>
+    </ul>
+    <ng-container *ngIf="userService.isLogged()">
+      <ul class="navbar-nav-right">
+        <li><a>hola</a></li>
+        <ul class="dropdown">
+          <li>
+            <a [routerLink]="['profile']" class="dropdown-item" >Profile</a>
+          </li>
+          <li>
+            <a (click)="logout()" class="dropdown-item">Logout</a>
+          </li>
+          <li>
+            <a [routerLink]="['estadisticas']" class="dropdown-item">Estadisticas</a>
+          </li>
+          
+        </ul>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="!userService.isLogged()">
+      <ul class="navbar-nav-right">
+        <li>
+          <a [routerLink]="['login']" class="btn btn-dark-outline">Inicia Sesión</a>
+        </li>
+        <li>
+          <a [routerLink]="['register']" class="btn btn-dark btn-dark-outline">Regístrate</a>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</nav>
