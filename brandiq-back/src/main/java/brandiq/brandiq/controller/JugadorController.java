@@ -1,5 +1,6 @@
 package brandiq.brandiq.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -33,4 +34,13 @@ public class JugadorController {
         }
     }
 
+    @GetMapping("/ranking")
+    public ResponseEntity<List<JugadorInfo>> getTopJugadores() {
+        List<JugadorInfo> topJugadores = jugadorService.getTopJugadores();
+        if (!topJugadores.isEmpty()) {
+            return ResponseEntity.ok(topJugadores);
+        } else {
+            return ResponseEntity.noContent().build(); // Código 204 si la lista está vacía
+        }
+    }
 }

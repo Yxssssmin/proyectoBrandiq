@@ -3,6 +3,7 @@ package brandiq.brandiq.model.db;
 import java.io.Serializable;
 
 import brandiq.brandiq.security.entity.UsuarioDb;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -25,6 +26,7 @@ public class JugadorDb implements Serializable {
     private UsuarioDb usuarioDb;
     private int victorias;
     private int derrotas;
-    private int puntos_totales;
+    @Column(name = "puntos_totales")
+    private int puntosTotales;
     private int partidas_jugadas;
 }

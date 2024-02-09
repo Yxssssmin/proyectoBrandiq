@@ -1,63 +1,42 @@
 h2 {
-    color: white;
-    text-align: center;
-
+  margin-top: 50px;
+  text-align: center;
+  font-size: 5em;
+  margin-bottom: 50px;
+  color: #eeeeee;
 }
 
-.caja th h1 {
-    font-weight: bold;
-    font-size: 1em;
-  text-align: left;
-  color: #185875;
-}
-
-.caja td {
-    font-weight: normal;
-    font-size: 1em;
-  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
-     -moz-box-shadow: 0 2px 2px -2px #0E1119;
-          box-shadow: 0 2px 2px -2px #0E1119;
-}
 
 .caja {
-    text-align: left;
-    overflow: hidden;
-    width: 80%;
-    margin: 0 auto;
-  display: table;
-  padding: 0 0 8em 0;
+  background: linear-gradient(360deg, transparent), rgba(0, 0, 0, 0.7);
+  /* Gradiente y fondo oscuro semi-transparente */
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.caja td, .caja th {
-    padding-bottom: 2%;
-    padding-top: 2%;
-  padding-left:2%;  
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-/* Background-color of the odd rows */
-.caja tr:nth-child(odd) {
-    background-color: #ffffff;
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #555;
 }
 
-/* Background-color of the even rows */
-.caja tr:nth-child(even) {
-    background-color: #ffffff;
+th {
+  background-color: #333;
+  color: #ffcc00;
+  /* Amarillo */
 }
 
-.caja th {
-    background-color: #ffffff;
+td {
+  background-color: #eeeeee;
 }
 
-.caja td:first-child { color: #FB667A; }
-
-.caja tr:hover {
-   background-color: #524646;
--webkit-box-shadow: 0 6px 6px -6px #0E1119;
-     -moz-box-shadow: 0 6px 6px -6px #0E1119;
-          box-shadow: 0 6px 6px -6px #0E1119;
-}
-
-@media (max-width: 800px) {
-.caja td:nth-child(4),
-.caja th:nth-child(4) { display: none; }
+tr:nth-child(even) {
+  background-color: #555;
 }

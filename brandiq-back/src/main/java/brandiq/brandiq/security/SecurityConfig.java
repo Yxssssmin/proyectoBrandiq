@@ -45,38 +45,43 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    private static final String[] WHITE_LIST_URL = { "/auth/**",
+    private static final String[] WHITE_LIST_URL = {
             "/api-docs/**",
             "/swagger-ui/**",
             "/webjars/**" };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // Permitir no estar autenticado en "/auth" y el resto obligar a autenticar
+        // Comprobar el token en cada petición (jwtTokenFilter)
         http
-                .cors(cors -> {
-                    CorsConfiguration corsConfig = new CorsConfiguration();
-                    corsConfig.applyPermitDefaultValues();
-                    cors.configurationSource(request -> corsConfig);
-                })
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf
+                        .disable())
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers(WHITE_LIST_URL).permitAll()
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/nuevo").permitAll()
+                        .requestMatchers("/api/v1/ranking").permitAll()
+                        .requestMatchers("/api/v1/profile").authenticated()
+                        .requestMatchers("/auth/update/**").authenticated() // Requiere autenticación con un token
                         .anyRequest().authenticated())
-                .sessionManagement(
-                        sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(sessionManager -> sessionManager
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
+    // CORS (Cross-origin resource sharing) : Mecanismo que permite que recursos con
+    // acceso
+    // restringido puedan ser utilizados desde fuera de la API, por ejemplo desde
+    // Angular
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource CorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS", "PUT"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Origin", "X-Requested-With",
-                "Access-Control-Request-Method"));
-
+        // Configurar desde donde se puede invocar a la API
+        configuration.setAllowedOrigins(List.of("http://localhost:8005", "http://localhost:4200"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT")); // Que métodos pueden utilizarse
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
