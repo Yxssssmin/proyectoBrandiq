@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BrandiqApplication<brandiq>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "brandiq.brandiq.BrandiqApplication",
+            "projectName": "brandiq",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
