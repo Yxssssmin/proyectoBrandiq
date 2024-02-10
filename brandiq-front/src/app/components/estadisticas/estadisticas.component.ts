@@ -8,11 +8,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './estadisticas.component.html',
-  styleUrl: './estadisticas.component.css'
+  styleUrl: './estadisticas.component.css',
 })
 export class EstadisticasComponent implements OnInit {
-
-  nickname: string = "";
+  nickname: string = '';
   victorias: number = 0;
   derrotas: number = 0;
   puntos_totales: number = 0;
@@ -21,29 +20,25 @@ export class EstadisticasComponent implements OnInit {
   constructor(private http: HttpClient, private usersService: UsersService) {}
 
   ngOnInit(): void {
-      this.obtenerEstadisticas();
+    this.obtenerEstadisticas();
   }
 
   obtenerEstadisticas(): void {
-
-    const jugadores = {
-      nickname: this.nickname,
-      victorias: this.victorias,
-      derrotas:  this.derrotas,
-      puntos_totales: this.puntos_totales,
-      partidas_jugadas: this.partidas_jugadas,
-    };
-
     this.usersService.obtenerEstadisticas().subscribe({
       next: (data) => {
-        console.log('respuesta del servidor: ', data)
-      //ordenar jugadores por victorias de forma descendente
-      // this.jugadores = data.sort((a: { victorias: number; },b: { victorias: number; }) => b.victorias - a.victorias);
-    }, 
-    error: (error) => {
-      console.error('Error al obtener datos de jugadores: ', error);
-    }
+        console.log('respuesta del servidor: ', data);
+        this.nickname = data.nickname;
+        // Asignar otros valores si es necesario
+        this.victorias = data.victorias;
+        this.derrotas = data.derrotas;
+        this.puntos_totales = data.puntos_totales;
+        this.partidas_jugadas = data.partidas_jugadas;
+        //ordenar jugadores por victorias de forma descendente
+        // this.jugadores = data.sort((a: { victorias: number; },b: { victorias: number; }) => b.victorias - a.victorias);
+      },
+      error: (error) => {
+        console.error('Error al obtener datos de jugadores: ', error);
+      },
     });
   }
-
 }

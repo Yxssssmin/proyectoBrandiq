@@ -1,23 +1,19 @@
 .wrapper {
+    margin-top: 50px;
     position: relative;
-    width: 400px;
-    height: 440px;
-    background: transparent;
+    max-width: 400px;
+    height: fit-content;
+    margin: 0 auto;
+    background: #ffffff;
+    /* Color blanco */
     border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 20px;
-    backdrop-filter: blur(20px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
-    align-items: center;
     overflow: hidden;
     transition: height .2s ease;
-    margin-top: 50px;
-    margin-left: 530px;
-}
-
-.wrapper.active {
-    height: 700px;
+    top: 10%;
 }
 
 .wrapper .form-box {
@@ -29,15 +25,13 @@
     font-size: 2em;
     text-align: center;
     color: #000000;
-    margin-top: 30px;
 }
 
 .input-box {
     position: relative;
-    width: 100%;
-    height: 55px;
+    height: 50px;
     border-bottom: 2px solid #000000;
-    margin: 25px 0;
+    margin: 30px 0;
 }
 
 .input-box label {
@@ -93,24 +87,22 @@
     background: #4dac8e;
 }
 
-.wrapper .form-box.register {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrapper.active .form-box.register {
+.wrapper .form-box.login {
     transition: transform .18s ease;
     transform: translateX(0);
 }
 
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
 .login-register {
     font-size: .9em;
-    color: #2e2e2e;
+    color: #929d9f;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .login-register p a {
@@ -123,7 +115,7 @@
     text-decoration: underline;
 }
 
-#registerError {
+#loginError {
     color: red;
 }
 

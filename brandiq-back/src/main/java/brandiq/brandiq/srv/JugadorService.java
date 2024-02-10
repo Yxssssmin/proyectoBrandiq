@@ -1,5 +1,6 @@
 package brandiq.brandiq.srv;
 
+import java.util.List;
 import java.util.Optional;
 
 import brandiq.brandiq.model.db.JugadorDb;
@@ -9,4 +10,7 @@ public interface JugadorService {
     public Optional<JugadorInfo> getJugadorInfoByNickname(String nickname);
 
     public void save(JugadorDb jugadorDb);
+
+    List<JugadorInfo> getTopJugadores();
+
 }

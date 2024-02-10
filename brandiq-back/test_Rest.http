@@ -36,12 +36,12 @@ Content-Type: application/json
 ###
 ##  con JWGT (admin)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0NzgxNTEsImV4cCI6MTcwNzUxNDE1MX0.9ie6F8XiKfr6GL9kNohhU3ag4_fun06gHCiM94ZkBMA
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0Nzk0MjUsImV4cCI6MTcwNzUxNTQyNX0.7O4q6eUnYpPL-BRJHjSh6EJHATEgDqpG_dIfF6qYTd0
 
 ###
 ##  con JWGT (user)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0NzgxNTEsImV4cCI6MTcwNzUxNDE1MX0.9ie6F8XiKfr6GL9kNohhU3ag4_fun06gHCiM94ZkBMA
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0Nzk0MjUsImV4cCI6MTcwNzUxNTQyNX0.7O4q6eUnYpPL-BRJHjSh6EJHATEgDqpG_dIfF6qYTd0
 
 ### USUARIOS ###
 
@@ -50,6 +50,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc0NzgxN
 ##  getUsuarioInfoById: Para el perlfil del usuario
 GET http://localhost:8090/api/v1/nacho/profile HTTP/1.1 
 Content-Type: application/json
+
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNobyIsImlhdCI6MTcwNzQ4MDA2MCwiZXhwIjoxNzA3NTE2MDYwfQ.eZ0bue24fSxJZPsYfCj0yAvCGVYcVQpnk1b9CCGpSMk
 ###
 
@@ -69,5 +70,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNobyIsImlhdCI6MTcwNzQ4M
     "nickname": "nacho",
     "email": "nacho@gmail.com"
 }
+
+###
+## getJugadores: Para el ranking 
+GET http://localhost:8090/api/v1/ranking HTTP/1.1
+Content-Type: application/json
 
 ###

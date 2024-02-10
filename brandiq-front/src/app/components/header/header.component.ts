@@ -12,10 +12,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  
+  isDropdownOpen = false;
+
   constructor(public userService: UsersService) {}
 
   logout(): void {
     this.userService.logout();
+  }
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  getNicknameStorage(): string | null {
+    return localStorage.getItem('userNickname');
   }
 }
