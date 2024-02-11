@@ -13,3 +13,29 @@
   transform: rotate(180deg);
   /* Asegúrate de que la rotación sea 0 grados para la flecha hacia arriba */
 }
+
+.nav-item {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-transform: uppercase;
+  margin: 10px;
+}
+
+/* ------------------------- RESPONSIVE ------------------------------------ */
+
+@media (min-width: 291px) and (max-width: 900px){
+
+  .logo-img{
+    height: 70px;
+    width: 70px;
+  }
+
+  .nav-item{
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    width: 40%;
+    margin-left: 30%;
+    text-align: center;
+  }
+}

@@ -1,5 +1,5 @@
 .wrapper {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     position: relative;
     max-width: 400px;
     height: fit-content;
@@ -94,7 +94,7 @@
 
 .wrapper.active .form-box.login {
     transition: none;
-    transform: translateX(-400px);
+    transform: translateX(-200px);
 }
 
 .login-register {

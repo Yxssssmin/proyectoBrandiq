@@ -1,0 +1,50 @@
+.container-rules {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+    margin: 50px auto;
+
+}
+
+#titol-rules {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+ol {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+}
+
+li {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.rojo {
+    color: red;
+}
+
+.amarillo {
+    color: rgb(228, 228, 11);
+}
+
+.verde {
+    color: rgb(43, 186, 0);
+}
+

@@ -1,62 +1,61 @@
-<nav
-  class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between"
->
-  <!-- Logo a la izquierda -->
-  <a class="navbar-brand" href="#" style="margin-left: 5%">
-    <img class="logo-img" src="/assets/img/logo.png" alt="brandiq" />
-  </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+  <div class="container-fluid">
+    <!-- Logo a la izquierda -->
+    <a class="navbar-brand" href="#" style="margin-left: 5%">
+      <img class="logo-img" src="/assets/img/logo.png" alt="brandiq" />
+    </a>
 
-  <!-- Enlaces al centro -->
-  <div class="navbar-nav mx-auto">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['home']">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">¿Cómo jugar?</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['ranking']">Rankings</a>
-      </li>
-    </ul>
-  </div>
+    <!-- Botón de hamburguesa para pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <!-- Botones a la derecha -->
-  <div class="navbar-nav" style="margin-right: 5%">
-    <ng-container *ngIf="userService.isLogged()">
-      <li class="nav-item dropdown" *ngIf="userService.isLogged()">
-        <a class="nav-link" href="#" (click)="toggleDropdown()">
-          {{ getNicknameStorage() }}
+     <!-- Enlaces al centro -->
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isNavbarOpen}">
+      <div class="navbar-nav mx-auto">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['home']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['reglas']">¿Cómo jugar?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['ranking']">Rankings</a>
+          </li>
+        </ul>
 
-          <i
-            class="fas"
-            [ngClass]="{
-              'fa-chevron-down': !isDropdownOpen,
-              'fa-chevron-up': isDropdownOpen
-            }"
-          ></i>
-        </a>
-        <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
-          <a class="dropdown-item" [routerLink]="['profile']">Profile</a>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
-          <a class="dropdown-item" [routerLink]="['estadisticas']"
-            >Estadisticas</a
-          >
-        </div>
-      </li>
-    </ng-container>
+        <!-- Botones a la derecha -->
+        <ng-container *ngIf="userService.isLogged()">
+          <li class="nav-item dropdown" *ngIf="userService.isLogged()">
+            <a class="nav-link" href="#" (click)="toggleDropdown()">
+              {{ getNicknameStorage() }}
 
-    <ng-container *ngIf="!userService.isLogged()">
-      <li class="nav-item">
-        <a class="btn btn-dark-outline" [routerLink]="['login']"
-          >Inicia Sesión</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="btn btn-dark btn-dark-outline" [routerLink]="['register']"
-          >Regístrate</a
-        >
-      </li>
-    </ng-container>
+              <i
+                class="fas"
+                [ngClass]="{
+                  'fa-chevron-down': !isDropdownOpen,
+                  'fa-chevron-up': isDropdownOpen
+                }"
+              ></i>
+            </a>
+            <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
+              <a class="dropdown-item" [routerLink]="['profile']">Profile</a>
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+              <a class="dropdown-item" [routerLink]="['estadisticas']">Estadisticas</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="!userService.isLogged()">
+          <li class="nav-item">
+            <a class="btn btn-dark-outline" [routerLink]="['login']">Inicia Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-dark btn-dark-outline" [routerLink]="['register']">Regístrate</a>
+          </li>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </nav>
