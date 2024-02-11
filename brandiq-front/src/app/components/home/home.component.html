@@ -2,6 +2,7 @@
   Welcome
   <strong>{{ getNicknameStorage() }}</strong>
 </h1>
+<ng-container *ngIf="userService.isLogged()">
 <a [routerLink]="['tablero']">
   <span></span>
   <span></span>
@@ -9,3 +10,4 @@
   <span></span>
   Empezar partida
 </a>
+</ng-container>

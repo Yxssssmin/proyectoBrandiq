@@ -41,4 +41,8 @@ export class EstadisticasComponent implements OnInit {
       },
     });
   }
+
+  getNicknameStorage(): string | null {
+    return localStorage.getItem('userNickname');
+  }
 }
