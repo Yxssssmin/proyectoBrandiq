@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
   isDropdownOpen = false;
+  isNavbarOpen = false;
 
   constructor(public userService: UsersService) {}
 
@@ -26,5 +27,9 @@ export class HeaderComponent {
 
   getNicknameStorage(): string | null {
     return localStorage.getItem('userNickname');
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarOpen = !this.isNavbarOpen;
   }
 }

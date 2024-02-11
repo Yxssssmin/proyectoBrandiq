@@ -89,6 +89,8 @@ strong {
 
 }
 
+/*  ---------------- BOTON ---------------- */
+
 a {
     position: relative;
     display: inline-block;
@@ -100,8 +102,8 @@ a {
     transition: 0.5s;
     letter-spacing: 4px;
     overflow: hidden;
-    margin-left: 40%;
-    margin-top: 400px;
+    margin-left: 800px;
+    margin-top: 500px;
 
 }
 
@@ -208,5 +210,50 @@ a span:nth-child(4) {
     50%,
     100% {
         bottom: 100%;
+    }
+}
+
+/* Media query para iPads o tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    h1 {
+      font-size: 36px; /* Ajusta el tamaño del texto según sea necesario para tablets */
+      margin-top: -40px; /* Ajusta el margen superior según sea necesario */
+    }
+
+    a {
+      margin-left: 40%; /* Centra el botón horizontalmente en tablets */
+      margin-top: 55%; /* Ajusta el margen superior según sea necesario */
+      height: 70px; /* Ajusta la altura del botón según sea necesario */
+      width: 240px; /* Ajusta el ancho del botón según sea necesario */
+    }
+}
+
+/* Media query para dispositivos más pequeños, como teléfonos móviles */
+@media (max-width: 768px) {
+    h1 {
+      font-size: 30px; /* Ajusta el tamaño del texto según sea necesario para teléfonos móviles */
+      margin-top: -30px; /* Ajusta el margen superior según sea necesario */
+    }
+  
+    a {
+      margin-left: 30%; /* Centra el botón horizontalmente en pantallas pequeñas */
+      margin-top: 80%; /* Ajusta el margen superior según sea necesario */
+      height: 70px; /* Ajusta la altura del botón según sea necesario */
+      width: 250px; /* Ajusta el ancho del botón según sea necesario */
+    }
+}
+
+/* Media query para pantallas grandes */
+@media (min-width: 1025px) {
+    h1 {
+        font-size: 48px; /* Ajusta el tamaño del texto según sea necesario para pantallas grandes */
+        margin-top: -60px; /* Ajusta el margen superior según sea necesario */
+    }
+
+    a {
+        margin-left: 45%; /* Centra el botón horizontalmente en pantallas grandes */
+        margin-top: 25%; /* Ajusta el margen superior según sea necesario */
+        height: 70px; /* Ajusta la altura del botón según sea necesario */
+        width: 240px; /* Ajusta el ancho del botón según sea necesario */
     }
 }
