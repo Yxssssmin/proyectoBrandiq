@@ -25,16 +25,16 @@ public class UsuarioController {
     public UsuarioController(UsuarioPerfilService usuarioPerfilService) {
         this.usuarioPerfilService = usuarioPerfilService;
     }
-    
+
     @GetMapping("{nickname}/profile")
     public ResponseEntity<UsuarioPerfilInfo> getUsuarioPerfilInfoByNickname(
-    @PathVariable(value = "nickname") String nickname) throws RuntimeException {
-       Optional<UsuarioPerfilInfo> usuarioPerfilInfo = usuarioPerfilService.getUsuarioPerfilInfoByNickname(nickname);
+            @PathVariable(value = "nickname") String nickname) throws RuntimeException {
+        Optional<UsuarioPerfilInfo> usuarioPerfilInfo = usuarioPerfilService.getUsuarioPerfilInfoByNickname(nickname);
         if (usuarioPerfilInfo.isPresent()) {
             return ResponseEntity.ok().body(usuarioPerfilInfo.get());
         } else {
-            throw new ResourceNotFoundException("Jugador not found on :: "+nickname);
+            throw new ResourceNotFoundException("Jugador not found on :: " + nickname);
         }
     }
-    
+
 }

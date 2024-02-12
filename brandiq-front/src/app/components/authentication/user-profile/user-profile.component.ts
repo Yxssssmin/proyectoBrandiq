@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
   userProfile: any = {};
   updatedName: string = '';
   updatedEmail: string = '';
+  saveMessage: string = '';
 
   constructor(private userService: UsersService) {}
 
@@ -22,6 +23,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   obtenerPerfilUsuario(): void {
+    const authToken = localStorage.getItem('authToken');
+    const nicknameUsuario = localStorage.getItem('userNickname');
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    console.log('Headers:', headers); // Verifica que el token se esté pasando correctamente
+
     this.userService.getProfile().subscribe({
       next: (profile: any) => {
         this.userProfile = profile || {};
@@ -32,26 +39,26 @@ export class UserProfileComponent implements OnInit {
       },
     });
   }
-
   guardarCambios(): void {
-    this.userProfile.nombre = this.updatedName;
-    this.userProfile.email = this.updatedEmail;
-    // Lógica para guardar cambios en el perfil
-    // this.userService
-    //   .updateProfile({
-    //     nombreCompleto: this.userProfile.nombreCompleto,
-    //     email: this.userProfile.email,
-    //   })
-    //   .subscribe({
-    //     next: (response) => {
-    //       console.log('Cambios guardados correctamente:', response);
-    //       // Actualizar el perfil después de guardar cambios (opcional)
-    //       this.obtenerPerfilUsuario();
-    //     },
-    //     error: (error) => {
-    //       console.error('Error al guardar cambios:', error);
-    //       // Manejar el error de acuerdo a tus necesidades
-    //     },
-    //   });
+    this.userService
+      .updateProfile({
+        nombreCompleto: this.userProfile.nombre,
+        email: this.userProfile.email,
+        nickname: this.userProfile.nickname,
+      })
+      .subscribe({
+        next: (response) => {
+          console.log('Cambios guardados correctamente:', response);
+          this.saveMessage = 'Cambios guardados correctamente'; // Actualizar el mensaje
+          // Actualizar el perfil después de guardar cambios (opcional)
+          this.obtenerPerfilUsuario();
+        },
+        error: (error) => {
+          console.error('Error al guardar cambios:', error);
+          this.saveMessage = 'Error al guardar cambios'; // Actualizar el mensaje
+
+          // Manejar el error de acuerdo a tus necesidades
+        },
+      });
   }
 }

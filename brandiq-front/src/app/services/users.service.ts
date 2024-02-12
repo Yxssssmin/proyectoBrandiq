@@ -85,18 +85,36 @@ export class UsersService {
     }
   }
   getProfile(): Observable<any> {
-    // Obtener el token almacenado en el localStorage
     const authToken = localStorage.getItem('authToken');
     const nicknameUsuario = localStorage.getItem('userNickname');
 
-    // Configurar el encabezado de la solicitud con el token
     const headers = { Authorization: `Bearer ${authToken}` };
 
     return this.http.get(
       environment.URL_SPRING + 'api/v1/' + nicknameUsuario + '/profile',
+      { headers }
+    );
+  }
+  updateProfile(profileData: {
+    nombreCompleto: string;
+    email: string;
+    nickname: string;
+  }): Observable<any> {
+    const authToken = localStorage.getItem('authToken');
+    const nicknameUsuario = localStorage.getItem('userNickname');
+
+    console.log({ profileData });
+
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    return this.http.put(
+      environment.URL_SPRING + `auth/update/${nicknameUsuario}`,
       {
-        headers,
-      }
+        nombre: profileData.nombreCompleto,
+        email: profileData.email,
+        nickname: nicknameUsuario,
+      },
+      { headers }
     );
   }
 }
