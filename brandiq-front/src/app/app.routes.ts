@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'reglas', component: RulesComponent },
+  { path: 'board', component: BoardComponent },
   { path: 'tablero', component: BoardComponent },
   { path: '**', component: HomeComponent },
 ];
