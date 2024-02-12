@@ -44,20 +44,11 @@ public class UsuarioServiceImpl implements UsuarioInterface {
 
     @Override
 public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
-    Optional<UsuarioDb> usuarioDbOptional = usuarioRepository.findByNickname(nickname);
+    Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
 
-    if (usuarioDbOptional.isPresent()) {
-        UsuarioDb usuarioDb = usuarioDbOptional.get();
-
-        // Actualiza solo los campos permitidos
-        usuarioDb.setNombre(usuarioEdit.getNombre());
-        usuarioDb.setEmail(usuarioEdit.getEmail());
-
-        // Guarda los cambios en la base de datos
-        usuarioRepository.save(usuarioDb);
-
-        // Convierte y devuelve el objeto actualizado
-        return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(usuarioDb));
+    if (usuarioDb.isPresent()) {
+        UsuarioMapper.INSTANCE.updateUsuarioDbFromUsuarioEdit(usuarioEdit, usuarioDb.get());
+        return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(usuarioRepository.save(usuarioDb.get())));
     } else {
         throw new ResourceNotFoundException("Usuario con apodo " + nickname + " no encontrado");
     }
