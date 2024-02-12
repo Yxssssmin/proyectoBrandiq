@@ -14,7 +14,7 @@ export class EstadisticasComponent implements OnInit {
   nickname: string = '';
   victorias: number = 0;
   derrotas: number = 0;
-  puntos_totales: number = 0;
+  puntosTotales: number = 0;
   partidas_jugadas: number = 0;
 
   constructor(private http: HttpClient, private usersService: UsersService) {}
@@ -31,7 +31,7 @@ export class EstadisticasComponent implements OnInit {
         // Asignar otros valores si es necesario
         this.victorias = data.victorias;
         this.derrotas = data.derrotas;
-        this.puntos_totales = data.puntos_totales;
+        this.puntosTotales = data.puntosTotales;
         this.partidas_jugadas = data.partidas_jugadas;
         //ordenar jugadores por victorias de forma descendente
         // this.jugadores = data.sort((a: { victorias: number; },b: { victorias: number; }) => b.victorias - a.victorias);

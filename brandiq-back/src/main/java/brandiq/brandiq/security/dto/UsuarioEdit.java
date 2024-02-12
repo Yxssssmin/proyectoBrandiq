@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class UsuarioEdit implements Serializable {
-    
+
     @NotNull
     private String nombre;
     @NotNull
