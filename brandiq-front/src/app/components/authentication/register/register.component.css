@@ -1,8 +1,6 @@
 .wrapper {
     /* margin-top: 50px; */
-    position: relative;
-    max-width: 400px;
-    height: fit-content;
+    height: 50vh;
     margin: 0 auto;
     background: #ffffff;
     /* Color blanco */
@@ -11,9 +9,12 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
     transition: height .2s ease;
-    top: 10%;
+    min-height: 600px;
+    min-width: 315px;
+    width: 20vw;
 }
 
 .wrapper .form-box {

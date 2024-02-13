@@ -61,9 +61,8 @@ public class SecurityConfig {
                         .requestMatchers(WHITE_LIST_URL).permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/nuevo").permitAll()
-                        .requestMatchers("/api/v1/ranking").permitAll()
-                        .requestMatchers("/api/v1/profile").authenticated()
-                        .requestMatchers("/auth/update/**").authenticated() // Requiere autenticación con un token
+                        .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/auth/update/**").permitAll() // Requiere autenticación con un token
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

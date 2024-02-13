@@ -5,25 +5,23 @@
 h1 {
     font-family: Dosis;
     font-weight: 200;
-    position: absolute;
     text-align: center;
-    display: block;
-    color: #fff;
-    top: 50%;
-    width: 100%;
-    margin-top: -55px;
+    color: #000000;
+    font-size: 4em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 5px;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    opacity: 0;
     -webkit-animation: anim 3.2s ease-out forwards 1s;
     animation: anim 3.2s ease-out forwards 1s;
+    margin-bottom: 2em;
 }
+
+.start-button {}
 
 strong {
     display: block;
@@ -91,26 +89,31 @@ strong {
 
 /*  ---------------- BOTON ---------------- */
 
+.start-buttons {
+    width: 50vw;
+    display: flex;
+    justify-content: space-evenly;
+
+    /* Distribuye los botones horizontalmente */
+    /* Permite que los botones se envuelvan en pantallas pequeñas */
+}
+
 a {
-    position: relative;
     display: inline-block;
     padding: 15px 20px;
-    margin: 40px 0;
     color: #03e9f4;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 4px;
     overflow: hidden;
-    margin-left: 800px;
-    margin-top: 500px;
-
+    width: 15em;
 }
 
 a:hover {
     background: #03e9f4;
     color: #050801;
-    box-shadow: 0 0 5px #03e9f4,
+    box-shadow: 0 0 5px #7bff00,
         0 0 25px #03e9f4,
         0 0 50px #03e9f4,
         0 0 200px #03e9f4;
@@ -213,47 +216,21 @@ a span:nth-child(4) {
     }
 }
 
-/* Media query para iPads o tablets */
-@media (min-width: 769px) and (max-width: 1024px) {
-    h1 {
-      font-size: 36px; /* Ajusta el tamaño del texto según sea necesario para tablets */
-      margin-top: -40px; /* Ajusta el margen superior según sea necesario */
-    }
-
-    a {
-      margin-left: 40%; /* Centra el botón horizontalmente en tablets */
-      margin-top: 55%; /* Ajusta el margen superior según sea necesario */
-      height: 70px; /* Ajusta la altura del botón según sea necesario */
-      width: 240px; /* Ajusta el ancho del botón según sea necesario */
-    }
-}
-
-/* Media query para dispositivos más pequeños, como teléfonos móviles */
 @media (max-width: 768px) {
     h1 {
-      font-size: 30px; /* Ajusta el tamaño del texto según sea necesario para teléfonos móviles */
-      margin-top: -30px; /* Ajusta el margen superior según sea necesario */
-    }
-  
-    a {
-      margin-left: 30%; /* Centra el botón horizontalmente en pantallas pequeñas */
-      margin-top: 80%; /* Ajusta el margen superior según sea necesario */
-      height: 70px; /* Ajusta la altura del botón según sea necesario */
-      width: 250px; /* Ajusta el ancho del botón según sea necesario */
-    }
-}
-
-/* Media query para pantallas grandes */
-@media (min-width: 1025px) {
-    h1 {
-        font-size: 48px; /* Ajusta el tamaño del texto según sea necesario para pantallas grandes */
-        margin-top: -60px; /* Ajusta el margen superior según sea necesario */
+        font-size: 2.5em;
+        /* Ajusta el tamaño del título para pantallas pequeñas */
+        margin-bottom: 1em;
     }
 
     a {
-        margin-left: 45%; /* Centra el botón horizontalmente en pantallas grandes */
-        margin-top: 25%; /* Ajusta el margen superior según sea necesario */
-        height: 70px; /* Ajusta la altura del botón según sea necesario */
-        width: 240px; /* Ajusta el ancho del botón según sea necesario */
+        margin-left: 10%;
+        /* Ajusta el margen izquierdo para pantallas pequeñas */
+        margin-right: 10%;
+        /* Ajusta el margen derecho para pantallas pequeñas */
+    }
+
+    .start-buttons {
+        margin-left: 5%;
     }
 }

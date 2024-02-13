@@ -27,30 +27,51 @@
   border: 2px solid #eee;
 }
 
-.green { 
-  background-color: #5cb85c; 
+.green {
+  background-color: #5cb85c;
   color: white;
 }
 
-.red {  background-color: #d9534f;  }
+.red {
+  background-color: #d9534f;
+}
 
-.yellow {  background-color: #f0ad4e;  }
+.yellow {
+  background-color: #f0ad4e;
+}
 
-.start {  background-color: #fff;  color: #333; }
+.start {
+  background-color: #fff;
+  color: #333;
+}
 
-.advance {  background-color: #1714be;  color: white;  }
+.advance {
+  background-color: #1714be;
+  color: white;
+}
 
-.backward {  background-color: #fbff00;  }
+.backward {
+  background-color: #fbff00;
+}
 
-.end {  background-color: #f80168;  color: white;  }
+.end {
+  background-color: #f80168;
+  color: white;
+}
 
-.empty {  background-color: #000;  }
+.empty {
+  background-color: #000;
+}
 
-.cell { transition: background-color 0.3s ease-in-out; }
+.cell {
+  transition: background-color 0.3s ease-in-out;
+}
 
-.cell:hover { filter: brightness(1.2); }
+.cell:hover {
+  filter: brightness(1.2);
+}
 
-.dice-container{
+.dice-container {
   position: relative;
   right: 150%;
   top: -5%;

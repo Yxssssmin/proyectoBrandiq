@@ -1,45 +1,54 @@
 .playersList {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: 1fr;
-    height: 134%; 
-    width: 160%;
-    margin-left: 20%;
-  }
-  
-  .playersList > div {
-    margin-top: 20%;
-    text-align: center;
-  }
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+  height: 134%;
+  width: 160%;
+  margin-left: 20%;
+}
 
-  .player1 {
-    background-color: #ffd700; /* Amarillo dorado */
-  }
-  
-  .player2 {
-    background-color: #87ceeb; /* Azul claro */
-  }
-  
-  .player3 {
-    background-color: #90ee90; /* Verde claro */
-  }
-  
-  .player4 {
-    background-color: #ffa07a; /* Salmón claro */
-  }
-  
-  /* Estilos para las etiquetas de los jugadores */
-  .playersList label {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  
-  /* Estilos para las puntuaciones de los jugadores */
-  .playersList p {
-    margin-top: 5px;
-    color: #555;
-  }
-  /*.player1,.player2,.player3,.player4{
+.playersList>div {
+
+  height: 10em;
+  width: 15em;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.player1 {
+  background-color: #f0e68c;
+  /* Amarillo pastel */
+}
+
+.player2 {
+  background-color: #add8e6;
+  /* Azul pastel */
+}
+
+.player3 {
+  background-color: #98fb98;
+  /* Verde pastel */
+}
+
+.player4 {
+  background-color: #ffb6c1;
+  /* Rosa pastel */
+}
+
+
+/* Estilos para las etiquetas de los jugadores */
+.playersList label {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Estilos para las puntuaciones de los jugadores */
+.playersList p {
+  margin-top: 5px;
+  color: #555;
+}
+
+/*.player1,.player2,.player3,.player4{
     
   }
 
@@ -55,4 +64,3 @@
   }
 
 */
-  

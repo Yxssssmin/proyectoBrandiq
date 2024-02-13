@@ -1,13 +1,35 @@
 <h1>
-  Welcome
+  Bienvenido <br />
+
+  <strong
+    class="d-flex flex-column align-items-center"
+    *ngIf="!getNicknameStorage()"
+    ><hr style="width: 10em" />
+    BRANDIQ</strong
+  >
   <strong>{{ getNicknameStorage() }}</strong>
 </h1>
-<ng-container *ngIf="userService.isLogged()">
-<a [routerLink]="['board']">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  Empezar partida
-</a>
-</ng-container>
+
+<div class="start-buttons">
+  <ng-container *ngIf="userService.isLogged()">
+    <div class="start-button">
+      <a [routerLink]="['/board']">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Empezar partida
+      </a>
+    </div>
+    <div class="start-button">
+      <a [routerLink]="['otraRuta']">
+        <!-- Cambia 'otraRuta' a tu ruta deseada -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Unirse a partida
+      </a>
+    </div>
+  </ng-container>
+</div>
