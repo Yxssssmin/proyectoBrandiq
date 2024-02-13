@@ -22,14 +22,14 @@
 
 /* ------------------------- RESPONSIVE ------------------------------------ */
 
-@media (min-width: 291px) and (max-width: 900px){
+@media (min-width: 291px) and (max-width: 900px) {
 
-  .logo-img{
+  .logo-img {
     height: 70px;
     width: 70px;
   }
 
-  .nav-item{
+  .nav-item {
     text-align: center;
   }
 

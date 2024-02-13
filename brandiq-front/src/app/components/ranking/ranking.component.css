@@ -1,18 +1,16 @@
 h2 {
-  margin-top: 50px;
   text-align: center;
-  font-size: 5em;
-  margin-bottom: 50px;
-  color: #eeeeee;
+  font-size: 3em;
+  color: #333;
+  /* Cambiado a un tono más oscuro para mayor contraste */
 }
 
-
 .caja {
-  background: linear-gradient(360deg, transparent), rgba(0, 0, 0, 0.7);
-  /* Gradiente y fondo oscuro semi-transparente */
+  background: linear-gradient(360deg, transparent), rgba(173, 216, 230, 0.7);
+  /* Cambiado a un azul claro */
   border-radius: 10px;
   overflow: hidden;
-  width: 80%;
+  width: 60vw;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
@@ -24,19 +22,25 @@ table {
 th, td {
   padding: 15px;
   text-align: left;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #ddd;
+  /* Cambiado a un tono más claro para bordes */
 }
 
 th {
-  background-color: #333;
-  color: #ffcc00;
-  /* Amarillo */
+  background-color: #5f9ea0;
+  /* Cambiado a un tono de azul claro */
+  color: #fff;
+  text-align: center;
+  /* Cambiado a blanco para mayor contraste */
 }
 
 td {
-  background-color: #eeeeee;
+  text-align: center;
+  background-color: #f5f5f5;
+  /* Blanco roto para las celdas */
 }
 
 tr:nth-child(even) {
-  background-color: #555;
+  background-color: #ddd;
+  /* Cambiado a un tono más claro para filas pares */
 }

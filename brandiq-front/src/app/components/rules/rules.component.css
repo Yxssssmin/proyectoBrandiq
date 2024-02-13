@@ -1,19 +1,21 @@
 .container-rules {
+    box-sizing: border-box;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: 80%;
-    max-width: 600px;
+    max-width: 100%;
     text-align: left;
     margin: 50px auto;
-
+    position: relative;
+    overflow-y: hidden;
+    max-height: 600px;
 }
 
 #titol-rules {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 20px;
     color: #1a1a1a;
 }
 
@@ -48,3 +50,11 @@ li {
     color: rgb(43, 186, 0);
 }
 
+@media (max-width: 1100px) {
+    .container-rules {
+        overflow-y: auto;
+        /* Muestra el desbordamiento en pantallas más pequeñas */
+        max-height: 200px;
+        /* Ajusta la altura máxima según tus necesidades */
+    }
+}

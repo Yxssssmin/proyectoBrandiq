@@ -2,7 +2,21 @@
     height: calc(100vh - 130px - 50px);
     /* Resta la altura del header (60px en este caso) */
     width: 100%;
-    background-image: url('/assets/img/fondo-brandiq.jpg');
+    background-image: url('https://inventive.io/_ipx/w_3840,q_75/https%3A%2F%2Fimages.prismic.io%2Finventive-slicemachine%2Fb80bcf99-5ac2-4fcf-a36f-1d26050ac706_services-background.png%3Fauto%3Dcompress%2Cformat?url=https%3A%2F%2Fimages.prismic.io%2Finventive-slicemachine%2Fb80bcf99-5ac2-4fcf-a36f-1d26050ac706_services-background.png%3Fauto%3Dcompress%2Cformat&w=3840&q=75');
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+
+    /* Styles for screens smaller than 500px */
+    .contenedor {
+        min-width: 500px;
+        /* Set a minimum width for the body or a container */
+    }
 }
