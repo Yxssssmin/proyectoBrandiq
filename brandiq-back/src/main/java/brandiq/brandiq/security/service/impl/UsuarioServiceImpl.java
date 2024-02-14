@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioInterface {
     } */
 
     @Override
-public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
+    public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
     Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
 
     if (usuarioDb.isPresent()) {
@@ -52,7 +52,18 @@ public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
     } else {
         throw new ResourceNotFoundException("Usuario con apodo " + nickname + " no encontrado");
     }
-}
+    }
 
+    @Override
+    public String deleteByNicknameUsuario(String nickname) {
+        Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
+
+        if (usuarioDb.isPresent()) {
+            usuarioRepository.delete(usuarioDb.get());
+            return "Usuario eliminado";
+        } else {
+            return "Usuario no encontrado";
+        }
+    }
 
 }
