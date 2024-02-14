@@ -16,9 +16,9 @@ POST http://localhost:8090/auth/nuevo HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "juan",
-    "nombre": "Juan Carbonell",
-    "email": "juan@gmail.com",
+    "nickname": "jaumet",
+    "nombre": "Jaume Quiñonero",
+    "email": "jaumequiño@gmail.com",
     "password": "NoTeLoDigo@1",
     "roles": ["admin"]
 }
@@ -29,7 +29,7 @@ POST http://localhost:8090/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "juan",
+    "nickname": "hugo",
     "password": "NoTeLoDigo@1"
 }
 
@@ -48,26 +48,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0M
 ###
 
 ##  getUsuarioInfoById: Para el perlfil del usuario
-GET http://localhost:8090/api/v1/juan/profile HTTP/1.1 
+GET http://localhost:8090/api/v1/hugo/profile HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0MzU3LCJleHAiOjE3MDc3OTAzNTd9.jbzghcAu19L1jCiFehMUb9tYl-B0ORfyTVdbJrH72jQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
 ###
 
 ## getJugadorInfoByNickname: Para las estadisticas del jugador
-GET http://localhost:8090/api/v1/juan/estadisticas HTTP/1.1
+GET http://localhost:8090/api/v1/hugo/estadisticas HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0MzU3LCJleHAiOjE3MDc3OTAzNTd9.jbzghcAu19L1jCiFehMUb9tYl-B0ORfyTVdbJrH72jQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
 ###
 
 ## Editar el perfil de un Usuario
-PUT http://localhost:8090/auth/update/juan HTTP/1.1
+PUT http://localhost:8090/auth/update/hugo HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0MzU3LCJleHAiOjE3MDc3OTAzNTd9.jbzghcAu19L1jCiFehMUb9tYl-B0ORfyTVdbJrH72jQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
 
 {
-    "nombre": "juanjito",
-    "nickname": "juan",
-    "email": "juanjito16@gmail.com"
+    "nombre": "lomenos",
+    "nickname": "hugo",
+    "email": "lomenos@gmail.com"
 }
 
 ###
