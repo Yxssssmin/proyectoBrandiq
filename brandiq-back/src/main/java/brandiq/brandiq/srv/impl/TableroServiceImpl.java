@@ -51,4 +51,13 @@ public class TableroServiceImpl implements TableroService {
 
     }
 
+    @Override
+    public Optional<TableroEdit> getTableroEditById(int id) {
+        Optional<TableroEditDb> tableroEditDb = tableroEditRepository.findById(id);
+        if (tableroEditDb.isPresent())
+            return Optional.of(TableroMapper.INSTANCE.tableroEditDbToTableroEdit(tableroEditDb.get()));
+        else
+            return Optional.empty();
+    }
+
 }

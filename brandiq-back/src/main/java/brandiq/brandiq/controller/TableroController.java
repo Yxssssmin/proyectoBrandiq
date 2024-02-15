@@ -9,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import brandiq.brandiq.exception.ResourceNotFoundException;
 import brandiq.brandiq.model.db.JugadorDb;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
@@ -24,6 +26,8 @@ import brandiq.brandiq.srv.JugadorService;
 import brandiq.brandiq.srv.TableroService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -41,7 +45,7 @@ public class TableroController {
 
     @PostMapping("/crear-tablero")
     public TableroEdit crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult bindingResult) {
-       return tableroService.save(tableroEdit);
+        return tableroService.save(tableroEdit);
     }
 
     @GetMapping("/tableros")
@@ -53,7 +57,20 @@ public class TableroController {
         } else {
             return ResponseEntity.noContent().build(); // Codigo 204 si la lista esta vacia
         }
+    }
 
+    @PutMapping("/tablero/{id}")
+    public ResponseEntity<TableroEdit> updateTableroEdit(@PathVariable(value = "id") int id,
+            @Valid @RequestBody TableroEdit tableroEdit) throws RuntimeException {
+        Optional<TableroEdit> tableroEditOriginal = tableroService.getTableroEditById(id);
+
+        if (tableroEditOriginal.isPresent()) {
+            Optional<TableroEdit> tableroEditModificado = tableroService.update(tableroEdit);
+
+            return new ResponseEntity<>(tableroEditModificado.get(), HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("TABLERO_NOT_FOUND" + id);
+        }
     }
 
 }
