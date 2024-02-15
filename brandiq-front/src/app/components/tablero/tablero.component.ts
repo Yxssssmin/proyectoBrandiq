@@ -2,17 +2,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DadoComponent } from '../dado/dado.component';
+import { PlayerListComponent } from '../player-list/player-list.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [CommonModule, DadoComponent],
+  imports: [CommonModule, DadoComponent, PlayerListComponent],
   templateUrl: './tablero.component.html',
   styleUrl: './tablero.component.css',
 })
 export class TableroComponent {
-  rows = 10;
-  cols = 10;
+  rows = 8;
+  cols = 8;
   board: any[][] = [];
   colors: string[] = ['red', 'orange', 'green'];
 
