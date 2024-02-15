@@ -10,7 +10,7 @@ import brandiq.brandiq.model.db.JugadorDb;
 
 @Repository
 public interface JugadorRepository extends JpaRepository<JugadorDb, String> {
-    Optional<JugadorDb> findById(String id); // El id es el nickname del usuario
+    Optional<JugadorDb> findById(String nickname); // El id es el nickname del usuario
 
     List<JugadorDb> findTop10ByOrderByPuntosTotalesDescVictoriasDesc();
 

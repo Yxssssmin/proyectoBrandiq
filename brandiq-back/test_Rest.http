@@ -1,4 +1,3 @@
-###
 ## creando nuevo usuario incorrecto
 POST http://localhost:8090/auth/nuevo HTTP/1.1
 Content-Type: application/json
@@ -16,9 +15,9 @@ POST http://localhost:8090/auth/nuevo HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "jaumet",
-    "nombre": "Jaume Quiñonero",
-    "email": "jaumequiño@gmail.com",
+    "nickname": "edu",
+    "nombre": "Edu Valls",
+    "email": "eduvalls@gmail.com",
     "password": "NoTeLoDigo@1",
     "roles": ["admin"]
 }
@@ -29,50 +28,65 @@ POST http://localhost:8090/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "hugo",
+    "nickname": "edu",
     "password": "NoTeLoDigo@1"
 }
 
 ###
 ##  con JWGT (admin)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0MzU3LCJleHAiOjE3MDc3OTAzNTd9.jbzghcAu19L1jCiFehMUb9tYl-B0ORfyTVdbJrH72jQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ
 ###
 ##  con JWGT (user)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNzA3NzU0MzU3LCJleHAiOjE3MDc3OTAzNTd9.jbzghcAu19L1jCiFehMUb9tYl-B0ORfyTVdbJrH72jQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ
 ### USUARIOS ###
 
 ###
 
 ##  getUsuarioInfoById: Para el perlfil del usuario
-GET http://localhost:8090/api/v1/hugo/profile HTTP/1.1 
+GET http://localhost:8090/api/v1/jaumet/profile HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ###
 ###
 
-## getJugadorInfoByNickname: Para las estadisticas del jugador
-GET http://localhost:8090/api/v1/hugo/estadisticas HTTP/1.1
+## getJugadorInfoByNickname: Para las estadisticas del jugador. Tambien mostrara una lista de tableros que ha creado un jugador
+GET http://localhost:8090/api/v1/jaumet/estadisticas HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ###
 ###
 
 ## Editar el perfil de un Usuario
-PUT http://localhost:8090/auth/update/hugo HTTP/1.1
+PUT http://localhost:8090/auth/update/edu HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJodWdvIiwiaWF0IjoxNzA3ODY4Nzc2LCJleHAiOjE3MDc5MDQ3NzZ9.PuJA3cwKe1tFDt_CPX04_3KdAA5ZL6mdb8cn7Q-5byQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ
 
 {
-    "nombre": "lomenos",
-    "nickname": "hugo",
-    "email": "lomenos@gmail.com"
+    "nombre": "uardet",
+    "nickname": "edu",
+    "email": "eduvalls@gmail.com"
 }
-
 ###
+
 ## getJugadores: Para el ranking 
 GET http://localhost:8090/api/v1/ranking HTTP/1.1
 Content-Type: application/json
+###
 
+## Crear Tablero // TODAVIA NO ESTA OPERATIVA
+POST http://localhost:8090/api/v1/crear-tablero HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ
+
+{
+    "id_jugador": "edu",
+    "titulo": "Primera 3",
+    "finalizada": "1"
+}
+###
+
+## Listar los tableros
+GET http://localhost:8090/api/v1/tableros HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDc5OTg0NzcsImV4cCI6MTcwODAzNDQ3N30.Jp8sKJF-Q_H28Mwc1UHrIT1kbzTBt-Dqhh6Rn_dowuQ
 ###
