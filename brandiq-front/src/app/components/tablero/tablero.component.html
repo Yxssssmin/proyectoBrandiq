@@ -11,11 +11,14 @@
       <!-- Puedes personalizar el contenido de las casillas según tus necesidades -->
 
       <span *ngIf="cell">
-        {{ cell.number === 37 ? "END" : cell.number }}
+        {{ cell.number === 29 ? "END" : cell.number }}
       </span>
 
       <!-- {{ cell.row }}, {{ cell.col }} -->
     </div>
   </div>
 </div>
-<app-dado></app-dado>
+<div class="containerRight">
+  <app-dado></app-dado>
+  <app-player-list></app-player-list>
+</div>
