@@ -50,15 +50,15 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/webjars/**",
             "/auth/login",
-            "/auth/register",
-            "/api/v1/ranking"};
+            "/api/v1/ranking",
+            "/auth/nuevo" };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // Permitir no estar autenticado en "/auth" y el resto obligar a autenticar
         // Comprobar el token en cada petición (jwtTokenFilter)
-        http    
-                .cors(customizer->customizer.configurationSource(CorsConfigurationSource()))
+        http
+                .cors(customizer -> customizer.configurationSource(CorsConfigurationSource()))
                 .csrf(csrf -> csrf
                         .disable())
                 .authorizeHttpRequests(authRequest -> authRequest
