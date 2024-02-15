@@ -2,6 +2,27 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|Dosis:200,400,600);
 
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo negro translúcido */
+    z-index: 999;
+    /* Asegura que la capa de fondo esté debajo del modal */
+}
+
 h1 {
     font-family: Dosis;
     font-weight: 200;
@@ -10,21 +31,13 @@ h1 {
     font-size: 4em;
     text-transform: uppercase;
     letter-spacing: 5px;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-animation: anim 3.2s ease-out forwards 1s;
     animation: anim 3.2s ease-out forwards 1s;
-    margin-bottom: 2em;
+    margin-bottom: 4em;
 }
 
-.start-button {}
 
 strong {
-    display: block;
     font-weight: 400;
 }
 
@@ -90,18 +103,15 @@ strong {
 /*  ---------------- BOTON ---------------- */
 
 .start-buttons {
-    width: 50vw;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
-
-    /* Distribuye los botones horizontalmente */
-    /* Permite que los botones se envuelvan en pantallas pequeñas */
+    /* Add this line to make it a positioned container */
 }
 
+
 a {
-    display: inline-block;
     padding: 15px 20px;
-    color: #03e9f4;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
@@ -111,98 +121,12 @@ a {
 }
 
 a:hover {
-    background: #03e9f4;
     color: #050801;
-    box-shadow: 0 0 5px #7bff00,
+    box-shadow: 0 0 5px #03e9f4,
         0 0 25px #03e9f4,
         0 0 50px #03e9f4,
         0 0 200px #03e9f4;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-}
-
-a:nth-child(1) {
-    filter: hue-rotate(270deg);
-}
-
-a:nth-child(2) {
-    filter: hue-rotate(110deg);
-}
-
-a span {
-    position: absolute;
-    display: block;
-}
-
-a span:nth-child(1) {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
-    animation: animate1 1s linear infinite;
-}
-
-@keyframes animate1 {
-    0% {
-        left: -100%;
-    }
-
-    50%,
-    100% {
-        left: 100%;
-    }
-}
-
-a span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-}
-
-@keyframes animate2 {
-    0% {
-        top: -100%;
-    }
-
-    50%,
-    100% {
-        top: 100%;
-    }
-}
-
-a span:nth-child(3) {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.50s;
-}
-
-@keyframes animate3 {
-    0% {
-        right: -100%;
-    }
-
-    50%,
-    100% {
-        right: 100%;
-    }
-}
-
-a span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
 }
 
 @keyframes animate4 {
@@ -230,7 +154,52 @@ a span:nth-child(4) {
         /* Ajusta el margen derecho para pantallas pequeñas */
     }
 
-    .start-buttons {
-        margin-left: 5%;
-    }
+}
+
+/*** ESTILOS BOTÓN GROW BOX ***/
+.ov-btn-grow-box {
+    border-radius: 50px;
+    background: transparent;
+    /* color de fondo */
+    color: #4741d7;
+    /* color de fuente */
+    /* tamaño y color de borde */
+    padding: 16px 20px;
+    border-radius: 3px;
+    /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid rgb(0, 7, 150);
+
+}
+
+.ov-btn-grow-box:hover {
+    border-radius: 50px;
+
+    color: #fff;
+    /* color de fuente hover */
+}
+
+.ov-btn-grow-box::after {
+    content: "";
+    background: #2196f3;
+    /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(0, 0);
+    transition: all 0.3s ease;
+    border-radius: 50px;
+
+}
+
+.ov-btn-grow-box:hover::after {
+    transition: all 0.3s ease-out;
+    transform: scale(1, 1);
 }

@@ -1,0 +1,24 @@
+<div class="board">
+  <div *ngFor="let row of board; let i = index" class="row">
+    <div
+      *ngFor="let cell of row; let j = index"
+      class="cell"
+      [ngStyle]="{ 'background-color': cell?.color }"
+      (click)="
+        cell && isBorderCell(cell) && handleCellClick(cell.row, cell.col)
+      "
+    >
+      <!-- Puedes personalizar el contenido de las casillas según tus necesidades -->
+
+      <span *ngIf="cell">
+        {{ cell.number === 29 ? "END" : cell.number }}
+      </span>
+
+      <!-- {{ cell.row }}, {{ cell.col }} -->
+    </div>
+  </div>
+</div>
+<div class="containerRight">
+  <app-dado></app-dado>
+  <app-player-list></app-player-list>
+</div>

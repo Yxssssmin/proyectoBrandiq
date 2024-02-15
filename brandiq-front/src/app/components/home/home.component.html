@@ -12,24 +12,25 @@
 
 <div class="start-buttons">
   <ng-container *ngIf="userService.isLogged()">
-    <div class="start-button">
-      <a [routerLink]="['/board']">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Empezar partida
-      </a>
+    <div style="cursor: pointer">
+      <div class="start-button">
+        <a (click)="showStartGameForm()" class="ov-btn-grow-box"
+          >Empezar partida</a
+        >
+      </div>
     </div>
-    <div class="start-button">
-      <a [routerLink]="['otraRuta']">
-        <!-- Cambia 'otraRuta' a tu ruta deseada -->
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Unirse a partida
-      </a>
+    <div style="cursor: pointer">
+      <div class="start-button">
+        <a (click)="showStartGameForm()" class="ov-btn-grow-box"
+          >Unirse a partida</a
+        >
+      </div>
     </div>
   </ng-container>
 </div>
+<div class="overlay" *ngIf="showModal"></div>
+
+<app-modal-empezar-partida
+  *ngIf="showModal"
+  (closeModalEvent)="closeModal()"
+></app-modal-empezar-partida>

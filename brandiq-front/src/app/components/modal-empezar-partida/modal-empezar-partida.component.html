@@ -1,0 +1,24 @@
+<form (submit)="crearPartida($event)">
+  <h1>Crear partida</h1>
+  <hr />
+  <p>
+    <strong
+      >Creador de la partida: <span>{{ getNicknameStorage() }}</span></strong
+    >
+  </p>
+  <div class="form-group">
+    <!-- Nuevo contenedor para etiqueta e input -->
+    <label for="titulo">Título :</label>
+    <input
+      type="text"
+      id="titulo"
+      required
+      name="tituloPartida"
+      [(ngModel)]="tituloPartida"
+    />
+  </div>
+  <div class="buttons-container">
+    <button type="button" (click)="closeModal()">Cerrar</button>
+    <button type="submit">Crear partida</button>
+  </div>
+</form>
