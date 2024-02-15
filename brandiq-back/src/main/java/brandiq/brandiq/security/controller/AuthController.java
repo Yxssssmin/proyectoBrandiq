@@ -123,4 +123,15 @@ public class AuthController {
         }
 
     }
+
+    @DeleteMapping("/delete/{nickname}")
+    public ResponseEntity<String> deleteByIdUsuario(@PathVariable String nickname) {
+        String usuarioDb = usuarioInterface.deleteByNicknameUsuario(nickname);
+
+        if ("Usuario eliminado".equals(usuarioDb)) {
+            return new ResponseEntity<>("Usuario eliminado exitosamente", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No se pudo eliminar el usuario", HttpStatus.NOT_FOUND);
+        }
+    }
 }
