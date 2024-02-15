@@ -21,16 +21,21 @@
     </div>
     <div style="cursor: pointer">
       <div class="start-button">
-        <a (click)="showStartGameForm()" class="ov-btn-grow-box"
+        <a (click)="showJoinGameForm()" class="ov-btn-grow-box"
           >Unirse a partida</a
         >
       </div>
     </div>
   </ng-container>
 </div>
-<div class="overlay" *ngIf="showModal"></div>
+<div class="overlay" *ngIf="showModalEmpezar || showModalUnirse"></div>
 
 <app-modal-empezar-partida
-  *ngIf="showModal"
+  *ngIf="showModalEmpezar"
   (closeModalEvent)="closeModal()"
 ></app-modal-empezar-partida>
+
+<app-modal-unirse-partida
+  *ngIf="showModalUnirse"
+  (closeModalEvent)="closeModalJoin()"
+></app-modal-unirse-partida>

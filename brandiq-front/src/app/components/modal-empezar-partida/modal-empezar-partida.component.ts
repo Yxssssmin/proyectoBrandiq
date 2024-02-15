@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TableroServiceService } from '../../services/tablero-service.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-modal-empezar-partida',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './modal-empezar-partida.component.html',
   styleUrl: './modal-empezar-partida.component.css',
 })
@@ -13,7 +14,10 @@ export class ModalEmpezarPartidaComponent {
   @Output() closeModalEvent = new EventEmitter();
   tituloPartida: string = '';
 
-  constructor(private tableroService: TableroServiceService) {}
+  constructor(
+    private tableroService: TableroServiceService,
+    private router: Router
+  ) {}
 
   crearPartida(event: any) {
     event.preventDefault();
@@ -27,6 +31,7 @@ export class ModalEmpezarPartidaComponent {
           next: (data) => {
             console.log('Respuesta del servidor:', data);
             this.closeModal();
+            this.router.navigate(['/tablero']);
           },
           error: (error) => {
             console.error('Error en la solicitud:', error);

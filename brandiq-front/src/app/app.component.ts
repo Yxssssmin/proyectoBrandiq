@@ -7,6 +7,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { UsersService } from './services/users.service';
 import { ModalEmpezarPartidaComponent } from './components/modal-empezar-partida/modal-empezar-partida.component';
 import { DadoComponent } from './components/dado/dado.component';
+import { ModalUnirsePartidaComponent } from './components/modal-unirse-partida/modal-unirse-partida.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { DadoComponent } from './components/dado/dado.component';
     RouterLink,
     ModalEmpezarPartidaComponent,
     DadoComponent,
+    ModalUnirsePartidaComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

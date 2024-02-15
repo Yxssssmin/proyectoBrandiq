@@ -75,11 +75,20 @@ button[type="submit"] {
     color: #fff;
 }
 
+button[type="submit"]:hover {
+    background-color: #0c72c5;
+}
+
 /* Secondary button style */
 button[type="button"] {
     background-color: #ccc;
     color: #000;
     margin-right: 2%;
+}
+
+button[type="button"]:hover {
+    background-color: rgb(117, 117, 117);
+
 }
 
 .modal-content p {

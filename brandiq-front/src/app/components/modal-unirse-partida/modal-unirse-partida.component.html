@@ -1,0 +1,32 @@
+<h1>Lista de partidas</h1>
+<table class="table"></table>
+<div class="divOverflow">
+  <table class="table">
+    <thead>
+      <tr class="sticky-top">
+        <th style="color: #2196f3">Codigo</th>
+        <th style="color: #2196f3">Creador</th>
+        <th style="color: #2196f3">Nombre</th>
+        <th style="color: #2196f3">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tablero of tableros">
+        <td>{{ tablero.id }}</td>
+        <td>{{ tablero.id_jugador }}</td>
+        <td>{{ tablero.titulo }}</td>
+        <td>
+          <button
+            (click)="unirsePartida(tablero.id)"
+            class="btn-success btn-primary"
+          >
+            Unirse
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button class="close-button" (click)="closeModal()" style="align-self: center">
+  Cerrar
+</button>

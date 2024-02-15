@@ -70,3 +70,10 @@
     justify-content: space-around;
     align-items: center;
 }
+
+@media (max-width: 1300px) {
+    .board {
+        min-height: 400px;
+        min-width: 400px;
+    }
+}
