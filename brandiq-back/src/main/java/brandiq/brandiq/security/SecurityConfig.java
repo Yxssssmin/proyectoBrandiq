@@ -48,21 +48,21 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST_URL = {
             "/api-docs/**",
             "/swagger-ui/**",
-            "/webjars/**" };
+            "/webjars/**",
+            "/auth/login",
+            "/api/v1/ranking",
+            "/auth/nuevo" };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // Permitir no estar autenticado en "/auth" y el resto obligar a autenticar
         // Comprobar el token en cada petición (jwtTokenFilter)
         http
+                .cors(customizer -> customizer.configurationSource(CorsConfigurationSource()))
                 .csrf(csrf -> csrf
                         .disable())
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers(WHITE_LIST_URL).permitAll()
-                        .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/auth/nuevo").permitAll()
-                        .requestMatchers("/api/v1/**").permitAll()
-                        .requestMatchers("/auth/update/**").permitAll() // Requiere autenticación con un token
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -81,6 +81,7 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of("http://localhost:8005", "http://localhost:4200"));
         configuration.setAllowedMethods(List.of("GET", "POST", "DELETE", "PUT")); // Que métodos pueden utilizarse
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

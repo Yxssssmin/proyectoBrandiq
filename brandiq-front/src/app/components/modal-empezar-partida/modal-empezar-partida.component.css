@@ -1,0 +1,108 @@
+:host {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+
+    /* Alinea el contenido al centro horizontalmente */
+
+    /* Asegura que el modal esté por encima del fondo oscuro */
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    /* Asegura que el contenido del modal esté sobre la capa de fondo */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 16px;
+    width: 75%;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Primary button style */
+button[type="submit"] {
+    background-color: #2196f3;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #0c72c5;
+}
+
+/* Secondary button style */
+button[type="button"] {
+    background-color: #ccc;
+    color: #000;
+    margin-right: 2%;
+}
+
+button[type="button"]:hover {
+    background-color: rgb(117, 117, 117);
+
+}
+
+.modal-content p {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.modal-content span {
+    text-transform: uppercase;
+    color: #2196f3;
+    /* Cambia el color según tus preferencias */
+}
+
+span {
+    color: #0e5d9d;
+}

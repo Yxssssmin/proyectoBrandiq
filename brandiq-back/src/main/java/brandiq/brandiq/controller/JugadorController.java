@@ -14,6 +14,8 @@ import brandiq.brandiq.srv.JugadorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/")
@@ -42,5 +44,5 @@ public class JugadorController {
         } else {
             return ResponseEntity.noContent().build(); // Código 204 si la lista está vacía
         }
-    }
+    }    
 }

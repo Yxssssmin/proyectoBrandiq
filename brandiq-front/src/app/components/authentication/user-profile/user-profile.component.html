@@ -1,23 +1,29 @@
-<section style="width: 100vw">
-  <div class="container py-5">
+<section class="py-5">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
+      <div class="col-lg-4 mb-4">
+        <div class="card">
           <div class="card-body text-center">
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
               alt="avatar"
-              class="rounded-circle img-fluid"
-              style="width: 8.1em"
+              class="rounded-circle img-fluid avatar"
+              style="max-width: 35%; height: auto"
             />
             <h5 class="my-3">{{ userProfile?.nickname }}</h5>
             <p class="text-muted mb-1">{{ userProfile?.nombre }}</p>
             <p class="text-muted mb-4">{{ userProfile?.email }}</p>
+            <button
+              (click)="eliminarUsuario()"
+              class="btn btn-danger btn-delete"
+            >
+              Eliminar Cuenta
+            </button>
           </div>
         </div>
       </div>
-      <div class="col-lg-8 d-flex align-items-center">
-        <div class="card mb-4 w-100 p-2">
+      <div class="col-lg-8">
+        <div class="card w-100 mb-4">
           <div class="card-body">
             <div
               class="row mb-3 d-flex justify-content-sm-around align-items-center"
@@ -25,7 +31,9 @@
               <div class="col-sm-3">
                 <p class="mb-0 fw-bold">Nickname</p>
               </div>
-              <div class="col-sm-9">
+              <div
+                class="col-sm-9 d-flex align-items-center justify-content-between"
+              >
                 <p class="text-muted mb-0">{{ userProfile?.nickname }}</p>
               </div>
             </div>

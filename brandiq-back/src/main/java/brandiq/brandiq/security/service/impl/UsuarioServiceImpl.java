@@ -30,29 +30,45 @@ public class UsuarioServiceImpl implements UsuarioInterface {
         }
     }
 
-    /* @Override
-    public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit) {
-        Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(usuarioEdit.getNickname());
-
-        if (usuarioDb.isPresent()) {
-            return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(
-                    usuarioRepository.save(UsuarioMapper.INSTANCE.usuarioEditToUsuarioDb(usuarioEdit))));
-        } else {
-            throw new ResourceNotFoundException("USUARIO_NOT_FOUND" + usuarioEdit.getNickname() + " not found");
-        }
-    } */
+    /*
+     * @Override
+     * public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit) {
+     * Optional<UsuarioDb> usuarioDb =
+     * usuarioRepository.findByNickname(usuarioEdit.getNickname());
+     * 
+     * if (usuarioDb.isPresent()) {
+     * return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(
+     * usuarioRepository.save(UsuarioMapper.INSTANCE.usuarioEditToUsuarioDb(
+     * usuarioEdit))));
+     * } else {
+     * throw new ResourceNotFoundException("USUARIO_NOT_FOUND" +
+     * usuarioEdit.getNickname() + " not found");
+     * }
+     * }
+     */
 
     @Override
-public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
-    Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
+    public Optional<UsuarioEdit> update(UsuarioEdit usuarioEdit, String nickname) {
+        Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
 
-    if (usuarioDb.isPresent()) {
-        UsuarioMapper.INSTANCE.updateUsuarioDbFromUsuarioEdit(usuarioEdit, usuarioDb.get());
-        return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(usuarioRepository.save(usuarioDb.get())));
-    } else {
-        throw new ResourceNotFoundException("Usuario con apodo " + nickname + " no encontrado");
+        if (usuarioDb.isPresent()) {
+            UsuarioMapper.INSTANCE.updateUsuarioDbFromUsuarioEdit(usuarioEdit, usuarioDb.get());
+            return Optional.of(UsuarioMapper.INSTANCE.usuarioDbToUsuarioEdit(usuarioRepository.save(usuarioDb.get())));
+        } else {
+            throw new ResourceNotFoundException("Usuario con apodo " + nickname + " no encontrado");
+        }
     }
-}
 
+    @Override
+    public String deleteByNicknameUsuario(String nickname) {
+        Optional<UsuarioDb> usuarioDb = usuarioRepository.findByNickname(nickname);
+
+        if (usuarioDb.isPresent()) {
+            usuarioRepository.delete(usuarioDb.get());
+            return "Usuario eliminado";
+        } else {
+            return "Usuario no encontrado";
+        }
+    }
 
 }

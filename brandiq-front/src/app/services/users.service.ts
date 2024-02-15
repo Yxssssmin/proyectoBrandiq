@@ -5,6 +5,7 @@ import { User } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +15,28 @@ export class UsersService {
     new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private router: Router // private jwtHelper: JwtHelperService
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  // Método para verificar si el usuario está logueado al iniciar la aplicación
   checkLoggedInStatus(): void {
-    // Lógica para verificar el estado de autenticación (puedes realizar una solicitud HTTP aquí si es necesario)
-    // Por ejemplo, puedes hacer una solicitud al servidor para comprobar si hay una sesión activa.
-
-    // Ejemplo de lógica simple (modifica según tus necesidades)
     const storedToken = localStorage.getItem('authToken');
     this.isLoggedInSubject.next(!!storedToken);
+  }
+
+  // Nuevo método para verificar la expiración del token
+  checkTokenExpiration(): void {
+    const authToken = localStorage.getItem('authToken');
+
+    if (authToken) {
+      const decodedToken: { exp: number } = jwtDecode(authToken);
+
+      // Verificar si el token ha expirado comparando con la fecha actual
+      const tokenExpired = decodedToken.exp < Date.now() / 1000;
+
+      if (tokenExpired) {
+        console.log('El token ha expirado. Cerrando sesión.');
+        this.logout(); // Llama al método de cierre de sesión
+      }
+    }
   }
 
   login(user: { nickname: string; password: string }): Observable<any> {
@@ -40,6 +50,7 @@ export class UsersService {
         localStorage.setItem('userNickname', nicknameUsuario);
         // Actualizar el estado de autenticación
         this.isLoggedInSubject.next(true);
+        this.checkTokenExpiration();
       })
     );
   }
@@ -114,6 +125,17 @@ export class UsersService {
         email: profileData.email,
         nickname: nicknameUsuario,
       },
+      { headers }
+    );
+  }
+
+  eliminarUsuario(): Observable<any> {
+    const authToken = localStorage.getItem('authToken');
+    const nicknameUsuario = localStorage.getItem('userNickname');
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    return this.http.delete(
+      environment.URL_SPRING + `auth/delete/${nicknameUsuario}`,
       { headers }
     );
   }

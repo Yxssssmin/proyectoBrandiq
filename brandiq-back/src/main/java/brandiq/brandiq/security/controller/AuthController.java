@@ -1,6 +1,8 @@
 package brandiq.brandiq.security.controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -122,5 +124,19 @@ public class AuthController {
             throw new ResourceNotFoundException("USUARIO_NOT_FOUND" + nickname);
         }
 
+    }
+
+    @DeleteMapping("/delete/{nickname}")
+    public ResponseEntity<Map<String, String>> deleteByIdUsuario(@PathVariable String nickname) {
+        String result = usuarioInterface.deleteByNicknameUsuario(nickname);
+        Map<String, String> response = new HashMap<>();
+
+        if ("Usuario eliminado".equals(result)) {
+            response.put("message", "Usuario eliminado exitosamente");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            response.put("message", "No se pudo eliminar el usuario");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
     }
 }
