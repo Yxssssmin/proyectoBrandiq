@@ -4,8 +4,8 @@
 }
 
 .playersList>div {
-  height: 10em;
-  width: 10em;
+  height: 15em;
+  width: 15em;
   text-align: center;
   border-radius: 10px;
 }
@@ -43,4 +43,13 @@
 /* Estilos para las puntuaciones de los jugadores */
 .playersList p {
   color: #555;
+}
+
+@media (max-width: 1300px) {
+  .playersList>div {
+    height: 10em;
+    width: 8em;
+    text-align: center;
+    border-radius: 10px;
+  }
 }

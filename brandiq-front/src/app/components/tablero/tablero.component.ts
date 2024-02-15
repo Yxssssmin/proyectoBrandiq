@@ -87,4 +87,5 @@ export class TableroComponent {
     console.log(`Clicked on cell: ${row}, ${col}`);
     // Aquí puedes realizar acciones específicas cuando se hace clic en una celda
   }
+
 }

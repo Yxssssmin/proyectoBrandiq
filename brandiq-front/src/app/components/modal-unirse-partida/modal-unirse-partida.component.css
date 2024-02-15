@@ -1,0 +1,76 @@
+:host {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 450px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    /* Alinea el contenido al centro horizontalmente */
+    /* Asegura que el modal esté por encima del fondo oscuro */
+}
+
+.divOverflow {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+
+    flex-direction: column;
+    /* Asegúrate de que el contenedor sea de tipo columna */
+
+    /* Añade scroll vertical si es necesario */
+}
+
+.tablero {
+    display: flex;
+    align-items: center;
+    /* Cambia space-between por flex-start */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+span {
+    flex-grow: 1;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    /* Ajusta el padding del botón */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: green;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+}
+
+.close-button {
+    background-color: #ccc;
+    color: #000;
+    margin-right: 2%;
+}
+
+.close-button:hover {
+    background-color: rgb(117, 117, 117);
+    /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}
