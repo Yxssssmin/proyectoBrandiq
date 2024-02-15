@@ -36,12 +36,12 @@ Content-Type: application/json
 ###
 ##  con JWGT (admin)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 
 ###
 ##  con JWGT (user)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 
 ### USUARIOS ###
 
@@ -50,19 +50,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5N
 ##  getUsuarioInfoById: Para el perlfil del usuario
 GET http://localhost:8090/api/v1/josera/profile HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 ###
 
 ## getJugadorInfoByNickname: Para las estadisticas del jugador
 GET http://localhost:8090/api/v1/josera/estadisticas HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 ###
 
 ## Editar el perfil de un Usuario
 PUT http://localhost:8090/auth/update/josera HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 
 {
     "nombre": "lomenos",
@@ -76,9 +76,9 @@ GET http://localhost:8090/api/v1/ranking HTTP/1.1
 Content-Type: application/json
 
 ###
-## deleteByIdCity
+## deleteByNicknameUsuario
 DELETE http://localhost:8090/auth/delete/josera HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5NDM2MTAsImV4cCI6MTcwNzk3OTYxMH0.Lsz-PBe51R1hJAij5DP7OWm5a5nF52apiWxaNAXda3g
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlcmEiLCJpYXQiOjE3MDc5OTg2NTAsImV4cCI6MTcwODAzNDY1MH0.PHO2Yd4QtVWs2ji9z-OCQp6AjEMmL8DvrxCjxf3-r24
 
 ###
