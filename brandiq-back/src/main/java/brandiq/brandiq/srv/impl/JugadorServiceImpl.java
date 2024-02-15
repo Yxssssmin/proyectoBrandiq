@@ -44,4 +44,15 @@ public class JugadorServiceImpl implements JugadorService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<JugadorDb> getJugadorDbByNickname(String nickname) {
+        Optional<JugadorDb> jugadorDb = jugadorRepository.findById(nickname);
+
+        if (jugadorDb.isPresent()) {
+            return Optional.of(jugadorDb.get());
+
+        }
+        return Optional.empty();
+    }
+
 }
