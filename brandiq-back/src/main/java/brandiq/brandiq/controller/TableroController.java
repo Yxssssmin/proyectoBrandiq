@@ -16,12 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
 import brandiq.brandiq.model.db.JugadorDb;
+import brandiq.brandiq.model.db.JugadorSalaDb;
+import brandiq.brandiq.model.db.JugadorSalaEditDb;
+import brandiq.brandiq.model.db.JugadorSalaNombreDb;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
 import brandiq.brandiq.model.dto.JugadorInfo;
+import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.Mensaje;
 import brandiq.brandiq.model.dto.TableroEdit;
+import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
+import brandiq.brandiq.srv.JugadorSalaService;
 import brandiq.brandiq.srv.JugadorService;
 import brandiq.brandiq.srv.TableroService;
 import jakarta.validation.Valid;
@@ -37,15 +43,43 @@ public class TableroController {
     @Autowired
     private JugadorService jugadorService;
 
+    @Autowired
+    private JugadorSalaService jugadorSalaService;
+
     private TableroService tableroService;
 
     public TableroController(TableroService tableroService) {
         this.tableroService = tableroService;
     }
 
+    // @PostMapping("/crear-tablero")
+    // public TableroEdit crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult bindingResult) {
+    //     return tableroService.save(tableroEdit);
+    // }
+
     @PostMapping("/crear-tablero")
-    public TableroEdit crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult bindingResult) {
-        return tableroService.save(tableroEdit);
+    public ResponseEntity<?> crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult bindingResult) {
+        
+        tableroService.save(tableroEdit);
+
+        System.out.println(tableroEdit.getId_jugador());
+        System.out.println(tableroEdit.getId());
+        //System.out.println(tableroService.obtenerUltimoIdParaJugador(tableroEdit.getId_jugador()));
+
+
+        JugadorSalaEdit jugadorSalaEdit = new JugadorSalaEdit();
+
+        jugadorSalaEdit.setId_jugador(tableroEdit.getId_jugador());
+        jugadorSalaEdit.setId_tablero(tableroEdit.getId());
+        jugadorSalaEdit.setPuntos(0);
+        jugadorSalaEdit.setAciertos(0);
+        jugadorSalaEdit.setFallos(0);
+        jugadorSalaEdit.setPosicionX(0);
+        jugadorSalaEdit.setPosicionY(0);
+        jugadorSalaEdit.setTurno(true);
+        jugadorSalaService.save(jugadorSalaEdit);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Mensaje("Tablero y jugador en sala creado"));
     }
 
     @GetMapping("/tableros")
@@ -71,6 +105,14 @@ public class TableroController {
         } else {
             throw new ResourceNotFoundException("TABLERO_NOT_FOUND" + id);
         }
+    }
+
+    @GetMapping("/tablero/{id}/info")
+    public ResponseEntity<TableroInfo> getTableroInfoById(@PathVariable(value = "id") Integer id){
+        Optional<TableroInfo> tableroInfo = tableroService.getTableroInfoById(id);
+        if (tableroInfo.isPresent()) 
+            return ResponseEntity.ok().body(tableroInfo.get());
+        else throw new ResourceNotFoundException("TABLERO NOT FOUND"+id);
     }
 
 }

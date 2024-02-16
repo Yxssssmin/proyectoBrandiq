@@ -6,13 +6,16 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
+import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
 import brandiq.brandiq.model.dto.TableroEdit;
+import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
 import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
 import brandiq.brandiq.srv.TableroService;
 import brandiq.brandiq.srv.mapper.TableroMapper;
+import lombok.NonNull;
 
 @Service
 public class TableroServiceImpl implements TableroService {
@@ -59,5 +62,19 @@ public class TableroServiceImpl implements TableroService {
         else
             return Optional.empty();
     }
+
+    public Optional<TableroInfo> getTableroInfoById (@NonNull Integer id){
+        Optional<TableroDb> tableroDb=tableroRepository.findById(id);
+        if (tableroDb.isPresent()) {
+            return Optional.of(TableroMapper.INSTANCE.tableroDbToTableroInfo(tableroDb.get()));
+        } else{
+            return Optional.empty();
+        }
+    }
+
+    // @Override
+    // public Long obtenerUltimoIdParaJugador(String id_jugador) {
+    //     return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
+    // }
 
 }
