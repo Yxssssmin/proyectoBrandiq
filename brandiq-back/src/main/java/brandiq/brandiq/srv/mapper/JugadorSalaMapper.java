@@ -12,7 +12,7 @@ import brandiq.brandiq.model.dto.JugadorSalaList;
 
 @Mapper
 public interface JugadorSalaMapper {
-    JugadorMapper INSTANCE = Mappers.getMapper(JugadorMapper.class);
+    JugadorSalaMapper INSTANCE = Mappers.getMapper(JugadorSalaMapper.class);
 
     @Mapping(target = "id_jugador", source = "jugadorDb.id")
     JugadorSalaList jugadorSalaDbToJugadorSalaList(JugadorSalaDb jugadorSalaDb);

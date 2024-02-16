@@ -117,3 +117,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwM
     "finalizada": "0"
 }
 ###
+## Jugador sala
+GET http://localhost:8090/api/v1/1/piu HTTP/1.1 
+Content-Type: application/json
+Authorization: Bearer 
+
+###
