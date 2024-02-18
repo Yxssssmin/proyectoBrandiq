@@ -9,6 +9,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { BoardComponent } from './components/board/board.component';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { DadoComponent } from './components/dado/dado.component';
+import { SalaDeEsperaComponent } from './components/sala-de-espera/sala-de-espera.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'board', component: BoardComponent },
   { path: 'tablero', component: TableroComponent },
   { path: 'dado', component: DadoComponent },
+  { path: 'salaEspera', component: SalaDeEsperaComponent },
   { path: '**', component: HomeComponent },
 ];
