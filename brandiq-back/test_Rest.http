@@ -16,9 +16,9 @@ Content-Type: application/json
 
 {
 
-    "nickname": "Pepe",
-    "nombre": "Pepe Benavent",
-    "email": "pepe@gmail.com",
+    "nickname": "Marcos",
+    "nombre": "Marcos Giner",
+    "email": "marcos@gmail.com",
     "password": "NoTeLoDigo@1",
     "roles": ["admin"]
 }
@@ -87,7 +87,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIiwiaWF0IjoxNzA4MzMxNjAwLCJleHAiOjE3MDgzNjc2MDB9.MF8wQqRHgV5fAIkR_VLgjY9aq7VXu19QFoEIEk0qFuA
 
 {
-    "id_jugador": "Pepe",
+    "id_jugador": "Marcos",
     "titulo": "Partida Prueba",
     "finalizada": "1"
 }
@@ -116,6 +116,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIiwiaWF0IjoxNzA4MzMxN
     "titulo": "Primera 2",
     "finalizada": "0"
 }
+
 ###
 ## Jugador sala
 GET http://localhost:8090/api/v1/1/piu HTTP/1.1 
@@ -124,6 +125,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIiwiaWF0IjoxNzA4MzMxN
 
 ###
 ## Tablero Info
-GET http://localhost:8090/api/v1/tablero/3/info HTTP/1.1 
+GET http://localhost:8090/api/v1/tablero/5/info HTTP/1.1 
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIiwiaWF0IjoxNzA4MzMxNjAwLCJleHAiOjE3MDgzNjc2MDB9.MF8wQqRHgV5fAIkR_VLgjY9aq7VXu19QFoEIEk0qFuA

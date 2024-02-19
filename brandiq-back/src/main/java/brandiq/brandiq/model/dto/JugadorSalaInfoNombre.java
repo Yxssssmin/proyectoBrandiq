@@ -11,5 +11,9 @@ public class JugadorSalaInfoNombre {
 
     private Integer id;
 
+    private String id_jugador;
+
     private Integer puntos;
+
+    private boolean turno;
 }

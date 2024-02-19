@@ -25,5 +25,9 @@ public class JugadorSalaNombreDb implements Serializable{
 
     private Integer puntos;
 
+    private String id_jugador;
+
+    private boolean turno;
+
     private Long id_tablero;
 }
