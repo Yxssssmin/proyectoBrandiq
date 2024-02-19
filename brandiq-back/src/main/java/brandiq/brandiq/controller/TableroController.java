@@ -23,6 +23,7 @@ import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
 import brandiq.brandiq.model.dto.JugadorInfo;
 import brandiq.brandiq.model.dto.JugadorSalaEdit;
+import brandiq.brandiq.model.dto.JugadorSalaInfo;
 import brandiq.brandiq.model.dto.Mensaje;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
@@ -99,4 +100,8 @@ public class TableroController {
         else throw new ResourceNotFoundException("TABLERO NOT FOUND"+id);
     }
 
+    @PostMapping("/unirse-tablero/{idTablero}/{idJugador}")
+    public ResponseEntity<?> unirseATablero(@PathVariable Integer idTablero, @PathVariable String idJugador) {
+    return tableroService.joinTablero(idTablero, idJugador);
+    }
 }

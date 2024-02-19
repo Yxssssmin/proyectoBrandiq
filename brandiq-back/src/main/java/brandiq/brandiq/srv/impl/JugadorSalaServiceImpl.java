@@ -29,16 +29,16 @@ public class JugadorSalaServiceImpl implements JugadorSalaService{
     }
     
 
-    @Override
-public Optional<JugadorSalaInfo> getJugadorSalaInfoById(Integer id) {
-    Optional<JugadorSalaDb> jugadorSalaDb = jugadorSalaRepository.findById(id);
+        @Override
+    public Optional<JugadorSalaInfo> getJugadorSalaInfoById(Integer id) {
+        Optional<JugadorSalaDb> jugadorSalaDb = jugadorSalaRepository.findById(id);
 
-    if (jugadorSalaDb.isPresent()) {
-        return Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaDbToJugadorSalaInfo(jugadorSalaDb.get()));
+        if (jugadorSalaDb.isPresent()) {
+            return Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaDbToJugadorSalaInfo(jugadorSalaDb.get()));
+        }
+
+        return Optional.empty();
     }
-
-    return Optional.empty();
-}
 
     @Override
     public void save(JugadorSalaDb jugadorSalaDb) {
@@ -49,6 +49,17 @@ public Optional<JugadorSalaInfo> getJugadorSalaInfoById(Integer id) {
     public JugadorSalaEdit save(JugadorSalaEdit jugadorSalaEdit) {
         return JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
                 jugadorSalaEditRepository.save(JugadorSalaMapper.INSTANCE.jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit)));
+    }
+
+    @Override
+    public Optional<JugadorSalaEdit> getJugadorSalaEditById(Integer id) {
+        Optional<JugadorSalaDb> jugadorSalaDb = jugadorSalaRepository.findById(id);
+
+        if (jugadorSalaDb.isPresent()) {
+            return Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaDbToJugadorSalaEdit(jugadorSalaDb.get()));
+        }
+
+        return Optional.empty();
     }
 
 }

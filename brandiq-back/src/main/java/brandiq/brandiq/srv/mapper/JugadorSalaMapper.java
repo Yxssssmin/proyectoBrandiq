@@ -27,6 +27,8 @@ public interface JugadorSalaMapper {
     //Devuelve un objeto de tipo 'JugadorSalaInfo' a partir de un objeto de tipo 'JugadorSalaDb'
 	JugadorSalaInfo jugadorSalaDbToJugadorSalaInfo(JugadorSalaDb jugadorSalaDb);
 
+    JugadorSalaEdit jugadorSalaDbToJugadorSalaEdit(JugadorSalaDb jugadorSalaDb);
+
     Set<JugadorSalaInfoNombre> jugadoresSalaDbToJugadoresSalaInfoNombre(Set<JugadorSalaNombreDb> jugadoresSalaNombreDb);
 
     JugadorSalaEdit jugadorSalaEditDbToJugadorSalaEdit(JugadorSalaEditDb jugadorSalaEditDb);

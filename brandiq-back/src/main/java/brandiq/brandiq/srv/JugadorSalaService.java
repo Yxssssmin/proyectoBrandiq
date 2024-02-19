@@ -16,5 +16,5 @@ public interface JugadorSalaService {
 
     public JugadorSalaEdit save(JugadorSalaEdit jugadorSalaEdit);
 
-    
+    public Optional<JugadorSalaEdit> getJugadorSalaEditById(Integer id);
 }
