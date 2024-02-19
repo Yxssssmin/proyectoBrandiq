@@ -1,11 +1,15 @@
 package brandiq.brandiq.srv.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.mapping.Table;
 import org.springframework.stereotype.Service;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
+import brandiq.brandiq.model.db.CasillasEdit;
+import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroList;
@@ -49,6 +53,21 @@ public class TableroServiceImpl implements TableroService {
             throw new ResourceNotFoundException("Tablero NOT FOUND: " + tableroEdit.getId_jugador());
         }
 
+    }
+
+    @Override
+    public TableroEdit addTableroEdit(TableroEdit tableroEdit){
+        TableroDb tableroDb = TableroMapper.INSTANCE.tableroEditToTableroDb(tableroEdit);
+        TableroDb saveTableroDb = tableroRepository.save(tableroDb);
+
+        try {
+            CasillasEdit casillasEdit  = new CasillasEdit(tableroEdit.getId(),"pepsi","pepsi",0,1);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return TableroMapper.INSTANCE.tableroDbToTableroEdit(tableroDb);
     }
 
 }

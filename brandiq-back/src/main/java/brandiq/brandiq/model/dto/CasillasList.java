@@ -12,11 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CasillasList implements Serializable{
-    @Id
-    private Long id;
-    
-    private Integer id_tablero;
-    private Blob img;
+       
+    private int id;
     private String nombre;
     private Integer posicionX;
     private Integer posicionY;

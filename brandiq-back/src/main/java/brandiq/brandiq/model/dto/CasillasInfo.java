@@ -1,9 +1,11 @@
 package brandiq.brandiq.model.dto;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
+import brandiq.brandiq.model.db.TableroDb;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CasillasInfo implements Serializable{
-    @Id
-    private Long id;
-    
-    private Integer id_tablero;
-    private Blob img;
+   
+    private byte[] imagen;
     private String nombre;
     private Integer posicionX;
     private Integer posicionY;
+
 }

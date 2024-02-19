@@ -10,4 +10,5 @@ public interface TableroService {
     public TableroEdit save(TableroEdit tableroEdit);
     public Optional<TableroEdit> update(TableroEdit tableroEdit);
     public List<TableroList> findAllTableroList();
+    public TableroEdit addTableroEdit(TableroEdit tableroEdit);
 }
