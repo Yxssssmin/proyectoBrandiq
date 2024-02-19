@@ -8,25 +8,32 @@ import org.hibernate.mapping.Table;
 import org.springframework.stereotype.Service;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
+import brandiq.brandiq.model.db.JugadorSalaEditDb;
+import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.CasillasEdit;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
+import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.TableroEdit;
+import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
+import brandiq.brandiq.repository.JugadorSalaRepository;
 import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
 import brandiq.brandiq.srv.TableroService;
 import brandiq.brandiq.srv.mapper.TableroMapper;
+import lombok.NonNull;
 
 @Service
 public class TableroServiceImpl implements TableroService {
     private final TableroRepository tableroRepository;
     private final TableroEditRepository tableroEditRepository;
+    private final JugadorSalaRepository jugadorSalaRepository;
 
-    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository) {
+    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository, JugadorSalaRepository jugadorSalaRepository) {
         this.tableroRepository = tableroRepository;
         this.tableroEditRepository = tableroEditRepository;
-
+        this.jugadorSalaRepository = jugadorSalaRepository;
     }
 
     @Override
@@ -56,18 +63,15 @@ public class TableroServiceImpl implements TableroService {
     }
 
     @Override
-    public TableroEdit addTableroEdit(TableroEdit tableroEdit){
-        TableroDb tableroDb = TableroMapper.INSTANCE.tableroEditToTableroDb(tableroEdit);
-        TableroDb saveTableroDb = tableroRepository.save(tableroDb);
+    public Optional<TableroEdit> getTableroEditById(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTableroEditById'");
+    }
 
-        try {
-            CasillasEdit casillasEdit  = new CasillasEdit(tableroEdit.getId(),"pepsi","pepsi",0,1);
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return TableroMapper.INSTANCE.tableroDbToTableroEdit(tableroDb);
+    @Override
+    public Optional<TableroInfo> getTableroInfoById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTableroInfoById'");
     }
 
 }
