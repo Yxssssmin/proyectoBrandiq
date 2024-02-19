@@ -6,11 +6,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
+import brandiq.brandiq.model.db.JugadorSalaEditDb;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
+import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
+import brandiq.brandiq.repository.JugadorSalaRepository;
 import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
 import brandiq.brandiq.srv.TableroService;
@@ -21,11 +24,12 @@ import lombok.NonNull;
 public class TableroServiceImpl implements TableroService {
     private final TableroRepository tableroRepository;
     private final TableroEditRepository tableroEditRepository;
+    private final JugadorSalaRepository jugadorSalaRepository;
 
-    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository) {
+    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository, JugadorSalaRepository jugadorSalaRepository) {
         this.tableroRepository = tableroRepository;
         this.tableroEditRepository = tableroEditRepository;
-
+        this.jugadorSalaRepository = jugadorSalaRepository;
     }
 
     @Override
@@ -70,6 +74,19 @@ public class TableroServiceImpl implements TableroService {
         } else{
             return Optional.empty();
         }
+    }
+
+    @Override
+    public TableroEdit addTableroEdit(TableroEdit tableroEdit) {
+        TableroEditDb tableroDb = TableroMapper.INSTANCE.tableroEditToTableroEditDb(tableroEdit);
+        TableroEditDb savedTablero=tableroEditRepository.save(tableroDb);
+
+        tableroEdit = TableroMapper.INSTANCE.tableroEditDbToTableroEdit(savedTablero);
+
+        JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, tableroEdit.getId_jugador(), tableroEdit.getId(), 0, 0, 0, 0, 0, true);
+        jugadorSalaRepository.save(jugadorSalaEditDb);
+
+        return tableroEdit;
     }
 
     // @Override

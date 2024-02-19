@@ -58,28 +58,12 @@ public class TableroController {
     // }
 
     @PostMapping("/crear-tablero")
-    public ResponseEntity<?> crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult bindingResult) {
-        
-        tableroService.save(tableroEdit);
-
-        System.out.println(tableroEdit.getId_jugador());
-        System.out.println(tableroEdit.getId());
-        //System.out.println(tableroService.obtenerUltimoIdParaJugador(tableroEdit.getId_jugador()));
-
-
-        JugadorSalaEdit jugadorSalaEdit = new JugadorSalaEdit();
-
-        jugadorSalaEdit.setId_jugador(tableroEdit.getId_jugador());
-        jugadorSalaEdit.setId_tablero(tableroEdit.getId());
-        jugadorSalaEdit.setPuntos(0);
-        jugadorSalaEdit.setAciertos(0);
-        jugadorSalaEdit.setFallos(0);
-        jugadorSalaEdit.setPosicionX(0);
-        jugadorSalaEdit.setPosicionY(0);
-        jugadorSalaEdit.setTurno(true);
-        jugadorSalaService.save(jugadorSalaEdit);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Mensaje("Tablero y jugador en sala creado"));
+    public ResponseEntity<?> crearTablero(@Valid @RequestBody TableroEdit tableroEdit, BindingResult validacion) {
+        if (validacion.hasErrors()) {
+			return ResponseEntity.badRequest().body("Error al crear TABLERO");
+		} else {
+            return ResponseEntity.ok(tableroService.addTableroEdit(tableroEdit));
+        }
     }
 
     @GetMapping("/tableros")

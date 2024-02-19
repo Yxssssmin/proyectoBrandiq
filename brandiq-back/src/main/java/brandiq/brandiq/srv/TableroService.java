@@ -17,8 +17,7 @@ public interface TableroService {
 
     public Optional<TableroInfo> getTableroInfoById(Integer id);
 
-
-
+    public TableroEdit addTableroEdit(TableroEdit tableroEdit);
 
     // // QUERY
     // Long obtenerUltimoIdParaJugador(String nombreJugador);
