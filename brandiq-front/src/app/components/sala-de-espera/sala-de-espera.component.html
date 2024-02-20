@@ -19,7 +19,9 @@
   </div>
   <div class="d-flex justify-content-center mt-5">
     <ng-container *ngIf="jugadoresSala.length > 1; else esperandoTemplate">
-      <button type="button" (click)="empezarPartida()">Empezar</button>
+      <button type="button" (click)="empezarPartida()" class="btn btn-primary">
+        Empezar
+      </button>
     </ng-container>
 
     <ng-template #esperandoTemplate>
