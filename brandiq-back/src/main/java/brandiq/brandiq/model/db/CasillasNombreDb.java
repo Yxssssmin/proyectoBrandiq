@@ -11,21 +11,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
-@Table(name = "jugador_en_sala")
-public class JugadorSalaNombreDb implements Serializable {
+@Table(name = "casillas")
+public class CasillasNombreDb implements Serializable{
     private static final long serialVersionUID = -818542778373595260L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer puntos;
-
-    private String id_jugador;
-
-    private boolean turno;
+    private String nombre;
+    private Integer posicionX;
+    private Integer posicionY;
     private Long id_tablero;
 }
