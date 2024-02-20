@@ -23,5 +23,10 @@ public class JugadorSalaNombreDb implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer puntos;
+
+    private String id_jugador;
+
+    private boolean turno;
+
     private Long id_tablero;
 }

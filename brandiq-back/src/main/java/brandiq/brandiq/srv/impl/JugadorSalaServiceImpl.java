@@ -22,7 +22,7 @@ public class JugadorSalaServiceImpl implements JugadorSalaService {
         this.jugadorSalaEditRepository = jugadorSalaEditRepository;
     }
 
-    @Override
+        @Override
     public Optional<JugadorSalaInfo> getJugadorSalaInfoById(Integer id) {
         Optional<JugadorSalaDb> jugadorSalaDb = jugadorSalaRepository.findById(id);
 
@@ -41,8 +41,18 @@ public class JugadorSalaServiceImpl implements JugadorSalaService {
     @Override
     public JugadorSalaEdit save(JugadorSalaEdit jugadorSalaEdit) {
         return JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
-                jugadorSalaEditRepository
-                        .save(JugadorSalaMapper.INSTANCE.jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit)));
+                jugadorSalaEditRepository.save(JugadorSalaMapper.INSTANCE.jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit)));
+    }
+
+    @Override
+    public Optional<JugadorSalaEdit> getJugadorSalaEditById(Integer id) {
+        Optional<JugadorSalaDb> jugadorSalaDb = jugadorSalaRepository.findById(id);
+
+        if (jugadorSalaDb.isPresent()) {
+            return Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaDbToJugadorSalaEdit(jugadorSalaDb.get()));
+        }
+
+        return Optional.empty();
     }
 
 }

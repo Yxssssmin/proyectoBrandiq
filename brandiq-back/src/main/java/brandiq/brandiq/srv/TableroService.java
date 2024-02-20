@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.http.ResponseEntity;
+
+import brandiq.brandiq.model.db.JugadorSalaEditDb;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
@@ -22,6 +25,8 @@ public interface TableroService {
 
     public TableroEdit addTableroEdit(TableroEdit tableroEdit);
 
+    public ResponseEntity<?> joinTablero(Integer idTablero, String idJugador);
+    
     // // QUERY
     // Long obtenerUltimoIdParaJugador(String nombreJugador);
     // Método de serialización de imagen
