@@ -6,7 +6,6 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { HomeComponent } from './components/home/home.component';
 import { RulesComponent } from './components/rules/rules.component';
-import { BoardComponent } from './components/board/board.component';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { DadoComponent } from './components/dado/dado.component';
 import { SalaDeEsperaComponent } from './components/sala-de-espera/sala-de-espera.component';
@@ -18,7 +17,6 @@ export const routes: Routes = [
   { path: 'ranking', component: RankingComponent },
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'reglas', component: RulesComponent },
-  { path: 'board', component: BoardComponent },
   { path: 'tablero/:id', component: TableroComponent },
   { path: 'dado', component: DadoComponent },
   { path: 'salaEspera/:id', component: SalaDeEsperaComponent },
