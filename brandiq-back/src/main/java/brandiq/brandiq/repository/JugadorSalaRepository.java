@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 
 import brandiq.brandiq.model.db.JugadorSalaDb;
 import brandiq.brandiq.model.db.JugadorSalaEditDb;
-import brandiq.brandiq.model.dto.JugadorSalaEdit;
 
 public interface JugadorSalaRepository extends JpaRepository<JugadorSalaDb, Integer>{
 

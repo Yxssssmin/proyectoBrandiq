@@ -2,7 +2,6 @@ package brandiq.brandiq.model.db;
 
 import java.io.Serializable;
 
-import brandiq.brandiq.security.entity.UsuarioDb;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

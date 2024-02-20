@@ -8,18 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class JugadorSalaEdit {
-    
     private Integer id;
-    
     private String id_jugador;
-    
     private Integer id_tablero;
-
     private Integer puntos;
     private Integer fallos;
     private Integer aciertos;
     private Integer posicionX;
     private Integer posicionY;  
     private boolean turno;
-
 }

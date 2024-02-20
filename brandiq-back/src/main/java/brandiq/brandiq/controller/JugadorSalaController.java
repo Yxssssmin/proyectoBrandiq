@@ -25,14 +25,14 @@ public class JugadorSalaController {
         this.jugadorSalaService = jugadorSalaService;
     }
 
-    @GetMapping("{id}/piu")
+    @GetMapping("/jugadorSala/{id}/info")
     public ResponseEntity<JugadorSalaInfo> getJugadorSalaInfoById(
     @PathVariable(value = "id") Integer id) throws RuntimeException {
        Optional<JugadorSalaInfo> jugadorSalaInfo = jugadorSalaService.getJugadorSalaInfoById(id);
         if (jugadorSalaInfo.isPresent()) {
             return ResponseEntity.ok().body(jugadorSalaInfo.get());
         } else {
-            throw new ResourceNotFoundException("Ciudad not found on :: "+id);
+            throw new ResourceNotFoundException("Jugador sala not found on :: "+id);
         }
     }
 
