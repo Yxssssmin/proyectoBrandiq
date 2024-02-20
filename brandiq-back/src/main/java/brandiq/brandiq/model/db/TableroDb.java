@@ -36,6 +36,9 @@ public class TableroDb implements Serializable {
     @OneToMany(mappedBy = "id_tablero")
     private Set<JugadorSalaNombreDb> jugadoresSalaNombresDb = new HashSet<>();
 
+    @OneToMany(mappedBy = "id_tablero")
+    private Set<CasillasNombreDb> casillasNombreDb = new HashSet<>();
+
      // Constructor para todos los campos
      public TableroDb(JugadorDb jugadorDb, String titulo, int finalizada) {
         this.jugadorDb = jugadorDb;

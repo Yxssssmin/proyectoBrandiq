@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class JugadorSalaInfoNombre {
-
     private Integer id;
-
     private Integer puntos;
 }
