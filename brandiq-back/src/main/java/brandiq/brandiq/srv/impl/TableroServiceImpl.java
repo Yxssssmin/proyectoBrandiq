@@ -194,7 +194,7 @@ public class TableroServiceImpl implements TableroService {
             // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo
             // de datos)
             JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0,
-                    true);
+                    false);
             jugadorSalaEditDb.setId_tablero(idTablero);
 
             // Guardar los cambios en el jugador
