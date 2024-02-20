@@ -17,6 +17,7 @@ import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
+import brandiq.brandiq.repository.CasillasRepository;
 import brandiq.brandiq.repository.JugadorSalaRepository;
 import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
@@ -29,11 +30,13 @@ public class TableroServiceImpl implements TableroService {
     private final TableroRepository tableroRepository;
     private final TableroEditRepository tableroEditRepository;
     private final JugadorSalaRepository jugadorSalaRepository;
+    private final CasillasRepository casillasRepository;
 
-    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository, JugadorSalaRepository jugadorSalaRepository) {
+    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository, JugadorSalaRepository jugadorSalaRepository,CasillasRepository casillasRepository) {
         this.tableroRepository = tableroRepository;
         this.tableroEditRepository = tableroEditRepository;
         this.jugadorSalaRepository = jugadorSalaRepository;
+        this.casillasRepository = casillasRepository;
     }
 
     @Override
@@ -62,16 +65,7 @@ public class TableroServiceImpl implements TableroService {
 
     }
 
-    @Override
-    public Optional<TableroEdit> getTableroEditById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTableroEditById'");
-    }
+    
 
-    @Override
-    public Optional<TableroInfo> getTableroInfoById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTableroInfoById'");
-    }
 
 }

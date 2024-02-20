@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Blob;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
