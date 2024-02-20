@@ -1,6 +1,8 @@
 package brandiq.brandiq.srv.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -135,9 +137,17 @@ public class TableroServiceImpl implements TableroService {
             // Guardar los cambios en el jugador
             jugadorSalaRepository.save(jugadorSalaEditDb);
 
-            return ResponseEntity.ok("Jugador unido al tablero exitosamente");
+            // Crear un objeto JSON con el mensaje
+            Map<String, Object> response = new HashMap<>();
+            response.put("mensaje", "Jugador unido al tablero exitosamente");
+
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            // Si hay una excepción, devolver un objeto JSON con el mensaje de error
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+
+            return ResponseEntity.badRequest().body(errorResponse);
         }
     }
 
