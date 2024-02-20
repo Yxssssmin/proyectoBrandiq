@@ -64,7 +64,7 @@ export class ModalEmpezarPartidaComponent {
             next: (data) => {
               console.log('Respuesta del servidor:', data);
               this.closeModal();
-              this.router.navigate(['/salaEspera']);
+              this.router.navigate(['/salaEspera/' + data.id]);
             },
             error: (error) => {
               console.error('Error en la solicitud:', error);

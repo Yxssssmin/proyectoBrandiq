@@ -106,9 +106,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZWRybyIsImlhdCI6MTcwODM4M
 ###
 
 ## updateTablero
-PUT http://localhost:8090/api/v1/tablero/2 HTTP/1.1
+PUT http://localhost:8090/api/v1/tablero/44 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZWRybyIsImlhdCI6MTcwODM4MTcwMiwiZXhwIjoxNzA4NDE3NzAyfQ.PMMy7UqosoeWPJfKZD2rz1bOm0JlWZXEvU8F_sDtpqo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZWRybyIsImlhdCI6MTcwODM4OTAxNiwiZXhwIjoxNzA4NDI1MDE2fQ.d38NBVWUG-b3fIPA_XTWU5K35yxc_M1iCGdTowyY6pE
 
 {
     "id": 2,

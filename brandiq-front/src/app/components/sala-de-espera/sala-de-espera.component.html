@@ -2,32 +2,28 @@
   <h2 id="titol-rules">Sala de espera</h2>
   <hr />
   <div class="d-flex flex-row justify-content-around align-content-center">
-    <div class="d-flex flex-column align-items-center">
-      <span class="fw-bold mb-3">Mireieta</span>
-
-      <img
-        src="../../../assets/img/logo.png"
-        width="50px"
-        height="50px"
-        alt=""
-      />
-    </div>
-    <div class="d-flex flex-column align-items-center">
-      <span class="fw-bold mb-3">Hugo</span>
-      <img src="../../../assets/1LBN.gif" width="50px" height="50px" alt="" />
-    </div>
-    <div class="d-flex flex-column align-items-center">
-      <span class="fw-bold mb-3">Hugo</span>
-      <img src="../../../assets/1LBN.gif" width="50px" height="50px" alt="" />
-    </div>
-    <div class="d-flex flex-column align-items-center">
-      <span class="fw-bold mb-3">Hugo</span>
-      <img src="../../../assets/1LBN.gif" width="50px" height="50px" alt="" />
-    </div>
+    <ng-container *ngFor="let jugador of jugadoresSala">
+      <!-- Por cada jugador, muestra la información -->
+      <div class="d-flex flex-column align-items-center">
+        <span class="fw-bold mb-3">{{ jugador.id_jugador }}</span>
+        <img
+          [src]="
+            'https://gravatar.com/avatar/' + jugador.id_jugador + '?d=identicon'
+          "
+          width="50px"
+          height="50px"
+          alt=""
+        />
+      </div>
+    </ng-container>
   </div>
   <div class="d-flex justify-content-center mt-5">
-    <p class="bg-body-secondary w-100 text-center p-2">
-      Esperando jugadores...
-    </p>
+    <ng-container *ngIf="jugadoresSala.length > 1; else esperandoTemplate">
+      <button type="button" (click)="empezarPartida()">Empezar</button>
+    </ng-container>
+
+    <ng-template #esperandoTemplate>
+      <p class="bg-body-secondary w-100 text-center p-2 loading-message"></p>
+    </ng-template>
   </div>
 </div>

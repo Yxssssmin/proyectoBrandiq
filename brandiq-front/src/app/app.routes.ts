@@ -19,8 +19,8 @@ export const routes: Routes = [
   { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'reglas', component: RulesComponent },
   { path: 'board', component: BoardComponent },
-  { path: 'tablero', component: TableroComponent },
+  { path: 'tablero/:id', component: TableroComponent },
   { path: 'dado', component: DadoComponent },
-  { path: 'salaEspera', component: SalaDeEsperaComponent },
+  { path: 'salaEspera/:id', component: SalaDeEsperaComponent },
   { path: '**', component: HomeComponent },
 ];

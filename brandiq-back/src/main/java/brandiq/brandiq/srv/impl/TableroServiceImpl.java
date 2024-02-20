@@ -1,6 +1,8 @@
 package brandiq.brandiq.srv.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -8,11 +10,9 @@ import org.springframework.stereotype.Service;
 
 import brandiq.brandiq.exception.ResourceNotFoundException;
 import brandiq.brandiq.model.db.JugadorDb;
-import brandiq.brandiq.model.db.JugadorSalaDb;
 import brandiq.brandiq.model.db.JugadorSalaEditDb;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
-import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
@@ -33,13 +33,15 @@ public class TableroServiceImpl implements TableroService {
     private final JugadorSalaEditRepository jugadorSalaEditRepository;
     private final JugadorRepository jugadorRepository;
 
-    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository, JugadorSalaRepository jugadorSalaRepository, JugadorSalaEditRepository jugadorSalaEditRepository, JugadorRepository jugadorRepository) {
+    public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository,
+            JugadorSalaRepository jugadorSalaRepository, JugadorSalaEditRepository jugadorSalaEditRepository,
+            JugadorRepository jugadorRepository) {
         this.tableroRepository = tableroRepository;
         this.tableroEditRepository = tableroEditRepository;
         this.jugadorSalaRepository = jugadorSalaRepository;
         this.jugadorSalaEditRepository = jugadorSalaEditRepository;
         this.jugadorRepository = jugadorRepository;
-    }   
+    }
 
     @Override
     public List<TableroList> findAllTableroList() {
@@ -76,11 +78,11 @@ public class TableroServiceImpl implements TableroService {
             return Optional.empty();
     }
 
-    public Optional<TableroInfo> getTableroInfoById (@NonNull Integer id){
-        Optional<TableroDb> tableroDb=tableroRepository.findById(id);
+    public Optional<TableroInfo> getTableroInfoById(@NonNull Integer id) {
+        Optional<TableroDb> tableroDb = tableroRepository.findById(id);
         if (tableroDb.isPresent()) {
             return Optional.of(TableroMapper.INSTANCE.tableroDbToTableroInfo(tableroDb.get()));
-        } else{
+        } else {
             return Optional.empty();
         }
     }
@@ -88,11 +90,12 @@ public class TableroServiceImpl implements TableroService {
     @Override
     public TableroEdit addTableroEdit(TableroEdit tableroEdit) {
         TableroEditDb tableroDb = TableroMapper.INSTANCE.tableroEditToTableroEditDb(tableroEdit);
-        TableroEditDb savedTablero=tableroEditRepository.save(tableroDb);
+        TableroEditDb savedTablero = tableroEditRepository.save(tableroDb);
 
         tableroEdit = TableroMapper.INSTANCE.tableroEditDbToTableroEdit(savedTablero);
 
-        JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, tableroEdit.getId_jugador(), tableroEdit.getId(), 0, 0, 0, 0, 0, true);
+        JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, tableroEdit.getId_jugador(),
+                tableroEdit.getId(), 0, 0, 0, 0, 0, true);
         jugadorSalaRepository.save(jugadorSalaEditDb);
 
         return tableroEdit;
@@ -100,23 +103,25 @@ public class TableroServiceImpl implements TableroService {
 
     // @Override
     // public ResponseEntity<?> joinTablero(Integer idTablero, Integer idJugador) {
-    //     try {
-    //         TableroDb tableroEdit = tableroRepository.findById(idTablero)
-    //                 .orElseThrow(() -> new IllegalArgumentException("Tablero no encontrado"));
+    // try {
+    // TableroDb tableroEdit = tableroRepository.findById(idTablero)
+    // .orElseThrow(() -> new IllegalArgumentException("Tablero no encontrado"));
 
-    //         JugadorSalaEditDb jugadorSalaEditDb = jugadorSalaEditRepository.findById(idJugador)
-    //                 .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
+    // JugadorSalaEditDb jugadorSalaEditDb =
+    // jugadorSalaEditRepository.findById(idJugador)
+    // .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
 
-    //         // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo de datos)
-    //         jugadorSalaEditDb.setId_tablero(idTablero);
+    // // Lógica para unir al jugador al tablero (puedes modificar esto según tu
+    // modelo de datos)
+    // jugadorSalaEditDb.setId_tablero(idTablero);
 
-    //         // Guardar los cambios en el jugador
-    //         jugadorSalaRepository.save(jugadorSalaEditDb);
+    // // Guardar los cambios en el jugador
+    // jugadorSalaRepository.save(jugadorSalaEditDb);
 
-    //         return ResponseEntity.ok("Jugador unido al tablero exitosamente");
-    //     } catch (IllegalArgumentException e) {
-    //         return ResponseEntity.badRequest().body(e.getMessage());
-    //     }
+    // return ResponseEntity.ok("Jugador unido al tablero exitosamente");
+    // } catch (IllegalArgumentException e) {
+    // return ResponseEntity.badRequest().body(e.getMessage());
+    // }
     // }
 
     @Override
@@ -128,22 +133,32 @@ public class TableroServiceImpl implements TableroService {
             JugadorDb jugadorDb = jugadorRepository.findById(idJugador)
                     .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
 
-            // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo de datos)
-            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0, true);
+            // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo
+            // de datos)
+            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0,
+                    true);
             jugadorSalaEditDb.setId_tablero(idTablero);
 
             // Guardar los cambios en el jugador
             jugadorSalaRepository.save(jugadorSalaEditDb);
 
-            return ResponseEntity.ok("Jugador unido al tablero exitosamente");
+            // Crear un objeto JSON con el mensaje
+            Map<String, Object> response = new HashMap<>();
+            response.put("mensaje", "Jugador unido al tablero exitosamente");
+
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            // Si hay una excepción, devolver un objeto JSON con el mensaje de error
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+
+            return ResponseEntity.badRequest().body(errorResponse);
         }
     }
 
     // @Override
     // public Long obtenerUltimoIdParaJugador(String id_jugador) {
-    //     return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
+    // return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
     // }
 
 }

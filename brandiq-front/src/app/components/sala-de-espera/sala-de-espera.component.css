@@ -53,3 +53,29 @@ hr {
         max-height: 150px;
     }
 } */
+
+@keyframes loadingAnimation {
+    0% {
+        content: 'Esperando jugadores';
+    }
+
+    33% {
+        content: 'Esperando jugadores.';
+    }
+
+    66% {
+        content: 'Esperando jugadores..';
+    }
+
+    100% {
+        content: 'Esperando jugadores...';
+    }
+}
+
+.loading-message::before {
+    display: inline-block;
+    content: 'Esperando jugadores';
+    font-size: larger;
+    font-weight: bold;
+    animation: loadingAnimation 3s linear infinite;
+}
