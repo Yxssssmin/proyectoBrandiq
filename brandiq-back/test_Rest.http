@@ -16,9 +16,9 @@ Content-Type: application/json
 
 {
 
-    "nickname": "alex",
-    "nombre": "Alex Garcia",
-    "email": "alexgarcia@gmail.com",
+    "nickname": "yasmin",
+    "nombre": "yasmin tate",
+    "email": "yasmintate@gmail.com",
     "password": "NoTeLoDigo@1",
     "roles": [""]
 }
@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
 
-    "nickname": "jaumet",
+    "nickname": "yasmin",
     "password": "NoTeLoDigo@1"
 }
 
@@ -49,15 +49,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwM
 
 ##  getUsuarioInfoById: Para el perlfil del usuario
 
-GET http://localhost:8090/api/v1/jaumet/profile HTTP/1.1 
+GET http://localhost:8090/api/v1/yasmin/profile HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc###
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 ###
 
 ## getJugadorInfoByNickname: Para las estadisticas del jugador. Tambien mostrara una lista de tableros que ha creado un jugador
-GET http://localhost:8090/api/v1/jaumet/estadisticas HTTP/1.1
+GET http://localhost:8090/api/v1/yasmin/estadisticas HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc###
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 ###
 
 
@@ -65,7 +65,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwM
 ## Editar el perfil de un Usuario
 PUT http://localhost:8090/auth/update/jaumet HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 
 
 {
@@ -84,7 +84,7 @@ Content-Type: application/json
 ## Crear Tablero // TODAVIA NO ESTA OPERATIVA
 POST http://localhost:8090/api/v1/crear-tablero HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 
 {
     "id_jugador": "jaumet",
@@ -96,19 +96,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwM
 ## Listar los tableros
 GET http://localhost:8090/api/v1/tableros HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 ###
 
 ## deleteByIdCity
 DELETE http://localhost:8090/auth/delete/josera HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 ###
 
 ## updateTablero
 PUT http://localhost:8090/api/v1/tablero/2 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXVtZXQiLCJpYXQiOjE3MDgwMTk2MDQsImV4cCI6MTcwODA1NTYwNH0.jCICbS6qGWY3NjTpr1XBZS_CcJ6Y0PNGt90ci9OS8sc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXNtaW4iLCJpYXQiOjE3MDgzNjcwOTgsImV4cCI6MTcwODQwMzA5OH0.9CVyHPdjydjc63OWlvn7q4W2GOs83HOa6QqaoE_L934
 
 {
     "id": 2,

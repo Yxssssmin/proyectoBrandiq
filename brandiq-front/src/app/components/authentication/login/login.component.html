@@ -1,14 +1,18 @@
 <div class="wrapper">
   <div class="form-box login">
     <h2>Login</h2>
-    <form (ngSubmit)="login()" #loginForm="ngForm">
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
       <div class="input-box">
         <input
           type="text"
           id="nickname"
           class="form-control"
           name="nickname"
-          [(ngModel)]="nickname"
+          formControlName="nickname"
+          [ngClass]="{
+            'is-valid': loginForm.get('nickname')?.valid && loginForm.get('nickname')?.touched,
+            'is-invalid': loginForm.get('nickname')?.invalid && loginForm.get('nickname')?.touched
+          }"
           required
         />
         <label>Nickname</label>
@@ -20,7 +24,11 @@
           id="inputPassword"
           class="form-control"
           name="password"
-          [(ngModel)]="password"
+          formControlName="password"
+          [ngClass]="{
+            'is-valid': loginForm.get('password')?.valid && loginForm.get('password')?.touched,
+            'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+          }"
           required
         />
         <label>Password</label>

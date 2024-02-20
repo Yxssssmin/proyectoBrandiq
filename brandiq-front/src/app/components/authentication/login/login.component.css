@@ -134,11 +134,10 @@
     color: red;
 }
 
-.custom-alert {
-    color: #000000;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
+.is-valid {
+    border-color: green;
+}
+
+.is-invalid {
+    border-color: red;
 }
