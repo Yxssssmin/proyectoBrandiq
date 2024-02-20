@@ -1,25 +1,18 @@
-.wrapper {
-    /* margin-top: 50px; */
-    height: 50vh;
-    margin: 0 auto;
-    background: #ffffff;
-    /* Color blanco */
-    border: 2px solid rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+:host {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    transition: height .2s ease;
-    min-height: 500px;
-    min-width: 515px;
-    width: 20vw;
 }
 
-.wrapper .form-box {
-    width: 80%;
-    padding: 30px;
+.form-box {
+    margin-top: 10%;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .form-box h2 {
@@ -30,63 +23,29 @@
 
 .input-box {
     position: relative;
-    height: 40px;
-    /* border-bottom: 2px solid #000000; */
     margin: 40px 0;
-
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-}
-
-.input-box #signupemail {
-    border-bottom: 2px solid #000000;
     color: #000000;
 }
 
-.input-box label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 1em;
-    color: #000000;
-    font-weight: 500;
-    pointer-events: none;
-    transition: .5s;
-}
-
-
-.input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #f92525;
-    font-weight: 600;
-    padding: 0 35px 0 5px;
-}
 
 .input-box input:focus~label,
 .input-box input:valid~label {
-    top: -5px;
+    color: black;
+    top: -15px;
 }
+
 
 .input-container {
     flex: 1;
     position: relative;
-
-    /* Ajusta el espacio entre los input-containers */
-    border-bottom: 2px solid #000000;
-    /* Agrega un borde inferior */
 }
-
 
 .input-container label {
     position: absolute;
-    top: 50%;
+    top: -50%;
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
@@ -94,19 +53,6 @@
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
-
-}
-
-.input-container input {
-    width: calc(100% - 10px);
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #000000;
-    font-weight: 600;
-    padding: 0 5px;
 }
 
 #botonRegistro {
@@ -126,7 +72,7 @@
 }
 
 .login-register {
-    font-size: .9em;
+    font-size: 0.9em;
     color: #929d9f;
     text-align: center;
     font-weight: 500;

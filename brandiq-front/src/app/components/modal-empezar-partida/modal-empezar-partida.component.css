@@ -48,13 +48,6 @@ label {
     margin-bottom: 8px;
 }
 
-input {
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 16px;
-    width: 75%;
-}
 
 .buttons-container {
     display: flex;

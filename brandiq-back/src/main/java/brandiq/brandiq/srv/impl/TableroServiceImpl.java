@@ -124,7 +124,7 @@ public class TableroServiceImpl implements TableroService {
                 tableroEdit.getId(), 0, 0, 0, 0, 0, true);
         jugadorSalaRepository.save(jugadorSalaEditDb);
 
-        for (int i = 0; i <= 29; i++) {
+        /* for (int i = 0; i <= 29; i++) {
 
             int indice = generarNumerosAleatoriosSinRepeticion(numerosGenerados);
             try {
@@ -152,7 +152,7 @@ public class TableroServiceImpl implements TableroService {
                 e.printStackTrace();
             }
 
-        }
+        } */
 
         return tableroEdit;
     }
