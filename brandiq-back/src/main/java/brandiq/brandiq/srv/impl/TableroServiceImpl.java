@@ -30,6 +30,7 @@ import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
 import brandiq.brandiq.model.dto.CasillasEdit;
 import brandiq.brandiq.model.dto.CasillasInfo;
+import brandiq.brandiq.model.dto.JugadorSalaEdit;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
@@ -42,6 +43,7 @@ import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
 
 import brandiq.brandiq.srv.TableroService;
+import brandiq.brandiq.srv.mapper.JugadorSalaMapper;
 import brandiq.brandiq.srv.mapper.TableroMapper;
 import lombok.NonNull;
 
@@ -117,18 +119,18 @@ public class TableroServiceImpl implements TableroService {
     public TableroEdit addTableroEdit(TableroEdit tableroEdit) {
         int cont = 0, x = -1, y = 0;
         String[] nombreImagenes = {
-                "yahoo.png", "wolsvagen.jpeg", "whassasp.jpeg", "warnerbrothers.png", "victoriaSecret.png",
-                "unicef.png", "toyota.jpeg", "tiktok.png", "starbucks.jpeg", "sportify.png",
+                "yahoo.png", "volkswagen.jpeg", "whatsapp.jpeg", "warnerbrothers.png", "victoriasecret.png",
+                "unicef.png", "toyota.jpeg", "tiktok.png", "starbucks.jpeg", "spotify.png",
                 "snapchat.png", "skoda.png", "ryanair.jpeg", "rolex.png", "renault.jpeg",
-                "reedit.png", "playstation.png", "pinterest.png", "pepsi.png", "paramount+.png",
+                "reddit.png", "playstation.png", "pinterest.png", "pepsi.png", "paramount.png",
                 "opel.jpeg", "netflix.png", "nasa.jpeg", "msi.png", "monster.jpeg",
-                "microsoft.png", "michelin.png", "Meta_Platforms.png", "mercedes.jpeg",
-                "mcdonalds.jpg", "mastercard.jpeg", "maserati.png", "linkedin.png", "levi.jpg",
+                "microsoft.png", "michelin.png", "meta.png", "mercedes.jpeg",
+                "mcdonalds.jpg", "mastercard.jpeg", "maserati.png", "linkedin.png", "levis.jpg",
                 "lacoste.png", "kfc.png", "instagram.jpeg", "ikea.jpeg", "iberia.jpeg",
                 "hp.png", "hellokitty.png", "google.png", "ferrari.jpeg", "dreamworks.png",
                 "correos.png", "cocochanel.png", "chatgpt.png", "calvinklein.png",
-                "bosch.jpeg", "barcelona.jpeg", "bancosantander.png", "audi.jpeg", "apple.jpeg",
-                "amazon.png", "allianz_seguros.png", "adobeillustrator.png", "adidas.png"
+                "bosch.jpeg", "barcelona.jpeg", "santander.png", "audi.jpeg", "apple.jpeg",
+                "amazon.png", "allianz.png", "illustrator.png", "adidas.png"
         };
 
         Set<Integer> numerosGenerados = new HashSet<>();
@@ -141,7 +143,7 @@ public class TableroServiceImpl implements TableroService {
                 tableroEdit.getId(), 0, 0, 0, 0, 0, true);
         jugadorSalaRepository.save(jugadorSalaEditDb);
 
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 28; i++) {
 
             int indice = generarNumerosAleatoriosSinRepeticion(numerosGenerados);
             try {
@@ -160,6 +162,14 @@ public class TableroServiceImpl implements TableroService {
                     y--;
                 }
 
+                /* String[] nombreImagen = nombreImagenes[indice].split("\\."); */
+
+                /*
+                 * CasillasEditDb casillasEditDb = new CasillasEditDb(tableroEdit.getId(),
+                 * imagenSerializada,
+                 * nombreImagenes[indice], x, y);
+                 */
+
                 CasillasEditDb casillasEditDb = new CasillasEditDb(tableroEdit.getId(), imagenSerializada,
                         nombreImagenes[indice], x, y);
 
@@ -174,40 +184,9 @@ public class TableroServiceImpl implements TableroService {
         return tableroEdit;
     }
 
-    // @Override
-    // public ResponseEntity<?> joinTablero(Integer idTablero, Integer idJugador) {
-    // try {
-    // TableroDb tableroEdit = tableroRepository.findById(idTablero)
-    // .orElseThrow(() -> new IllegalArgumentException("Tablero no encontrado"));
-
-    // JugadorSalaEditDb jugadorSalaEditDb =
-    // jugadorSalaEditRepository.findById(idJugador)
-    // .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
-
-    // // Lógica para unir al jugador al tablero (puedes modificar esto según tu
-    // modelo de datos)
-    // jugadorSalaEditDb.setId_tablero(idTablero);
-
-    // // Guardar los cambios en el jugador
-    // jugadorSalaRepository.save(jugadorSalaEditDb);
-
-    // return ResponseEntity.ok("Jugador unido al tablero exitosamente");
-    // } catch (IllegalArgumentException e) {
-    // return ResponseEntity.badRequest().body(e.getMessage());
-    // }
-    // }
-
     @Override
     public ResponseEntity<?> joinTablero(Integer idTablero, String idJugador) {
         try {
-            TableroDb tableroEdit = tableroRepository.findById(idTablero)
-                    .orElseThrow(() -> new IllegalArgumentException("Tablero no encontrado"));
-
-            JugadorDb jugadorDb = jugadorRepository.findById(idJugador)
-                    .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
-
-            // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo
-            // de datos)
             JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0,
                     false);
 
@@ -264,31 +243,6 @@ public class TableroServiceImpl implements TableroService {
         numerosGenerados.add(numeroGenerado);
         return numeroGenerado;
     }
-    // @Override
-    // public Long obtenerUltimoIdParaJugador(String id_jugador) {
-    // return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
-    // }
-
-    /*
-     * @Override
-     * public BufferedImage deserializarImagen(byte[] imagenSerializada) {
-     * try (ByteArrayInputStream bis = new ByteArrayInputStream(imagenSerializada);
-     * ObjectInputStream ois = new ObjectInputStream(bis)) {
-     * 
-     * // Lee el objeto serializado que contiene los bytes de la imagen
-     * byte[] imageData = (byte[]) ois.readObject();
-     * 
-     * // Convierte los bytes de la imagen de nuevo a BufferedImage
-     * ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-     * return ImageIO.read(bais);
-     * 
-     * } catch (IOException | ClassNotFoundException e) {
-     * // Maneja la excepción según tus necesidades
-     * e.printStackTrace();
-     * return null;
-     * }
-     * }
-     */
 
     @Override
     public byte[] deserializarImagen(byte[] imagenSerializada) {
@@ -304,28 +258,6 @@ public class TableroServiceImpl implements TableroService {
             return null;
         }
     }
-
-    /*
-     * @Override
-     * public Object[] obtenerCasillasParaElTablero(String id_jugador, Integer
-     * id_tablero) {
-     * 
-     * Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
-     * .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
-     * 
-     * Optional<CasillasEditDb> casillasEditDb =
-     * casillasEditRepository.findCasillasByPosicionAndTablero(
-     * jugadorSalaEditDb.get().getPosicionX(),
-     * jugadorSalaEditDb.get().getPosicionY(), id_tablero);
-     * 
-     * Object[] datosCasillas = new Object[] {
-     * deserializarImagen(casillasEditDb.get().getImagen()),
-     * casillasEditDb.get().getNombre() };
-     * 
-     * return datosCasillas;
-     * 
-     * }
-     */
 
     @Override
     public String obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero) {
@@ -343,6 +275,67 @@ public class TableroServiceImpl implements TableroService {
         resultado.put("nombreImagen", nombreImagen);
 
         return (String) resultado.get("nombreImagen");
+    }
+
+    @Override // ESTE METODO COMPARA EL NOMBRE INTRODUCIDO POR EL USUARIO Y ACTUALIZA LOS
+    public String updateDatosJugador(String id_jugador, Integer id_tablero, String nombre) {
+        Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
+                .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
+
+        Optional<CasillasEditDb> casillasEditDb = casillasEditRepository.findCasillasByPosicionAndTablero(
+                jugadorSalaEditDb.get().getPosicionX(), jugadorSalaEditDb.get().getPosicionY(), id_tablero);
+
+        if (casillasEditDb.isPresent()) {
+
+            JugadorSalaEdit jugadorSalaEditar = JugadorSalaMapper.INSTANCE
+                    .jugadorSalaEditDbToJugadorSalaEdit(jugadorSalaEditDb.get());
+
+            String[] nombreImagenDb = casillasEditDb.get().getNombre().split("\\.");
+
+            System.out.println(nombre);
+            if (nombreImagenDb[0].equals(nombre)) {
+
+                jugadorSalaEditar.setPuntos(jugadorSalaEditar.getPuntos() + 10);
+                jugadorSalaEditar.setAciertos(jugadorSalaEditar.getAciertos() + 1);
+                jugadorSalaEditar.setTurno(false);
+                Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
+                        jugadorSalaEditRepository
+                                .save(JugadorSalaMapper.INSTANCE
+                                        .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEditar))));
+
+                return (String) "Acierto";
+            } else {
+                jugadorSalaEditar.setFallos(jugadorSalaEditar.getFallos() + 1);
+                jugadorSalaEditar.setTurno(false);
+                Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
+                        jugadorSalaEditRepository
+                                .save(JugadorSalaMapper.INSTANCE
+                                        .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEditar))));
+            }
+        }
+
+        return (String) "Fallo";
+    }
+
+    @Override
+    public String cambiarTurno(String id_jugador, Integer id_tablero) {
+
+        Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
+                .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
+
+        if (jugadorSalaEditDb.isPresent()) {
+            JugadorSalaEdit jugadorSalaEdit = JugadorSalaMapper.INSTANCE
+                    .jugadorSalaEditDbToJugadorSalaEdit(jugadorSalaEditDb.get());
+
+            jugadorSalaEdit.setTurno(true);
+            Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
+                    jugadorSalaEditRepository
+                            .save(JugadorSalaMapper.INSTANCE
+                                    .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit))));
+            return "Turno cambiado";
+        }
+
+        return "Error";
     }
 
 }

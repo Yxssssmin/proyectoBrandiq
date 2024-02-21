@@ -1,20 +1,27 @@
 // tablero.component.ts
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DadoComponent } from '../dado/dado.component';
 import { PlayerListComponent } from '../player-list/player-list.component';
 import { TableroServiceService } from '../../services/tablero-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalLogosComponent } from '../modal-logos/modal-logos.component';
+import { ModalResponderPreguntaComponent } from '../modal-responder-pregunta/modal-responder-pregunta.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [CommonModule, DadoComponent, PlayerListComponent],
+  imports: [
+    CommonModule,
+    DadoComponent,
+    PlayerListComponent,
+    ModalResponderPreguntaComponent,
+  ],
   templateUrl: './tablero.component.html',
   styleUrl: './tablero.component.css',
 })
 export class TableroComponent {
+  @ViewChild(DadoComponent) dadoComponent!: DadoComponent;
+
   userList: any = {};
   rows = 8;
   cols = 8;
@@ -22,14 +29,37 @@ export class TableroComponent {
   colors: string[] = ['red', 'orange', 'green'];
   jugadoresSala: any = {};
   nicknameactivo = this.getNicknameStorage();
+  mostrarModalResponderPregunta: boolean = false;
+  nombreImagen: string | null = null;
+
+  estilosSiFalse(): any {
+    return {
+      position: 'absolute',
+      top: '40%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    };
+  }
+
+  estilosSiTrue(): any {
+    return {
+      'z-index': 0,
+      display: 'none',
+      position: 'absolute',
+      top: '40%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    };
+  }
 
   roomId: string | null = null;
 
   constructor(
     private tableroService: TableroServiceService,
-    private route: ActivatedRoute,
-    private modallogo: ModalLogosComponent
-  ) {}
+    private route: ActivatedRoute
+  ) {
+    this.getImagen();
+  }
 
   ngOnInit() {
     this.initializeBoard();
@@ -41,6 +71,15 @@ export class TableroComponent {
     });
   }
 
+  getShow(): boolean {
+    // Verificar si dadoComponent está definido antes de acceder a su método
+    return this.dadoComponent?.getShowModalEmpezar() ?? false;
+  }
+
+  getImagen() {
+    // Verificar si dadoComponent está definido antes de acceder a su método
+    this.nombreImagen = this.dadoComponent?.getnombreImagen() ?? '';
+  }
   initializeBoard() {
     for (let i = 0; i < this.rows; i++) {
       this.board[i] = [];
@@ -130,19 +169,9 @@ export class TableroComponent {
       });
   }
 
-  // obtenerDetallesCasilla(idTablero: number, nombreJugador: string): void {
-  //   this.tableroService.getDetallesCasilla(idTablero, nombreJugador)
-  //   .subscribe((casillas: any) => {
-  //     //     this.modallogo.abrirModal(casillas.imagenDeserializada, casillas.nombreImagen)
-  //     //     .subscribe((nombreValidado: any) => {
-  //     //       const resultadoValidacion: boolean = nombreValidado === 'true';
-  //     //       // Acciones a realizar después de validar el nombre, por ejemplo, mostrar un mensaje
-  //     //       console.log('Nombre validado:', nombreValidado);
-  //     // });
-  //     },
-  //     (error) => {
-  //       console.error('Error al obtener casillas del tablero', error);
-  //     }
-  //   );
-  // }
+  handleMostrarModalResponderPregunta(event: boolean) {
+    console.log({ event });
+
+    this.mostrarModalResponderPregunta = event;
+  }
 }

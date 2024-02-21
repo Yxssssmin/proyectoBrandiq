@@ -11,4 +11,6 @@ public interface TableroRepository extends JpaRepository<TableroDb, Integer> {
     /* Optional<TableroDb> findById(String nickname); */
     /* List<TableroDb> findTablerosAllOrderByidAsc(int id); */
     List<TableroDb> findAll();
+
+    
 }

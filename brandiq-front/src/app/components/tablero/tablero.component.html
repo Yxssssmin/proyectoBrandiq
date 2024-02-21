@@ -9,15 +9,18 @@
   "
 >
   <div class="board" style="position: relative">
+    <div *ngIf="getShow()" style="position: absolute; z-index: 1">
+      <app-modal-responder-pregunta></app-modal-responder-pregunta>
+    </div>
     <div
-      style="
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translateX(-50%);
+      [ngStyle]="
+        mostrarModalResponderPregunta ? estilosSiTrue() : estilosSiFalse()
       "
     >
-      <app-dado *ngIf="esMiTurno(); else loading"></app-dado>
+      <ng-template #dado>
+        <div class="loading-message"></div>
+      </ng-template>
+      <app-dado *ngIf="esMiTurno(); else loading" style="z-index: 0"></app-dado>
       <ng-template #loading>
         <div class="loading-message"></div>
       </ng-template>
@@ -51,6 +54,8 @@
         }}</label>
         <hr />
         <p>Puntuación: {{ jugador.puntos }}</p>
+        <p>PosicionX: {{ jugador.posicionX }}</p>
+        <p>PosicionY: {{ jugador.posicionY }}</p>
       </div>
     </div>
   </div>
