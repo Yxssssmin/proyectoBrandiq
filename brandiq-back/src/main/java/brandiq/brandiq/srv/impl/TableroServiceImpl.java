@@ -206,8 +206,10 @@ public class TableroServiceImpl implements TableroService {
             JugadorDb jugadorDb = jugadorRepository.findById(idJugador)
                     .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
 
-            // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo de datos)
-            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0, false);
+            // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo
+            // de datos)
+            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0,
+                    false);
 
             // Guardar los cambios en el jugador
             jugadorSalaRepository.save(jugadorSalaEditDb);
@@ -228,7 +230,7 @@ public class TableroServiceImpl implements TableroService {
 
     @Override
     public byte[] serializarImagen(String nombreImagen) {
-        Path directorioImagen = Paths.get("src/main/resources/Logos/" + nombreImagen);
+        Path directorioImagen = Paths.get("src/main/resources/static/Logos/" + nombreImagen);
         String rutaAbsoluta = directorioImagen.toFile().getAbsolutePath();
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 ObjectOutputStream oos = new ObjectOutputStream(bos)) {
@@ -326,7 +328,7 @@ public class TableroServiceImpl implements TableroService {
      */
 
     @Override
-    public Map<String, Object> obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero) {
+    public String obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero) {
         Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
                 .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
 
@@ -340,7 +342,7 @@ public class TableroServiceImpl implements TableroService {
         resultado.put("imagenDeserializada", imagenDeserializada);
         resultado.put("nombreImagen", nombreImagen);
 
-        return resultado;
+        return (String) resultado.get("nombreImagen");
     }
 
 }
