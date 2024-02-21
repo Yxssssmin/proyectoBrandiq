@@ -119,4 +119,31 @@ export class TableroServiceService {
     );
   }
 
+  tirarDado(idJugador: string, idTablero: number): Observable<number> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.put<number>(
+      `${environment.URL_SPRING}api/v1/tirardado/${idJugador}/${idTablero}`,
+      null,
+      { headers }
+    );
+  }
+
+  getDetallesCasilla(idTablero: number, nombreJugador: string): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get<any>(
+      `${environment.URL_SPRING}api/v1/mostrarCasillas/${nombreJugador}/${idTablero}`,
+      { headers }
+    );
+  }
+  
 }

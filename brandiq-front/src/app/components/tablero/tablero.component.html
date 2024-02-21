@@ -1,24 +1,57 @@
-<div class="board">
-  <div *ngFor="let row of board; let i = index" class="row">
+<!-- game-board.component.html -->
+<div
+  style="
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  <div class="board" style="position: relative">
     <div
-      *ngFor="let cell of row; let j = index"
-      class="cell"
-      [ngStyle]="{ 'background-color': cell?.color }"
-      (click)="
-        cell && isBorderCell(cell) && handleCellClick(cell.row, cell.col)
+      style="
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
       "
     >
-      <!-- Puedes personalizar el contenido de las casillas según tus necesidades -->
+      <app-dado *ngIf="esMiTurno(); else loading"></app-dado>
+      <ng-template #loading>
+        <div class="loading-message"></div>
+      </ng-template>
+    </div>
 
-      <span *ngIf="cell">
-        {{ cell.number === 29 ? "END" : cell.number }}
-      </span>
-
-      <!-- {{ cell.row }}, {{ cell.col }} -->
+    <div *ngFor="let row of board; let i = index" class="row">
+      <div
+        *ngFor="let cell of row; let j = index"
+        class="cell"
+        [ngStyle]="{ 'background-color': cell?.color }"
+        (click)="
+          cell && isBorderCell(cell) && handleCellClick(cell.row, cell.col)
+        "
+      >
+        <span *ngIf="cell">
+          {{ cell.number === 29 ? "END" : cell.number }}
+        </span>
+      </div>
     </div>
   </div>
-</div>
-<div class="containerRight">
-  <app-dado></app-dado>
-  <app-player-list></app-player-list>
+
+  <!-- Información de cada jugador en una cuadrícula de 2x2 -->
+  <div class="player-grid">
+    <div
+      *ngFor="let jugador of jugadoresSala; let i = index"
+      class="player-container"
+    >
+      <div class="player player{{ i + 1 }}">
+        <label style="font-weight: bold; text-transform: uppercase">{{
+          jugador.id_jugador
+        }}</label>
+        <hr />
+        <p>Puntuación: {{ jugador.puntos }}</p>
+      </div>
+    </div>
+  </div>
 </div>

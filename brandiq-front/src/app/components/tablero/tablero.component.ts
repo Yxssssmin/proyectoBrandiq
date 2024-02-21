@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DadoComponent } from '../dado/dado.component';
 import { PlayerListComponent } from '../player-list/player-list.component';
+import { TableroServiceService } from '../../services/tablero-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModalLogosComponent } from '../modal-logos/modal-logos.component';
 
 @Component({
   selector: 'app-tablero',
@@ -12,13 +15,30 @@ import { PlayerListComponent } from '../player-list/player-list.component';
   styleUrl: './tablero.component.css',
 })
 export class TableroComponent {
+  userList: any = {};
   rows = 8;
   cols = 8;
   board: any[][] = [];
   colors: string[] = ['red', 'orange', 'green'];
+  jugadoresSala: any = {};
+  nicknameactivo = this.getNicknameStorage();
+
+  roomId: string | null = null;
+
+  constructor(
+    private tableroService: TableroServiceService,
+    private route: ActivatedRoute,
+    private modallogo: ModalLogosComponent
+  ) {}
 
   ngOnInit() {
     this.initializeBoard();
+    this.route.params.subscribe((params) => {
+      this.roomId = params['id'];
+      if (this.roomId) {
+        this.obtenerUsuariosSala(this.roomId);
+      }
+    });
   }
 
   initializeBoard() {
@@ -28,6 +48,18 @@ export class TableroComponent {
         this.board[i][j] = this.createCell(i, j);
       }
     }
+  }
+
+  esMiTurno(): boolean {
+    const jugadorActual = this.getNicknameStorage();
+
+    // Verificar si el jugador actual está en la lista y es su turno
+    const turnoDelJugador = this.jugadoresSala.find(
+      (jugador: any) =>
+        jugador.id_jugador === jugadorActual && jugador.turno === true
+    );
+
+    return turnoDelJugador !== undefined;
   }
 
   createCell(row: number, col: number): any {
@@ -67,7 +99,9 @@ export class TableroComponent {
       return null;
     }
   }
-
+  getNicknameStorage(): string | null {
+    return localStorage.getItem('userNickname');
+  }
   getBorderColor(row: number, col: number): string {
     // Alternar entre los colores definidos en el array
     return this.colors[(row + col) % this.colors.length];
@@ -85,7 +119,30 @@ export class TableroComponent {
 
   handleCellClick(row: number, col: number) {
     console.log(`Clicked on cell: ${row}, ${col}`);
-    // Aquí puedes realizar acciones específicas cuando se hace clic en una celda
   }
 
+  obtenerUsuariosSala(roomId: string): void {
+    this.tableroService
+      .obtenerUsuarioSala(roomId)
+      .subscribe((userList: any) => {
+        this.userList = userList;
+        this.jugadoresSala = this.userList.jugadoresSalaInfoNombres;
+      });
+  }
+
+  obtenerDetallesCasilla(idTablero: number, nombreJugador: string): void {
+    this.tableroService.getDetallesCasilla(idTablero, nombreJugador)
+    .subscribe((casillas: any) => {
+      //     this.modallogo.abrirModal(casillas.imagenDeserializada, casillas.nombreImagen)
+      //     .subscribe((nombreValidado: any) => {
+      //       const resultadoValidacion: boolean = nombreValidado === 'true';
+      //       // Acciones a realizar después de validar el nombre, por ejemplo, mostrar un mensaje
+      //       console.log('Nombre validado:', nombreValidado);
+      // });
+      },
+      (error) => {
+        console.error('Error al obtener casillas del tablero', error);
+      }
+    );
+  }
 }

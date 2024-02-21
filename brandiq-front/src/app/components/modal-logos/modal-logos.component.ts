@@ -1,20 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-logos',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './modal-logos.component.html',
   styleUrl: './modal-logos.component.css'
 })
 export class ModalLogosComponent {
 
-  @Input() logoSrc: string = '';
-  @Input() correctName: string = '';
 
-  enteredName: string = '';
+  @Input() imagenDeserializada: any;
+  @Input() nombreImagen!: string;
 
-  validateName() {
-    return this.enteredName.toLowerCase() === this.correctName.toLowerCase();
+  nombreInput: string = '';
+
+  @Output() nombreValidado: EventEmitter<string> = new EventEmitter<string>();
+
+  validarNombre(): void {
+
+     // Lógica de validación aquí
+     const nombreValido: boolean = this.nombreInput.toLowerCase() === this.nombreImagen.toLowerCase();
+
+     this.nombreValidado.emit(nombreValido ? 'true' : 'false');
   }
+
+
+
 }

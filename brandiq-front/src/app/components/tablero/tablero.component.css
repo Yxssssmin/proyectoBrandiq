@@ -15,8 +15,8 @@
     background-color: #2c3e50;
     /* Fondo gris oscuro */
     padding: 30px;
-    height: 80%;
-    width: 35%;
+    height: 55vh;
+    width: 30%;
     border-radius: 50px;
     border: solid 10px blueviolet;
     box-shadow: #2c3e50 15px 5px;
@@ -71,9 +71,68 @@
     align-items: center;
 }
 
-@media (max-width: 1300px) {
-    .board {
-        min-height: 400px;
-        min-width: 400px;
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+    /* Centrar el contenido */
+    margin-top: 20px;
+    margin-left: 10%;
+    /* Ajustar el margen superior según sea necesario */
+}
+
+
+.player1 {
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+}
+
+.player2 {
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+}
+
+.player3 {
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+}
+
+.player4 {
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    color: black;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        content: 'Espera tu turno';
     }
+
+    33% {
+        content: 'Espera tu turno.';
+    }
+
+    66% {
+        content: 'Espera tu turno..';
+    }
+
+    100% {
+        content: 'Espera tu turno...';
+    }
+}
+
+.loading-message::before {
+    display: inline-block;
+    content: 'Espera tu turno';
+    font-size: larger;
+    font-weight: bold;
+    animation: loadingAnimation 3s linear infinite;
 }

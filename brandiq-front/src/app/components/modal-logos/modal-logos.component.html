@@ -1,10 +1,5 @@
-<div class="modal-content">
-  
-  <label for="name">Nombre:</label>
-  <input 
-    type="text" 
-    id="name" 
-    [(ngModel)]="enteredName" 
-   />
-  <button (click)="validateName()">Validar Nombre</button>
+<div class="modal-body">
+  <img [src]="imagenDeserializada" alt="Logo">
+  <input [(ngModel)]="nombreImagen" placeholder="Introduce el nombre">
+  <button (click)="validarNombre()">Validar</button>
 </div>
