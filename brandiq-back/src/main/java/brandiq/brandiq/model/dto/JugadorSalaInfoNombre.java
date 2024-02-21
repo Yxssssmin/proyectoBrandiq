@@ -14,5 +14,8 @@ public class JugadorSalaInfoNombre {
 
     private Integer puntos;
 
+    private Integer posicionX;
+    private Integer posicionY; 
+
     private boolean turno;
 }
