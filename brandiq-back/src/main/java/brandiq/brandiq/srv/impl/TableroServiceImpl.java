@@ -254,4 +254,6 @@ public class TableroServiceImpl implements TableroService {
     // public Long obtenerUltimoIdParaJugador(String id_jugador) {
     // return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
     // }
+
+   
 }
