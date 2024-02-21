@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import brandiq.brandiq.exception.ResourceNotFoundException;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
@@ -109,6 +112,36 @@ public class TableroController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/comprobarRespuesta/{id_jugador}/{id_tablero}")
+    public ResponseEntity<String> comprobarRespuestaJugadorAndUpdatePuntos(
+            @PathVariable(value = "id_jugador") String idJugador,
+            @PathVariable(value = "id_tablero") Integer idTablero, @Valid @RequestBody String nombre) {
+
+        /* String jsonString = "{\"nombre\": \"reddit\"}"; */
+
+        String jsonString = nombre;
+        try {
+            // Convertir la cadena JSON a un objeto JsonNode
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(jsonString);
+
+            // Acceder al valor de la clave "nombre"
+            String nombreImagen = jsonNode.get("nombre").asText();
+
+            String resultado = tableroService.updateDatosJugador(idJugador, idTablero, nombreImagen);
+            // Imprimir el valor obtenido
+            System.out.println("Nombre: " + nombreImagen);
+            if (resultado.equals("Fallo") || resultado.equals("Acierto")) {
+                return new ResponseEntity<>(resultado, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
 }

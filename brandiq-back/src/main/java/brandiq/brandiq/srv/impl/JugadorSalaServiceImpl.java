@@ -3,9 +3,6 @@ package brandiq.brandiq.srv.impl;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
-
-import javax.swing.text.html.Option;
-
 import org.springframework.stereotype.Service;
 import brandiq.brandiq.model.db.JugadorSalaDb;
 import brandiq.brandiq.model.db.JugadorSalaEditDb;
@@ -14,7 +11,6 @@ import brandiq.brandiq.model.dto.JugadorSalaInfo;
 import brandiq.brandiq.repository.JugadorSalaEditRepository;
 import brandiq.brandiq.repository.JugadorSalaRepository;
 import brandiq.brandiq.srv.JugadorSalaService;
-import brandiq.brandiq.srv.mapper.JugadorMapper;
 import brandiq.brandiq.srv.mapper.JugadorSalaMapper;
 
 @Service

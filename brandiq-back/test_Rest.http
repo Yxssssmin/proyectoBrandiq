@@ -37,11 +37,11 @@ Content-Type: application/json
 ###
 ##  con JWGT (admin)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 ##  con JWGT (user)
 GET http://localhost:8090/api/v1/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 
 ### USUARIOS ###
 
@@ -51,13 +51,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzM
 
 GET http://localhost:8090/api/v1/edu/profile HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4###
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE###
 ###
 
 ## getJugadorInfoByNickname: Para las estadisticas del jugador. Tambien mostrara una lista de tableros que ha creado un jugador
 GET http://localhost:8090/api/v1/edu/estadisticas HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4###
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE###
 ###
 
 
@@ -65,7 +65,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzM
 ## Editar el perfil de un Usuario
 PUT http://localhost:8090/auth/update/edu HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 
 
 {
@@ -84,11 +84,11 @@ Content-Type: application/json
 ## Crear Tablero y jugador_en_sala
 POST http://localhost:8090/api/v1/crear-tablero HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 
 {
     "id_jugador": "edu",
-    "titulo": "Partida 3",
+    "titulo": "Partida 2",
     "finalizada": "1"
 }
 
@@ -96,24 +96,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzM
 ## Listar los tableros
 GET http://localhost:8090/api/v1/tableros HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
 ## deleteByIdCity
 DELETE http://localhost:8090/auth/delete/Edu HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
 ## updateTablero
-PUT http://localhost:8090/api/v1/tablero/3 HTTP/1.1
+PUT http://localhost:8090/api/v1/tablero/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 
 {
-    "id": 3,
+    "id": 1,
     "id_jugador": "edu",
-    "titulo": "Primera 3",
+    "titulo": "Primera 1",
     "finalizada": "0"
 }
 
@@ -121,31 +121,40 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzM
 ## Jugador sala
 GET http://localhost:8090/api/v1/jugadorSala/1/info HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
-## Tablero Info
+## Tablero Info - Retorna el tablero y los jugadores que hay en la sala
 GET http://localhost:8090/api/v1/tablero/1/info HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
 ## Unirse
 POST http://localhost:8090/api/v1/unirse-tablero/1/edu HTTP/1.1 
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
 ## retorna un numero de dado para 
 PUT http://localhost:8090/api/v1/tirardado/edu/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
 
 ## retorna el nombre de la imagen
 GET http://localhost:8090/api/v1/mostrarCasillas/edu/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1MTMzMTUsImV4cCI6MTcwODU0OTMxNX0.fGZaujgn0X4eQKPkctDcws8KK47BFq7cYXtQjJ5AAS4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
 ###
 
+##
+POST http://localhost:8090/api/v1/comprobarRespuesta/edu/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1Mjc4NzMsImV4cCI6MTcwODU2Mzg3M30.JIuWvpnuRGnIlOZ5H5E-mnhec_nWuSV5eYHt9hReelE
+
+{
+    "nombre": "reddit"
+}
+###

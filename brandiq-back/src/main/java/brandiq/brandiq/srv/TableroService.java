@@ -47,5 +47,7 @@ public interface TableroService {
 
     public String obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero);
 
+    public String updateDatosJugador(String id_jugador, Integer id_tablero, String nombre);
+
     /* public FileSystemResource getImagenUsuario(String fichero); */
 }
