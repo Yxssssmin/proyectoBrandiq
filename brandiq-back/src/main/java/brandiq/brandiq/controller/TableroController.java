@@ -99,10 +99,10 @@ public class TableroController {
     }
 
     @GetMapping("/mostrarCasillas/{id_jugador}/{id_tablero}")
-    public ResponseEntity<Map<String, Object>> obtenerCasillasTablero(
+    public ResponseEntity<String> obtenerCasillasTablero(
             @PathVariable(value = "id_jugador") String idJugador,
             @PathVariable(value = "id_tablero") Integer idTablero) {
-        Map<String, Object> resultado = tableroService.obtenerCasillasParaElTablero(idJugador, idTablero);
+        String resultado = tableroService.obtenerCasillasParaElTablero(idJugador, idTablero);
 
         if (resultado != null) {
             return new ResponseEntity<>(resultado, HttpStatus.OK);
