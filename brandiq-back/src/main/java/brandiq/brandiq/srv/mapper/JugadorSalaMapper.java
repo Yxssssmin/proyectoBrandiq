@@ -1,10 +1,12 @@
 package brandiq.brandiq.srv.mapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 import brandiq.brandiq.model.db.JugadorSalaDb;
@@ -24,14 +26,20 @@ public interface JugadorSalaMapper {
 
     List<JugadorSalaList> jugadoresSalaDbToJugadoresSalaList(List<JugadorSalaDb> jugadorSalaDb);
 
-    //Devuelve un objeto de tipo 'JugadorSalaInfo' a partir de un objeto de tipo 'JugadorSalaDb'
-	JugadorSalaInfo jugadorSalaDbToJugadorSalaInfo(JugadorSalaDb jugadorSalaDb);
+    // Devuelve un objeto de tipo 'JugadorSalaInfo' a partir de un objeto de tipo
+    // 'JugadorSalaDb'
+    JugadorSalaInfo jugadorSalaDbToJugadorSalaInfo(JugadorSalaDb jugadorSalaDb);
 
     JugadorSalaEdit jugadorSalaDbToJugadorSalaEdit(JugadorSalaDb jugadorSalaDb);
 
     Set<JugadorSalaInfoNombre> jugadoresSalaDbToJugadoresSalaInfoNombre(Set<JugadorSalaNombreDb> jugadoresSalaNombreDb);
 
+    JugadorSalaEdit jugadorSalaEditDbToJugadorSalaEdit(Optional<JugadorSalaEditDb> jugadorSalaEditDb);
+
     JugadorSalaEdit jugadorSalaEditDbToJugadorSalaEdit(JugadorSalaEditDb jugadorSalaEditDb);
 
     JugadorSalaEditDb jugadorSalaEditToJugadorSalaEditDb(JugadorSalaEdit jugadorSalaEdit);
+
+    void updateJugadorSalaEditDbFromJugadorSalaEdit(JugadorSalaEdit jugadorSalaEdit,
+            @MappingTarget JugadorSalaEditDb jugadorSalaEditDb);
 }

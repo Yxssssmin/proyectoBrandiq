@@ -1,4 +1,4 @@
-<form (submit)="crearPartida($event)">
+<form (submit)="crearPartida()" [formGroup]="modalPartidaForm">
   <h1>Crear partida</h1>
   <hr />
   <p>
@@ -6,17 +6,26 @@
       >Creador de la partida: <span>{{ getNicknameStorage() }}</span></strong
     >
   </p>
-  <div class="form-group">
-    <!-- Nuevo contenedor para etiqueta e input -->
+  <div
+    class="form-group"
+    [ngClass]="{ 'is-invalid': isInvalidAndTouched('tituloPartida') }"
+  >
     <label for="titulo">Título :</label>
     <input
       type="text"
-      id="titulo"
-      required
+      class="form-control"
+      style="width: 75%"
       name="tituloPartida"
-      [(ngModel)]="tituloPartida"
+      formControlName="tituloPartida"
+      [ngClass]="{
+        'is-invalid': isInvalidAndTouched('tituloPartida'),
+        'is-valid': !isInvalidAndTouched('tituloPartida') && !isNullOrWhiteSpace(modalPartidaForm.get('tituloPartida')?.value),
+    }"
     />
   </div>
+  @if (isInvalidAndTouched('tituloPartida')) {
+  <div class="invalid-feedback">Título debe tener entre 3 y 10 caracteres</div>
+  }
   <div class="buttons-container">
     <button type="button" (click)="closeModal()">Cerrar</button>
     <button type="submit">Crear partida</button>

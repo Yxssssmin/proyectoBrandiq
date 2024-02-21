@@ -25,29 +25,6 @@ export class ModalUnirsePartidaComponent {
     this.listarTableros();
   }
 
-  crearPartida(event: any) {
-    event.preventDefault();
-
-    const creadorPartida = this.getNicknameStorage();
-
-    if (creadorPartida !== null) {
-      this.tableroService
-        .crearPartida(creadorPartida, this.tituloPartida)
-        .subscribe({
-          next: (data) => {
-            console.log('Respuesta del servidor:', data);
-            this.closeModal();
-            this.router.navigate(['/tablero']);
-          },
-          error: (error) => {
-            console.error('Error en la solicitud:', error);
-          },
-        });
-    } else {
-      console.error('El creador de la partida es null.');
-    }
-  }
-
   getNicknameStorage(): string | null {
     return localStorage.getItem('userNickname');
   }
@@ -69,7 +46,21 @@ export class ModalUnirsePartidaComponent {
   }
 
   unirsePartida(tableroId: number): void {
-    // Lógica para unirse a la partida, por ejemplo, redirigir a una ruta específica
-    this.router.navigate(['/tablero']);
+    const nombreJugador = this.getNicknameStorage();
+
+    if (nombreJugador !== null) {
+      this.tableroService.unirsePartida(tableroId, nombreJugador).subscribe({
+        next: (data) => {
+          console.log('Respuesta del servidor al unirse a la partida:', data);
+          this.router.navigate(['/salaEspera/' + tableroId]);
+          // Puedes agregar cualquier lógica adicional aquí
+        },
+        error: (error) => {
+          console.error('Error al unirse a la partida:', error);
+        },
+      });
+    } else {
+      console.error('El nombre del jugador es null.');
+    }
   }
 }
