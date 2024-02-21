@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { TableroServiceService } from '../../services/tablero-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { ModalEmpezarPartidaComponent } from '../modal-empezar-partida/modal-empezar-partida.component';
+import { ModalResponderPreguntaComponent } from '../modal-responder-pregunta/modal-responder-pregunta.component';
 
 @Component({
   selector: 'app-dado',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalResponderPreguntaComponent],
   templateUrl: './dado.component.html',
   styleUrl: './dado.component.css',
 })
@@ -15,8 +23,10 @@ export class DadoComponent {
   @ViewChild('boton') botonElement!: ElementRef;
   @ViewChild('resultado') resultadoElement?: ElementRef;
   roomId: string | null = null;
-
+  nombreImagen: string | null = null;
   isGirando = false;
+  showModalEmpezar = false; // Variable para controlar la visibilidad del modal
+  @Output() mostrarModalResponderPregunta = new EventEmitter<boolean>();
 
   constructor(
     private tableroService: TableroServiceService,
@@ -27,6 +37,14 @@ export class DadoComponent {
     this.route.params.subscribe((params) => {
       this.roomId = params['id'];
     });
+  }
+
+  showStartGameForm() {
+    this.showModalEmpezar = true; // Mostrar el modal al hacer clic en "Empezar partida"
+  }
+
+  closeModal() {
+    this.showModalEmpezar = false; // Cerrar el modal
   }
 
   ngAfterViewInit() {
@@ -105,6 +123,24 @@ export class DadoComponent {
         this.botonElement.nativeElement.removeAttribute('disabled');
         dado.classList.remove('girando');
       });
+
+    setTimeout(() => this.mostrarImagen(nickname, roomId), 3000);
+  }
+  mostrarImagen(nickname: string, roomId: number) {
+    this.tableroService
+      .obtenerNombreImagen(nickname, roomId)
+      .subscribe((nombreImagen: string) => {
+        this.showModalEmpezar = true;
+        this.nombreImagen = nombreImagen;
+      });
+  }
+
+  getShowModalEmpezar() {
+    return this.showModalEmpezar;
+  }
+
+  getnombreImagen() {
+    return this.nombreImagen;
   }
 }
 

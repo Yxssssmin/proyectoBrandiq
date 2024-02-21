@@ -9,6 +9,7 @@ import {
   startWith,
   switchMap,
   takeUntil,
+  map,
 } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -84,10 +85,6 @@ export class TableroServiceService {
     // Almacenamos la nueva suscripción
     this.pollSubscription = pollObservable.subscribe((users) => {
       this.jugadoresSalaInfoNombres = users || [];
-      console.log(
-        'Lista de usuarios en la sala:',
-        this.jugadoresSalaInfoNombres
-      );
     });
 
     // Devuelve un observable que emite cuando se destruye el componente
@@ -131,5 +128,27 @@ export class TableroServiceService {
       null,
       { headers }
     );
+  }
+  obtenerNombreImagen(
+    idJugador: string,
+    idTablero: number
+  ): Observable<string> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http
+      .get(
+        `${environment.URL_SPRING}api/v1/mostrarCasillas/${idJugador}/${idTablero}`,
+        {
+          headers,
+          responseType: 'text', // Indicar que la respuesta no es JSON sino texto
+        }
+      )
+      .pipe(
+        map((data: string) => data) // Devolver el texto sin intentar parsearlo como JSON
+      );
   }
 }

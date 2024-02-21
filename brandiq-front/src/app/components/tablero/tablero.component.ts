@@ -1,19 +1,27 @@
 // tablero.component.ts
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DadoComponent } from '../dado/dado.component';
 import { PlayerListComponent } from '../player-list/player-list.component';
 import { TableroServiceService } from '../../services/tablero-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalResponderPreguntaComponent } from '../modal-responder-pregunta/modal-responder-pregunta.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [CommonModule, DadoComponent, PlayerListComponent],
+  imports: [
+    CommonModule,
+    DadoComponent,
+    PlayerListComponent,
+    ModalResponderPreguntaComponent,
+  ],
   templateUrl: './tablero.component.html',
   styleUrl: './tablero.component.css',
 })
 export class TableroComponent {
+  @ViewChild(DadoComponent) dadoComponent!: DadoComponent;
+
   userList: any = {};
   rows = 8;
   cols = 8;
@@ -21,13 +29,37 @@ export class TableroComponent {
   colors: string[] = ['red', 'orange', 'green'];
   jugadoresSala: any = {};
   nicknameactivo = this.getNicknameStorage();
+  mostrarModalResponderPregunta: boolean = false;
+  nombreImagen: string | null = null;
+
+  estilosSiFalse(): any {
+    return {
+      position: 'absolute',
+      top: '40%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    };
+  }
+
+  estilosSiTrue(): any {
+    return {
+      'z-index': 0,
+      display: 'none',
+      position: 'absolute',
+      top: '40%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    };
+  }
 
   roomId: string | null = null;
 
   constructor(
     private tableroService: TableroServiceService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.getImagen();
+  }
 
   ngOnInit() {
     this.initializeBoard();
@@ -39,6 +71,15 @@ export class TableroComponent {
     });
   }
 
+  getShow(): boolean {
+    // Verificar si dadoComponent está definido antes de acceder a su método
+    return this.dadoComponent?.getShowModalEmpezar() ?? false;
+  }
+
+  getImagen() {
+    // Verificar si dadoComponent está definido antes de acceder a su método
+    this.nombreImagen = this.dadoComponent?.getnombreImagen() ?? '';
+  }
   initializeBoard() {
     for (let i = 0; i < this.rows; i++) {
       this.board[i] = [];
@@ -124,7 +165,13 @@ export class TableroComponent {
       .obtenerUsuarioSala(roomId)
       .subscribe((userList: any) => {
         this.userList = userList;
-        this.jugadoresSala = this.userList.jugadoresSalaInfoNombres;
+        this.jugadoresSala = userList.jugadoresSalaInfoNombres; // Update this line
       });
+  }
+
+  handleMostrarModalResponderPregunta(event: boolean) {
+    console.log({ event });
+
+    this.mostrarModalResponderPregunta = event;
   }
 }
