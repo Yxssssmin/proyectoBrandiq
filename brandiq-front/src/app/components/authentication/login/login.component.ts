@@ -11,31 +11,46 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit{
-  // nickname: string = '';
-  // password: string = '';
+export class LoginComponent{
+
   loginForm!: FormGroup;
   errorMessage: string = '';
 
   constructor(private usersService: UsersService, private router: Router, private formBuilder: FormBuilder) {
+    this.createLoginForm();
   }
   
-  ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      nickname: new FormControl('', [
-        Validators.required, 
-        Validators.minLength(5)
-      ]),
-      password: new FormControl('', Validators.required),
-    })
-      
-  }
+createLoginForm() {
+  
+  this.loginForm = this.formBuilder.group(
+    {
+    nickname: [
+      '', 
+      [
+      Validators.required, 
+      Validators.minLength(5),
+      Validators.pattern('.*[a-zA-Z].*'),
+      ]
+    ],
+    password: [
+      '', 
+      [
+        Validators.required,
+        Validators.minLength(8)
+      ],
+    ],
+  })
+}
 
   login() {
-    const user = this.loginForm.value;
+    if (this.loginForm.valid) {
+    const user = {
+      nickname: this.loginForm.value.nickname,
+      password: this.loginForm.value.password,
+    };
 
     // Utiliza el servicio para realizar la solicitud HTTP y manejar la lógica
-    let logged = this.usersService.login(user).subscribe({
+    this.usersService.login(user).subscribe({
       next: (data) => {
         console.log('Respuesta del servidor:', data);
         this.router.navigate(['/']);
@@ -47,4 +62,14 @@ export class LoginComponent implements OnInit{
       },
     });
   }
+  }
+  isInvalidAndTouched(controlName: string): boolean {
+    const control = this.loginForm.get(controlName);
+    return control!.invalid && (control!.touched || control!.dirty);
+  }
+
+  isNullOrWhiteSpace(value: string | null): boolean {
+    return value === null || value.trim() === '';
+  }
+
 }

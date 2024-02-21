@@ -96,13 +96,14 @@ export class UsersService {
     }
   }
   getProfile(): Observable<any> {
-    const authToken = localStorage.getItem('authToken');
-    const nicknameUsuario = localStorage.getItem('userNickname');
+    const token = localStorage.getItem('authToken');
+    const nicknameUser = localStorage.getItem('userNickname');
+    console.log(nicknameUser);
 
-    const headers = { Authorization: `Bearer ${authToken}` };
+    const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.get(
-      environment.URL_SPRING + 'api/v1/' + nicknameUsuario + '/profile',
+      environment.URL_SPRING + 'api/v1/' + nicknameUser + '/profile',
       { headers }
     );
   }
