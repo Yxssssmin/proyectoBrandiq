@@ -188,8 +188,7 @@ public class TableroServiceImpl implements TableroService {
                     .orElseThrow(() -> new IllegalArgumentException("Jugador no encontrado"));
 
             // Lógica para unir al jugador al tablero (puedes modificar esto según tu modelo de datos)
-            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0, true);
-            jugadorSalaEditDb.setId_tablero(idTablero);
+            JugadorSalaEditDb jugadorSalaEditDb = new JugadorSalaEditDb(null, idJugador, idTablero, 0, 0, 0, 0, 0, false);
 
             // Guardar los cambios en el jugador
             jugadorSalaRepository.save(jugadorSalaEditDb);
