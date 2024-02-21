@@ -141,3 +141,11 @@ PUT http://localhost:8090/api/v1/tirardado/edu/1 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg0NzgwNTksImV4cCI6MTcwODUxNDA1OX0.qXacDuhtmJRpenSEM9oJdLxa7wwSCDaGGjKUQei2sjs
 ###
+
+
+## 
+GET http://localhost:8090/api/v1/mostrarCasillas/edu/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg0NzgwNTksImV4cCI6MTcwODUxNDA1OX0.qXacDuhtmJRpenSEM9oJdLxa7wwSCDaGGjKUQei2sjs
+###
+
