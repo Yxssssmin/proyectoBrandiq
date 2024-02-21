@@ -130,19 +130,19 @@ export class TableroComponent {
       });
   }
 
-  obtenerDetallesCasilla(idTablero: number, nombreJugador: string): void {
-    this.tableroService.getDetallesCasilla(idTablero, nombreJugador)
-    .subscribe((casillas: any) => {
-      //     this.modallogo.abrirModal(casillas.imagenDeserializada, casillas.nombreImagen)
-      //     .subscribe((nombreValidado: any) => {
-      //       const resultadoValidacion: boolean = nombreValidado === 'true';
-      //       // Acciones a realizar después de validar el nombre, por ejemplo, mostrar un mensaje
-      //       console.log('Nombre validado:', nombreValidado);
-      // });
-      },
-      (error) => {
-        console.error('Error al obtener casillas del tablero', error);
-      }
-    );
-  }
+  // obtenerDetallesCasilla(idTablero: number, nombreJugador: string): void {
+  //   this.tableroService.getDetallesCasilla(idTablero, nombreJugador)
+  //   .subscribe((casillas: any) => {
+  //     //     this.modallogo.abrirModal(casillas.imagenDeserializada, casillas.nombreImagen)
+  //     //     .subscribe((nombreValidado: any) => {
+  //     //       const resultadoValidacion: boolean = nombreValidado === 'true';
+  //     //       // Acciones a realizar después de validar el nombre, por ejemplo, mostrar un mensaje
+  //     //       console.log('Nombre validado:', nombreValidado);
+  //     // });
+  //     },
+  //     (error) => {
+  //       console.error('Error al obtener casillas del tablero', error);
+  //     }
+  //   );
+  // }
 }
