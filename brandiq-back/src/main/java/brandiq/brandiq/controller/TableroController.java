@@ -1,6 +1,7 @@
 package brandiq.brandiq.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import brandiq.brandiq.srv.TableroService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -95,4 +97,18 @@ public class TableroController {
     public ResponseEntity<?> unirseATablero(@PathVariable Integer idTablero, @PathVariable String idJugador) {
         return tableroService.joinTablero(idTablero, idJugador);
     }
+
+    @GetMapping("/mostrarCasillas/{id_jugador}/{id_tablero}")
+    public ResponseEntity<Map<String, Object>> obtenerCasillasTablero(
+            @PathVariable(value = "id_jugador") String idJugador,
+            @PathVariable(value = "id_tablero") Integer idTablero) {
+        Map<String, Object> resultado = tableroService.obtenerCasillasParaElTablero(idJugador, idTablero);
+
+        if (resultado != null) {
+            return new ResponseEntity<>(resultado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

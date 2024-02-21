@@ -1,12 +1,14 @@
 package brandiq.brandiq.srv;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
+import java.awt.image.BufferedImage;
 import org.springframework.http.ResponseEntity;
 
-import brandiq.brandiq.model.db.JugadorSalaEditDb;
+import brandiq.brandiq.model.dto.CasillasEdit;
+import brandiq.brandiq.model.dto.CasillasInfo;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
@@ -26,7 +28,7 @@ public interface TableroService {
     public TableroEdit addTableroEdit(TableroEdit tableroEdit);
 
     public ResponseEntity<?> joinTablero(Integer idTablero, String idJugador);
-    
+
     // // QUERY
     // Long obtenerUltimoIdParaJugador(String nombreJugador);
     // Método de serialización de imagen
@@ -34,5 +36,12 @@ public interface TableroService {
 
     public int generarNumerosAleatoriosSinRepeticion(Set<Integer> numerosGenerados);
 
-    
+    public byte[] deserializarImagen(byte[] imagenSerializada);
+
+    /*
+     * public Object[] obtenerCasillasParaElTablero(String id_jugador, Integer
+     * id_tablero);
+     */
+
+    public Map<String, Object> obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero);
 }

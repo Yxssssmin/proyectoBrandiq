@@ -1,8 +1,10 @@
 package brandiq.brandiq.srv.impl;
 
 import java.util.HashMap;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,6 +16,9 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import brandiq.brandiq.exception.ResourceNotFoundException;
@@ -23,35 +28,45 @@ import brandiq.brandiq.model.db.CasillasEditDb;
 import brandiq.brandiq.model.db.JugadorSalaEditDb;
 import brandiq.brandiq.model.db.TableroDb;
 import brandiq.brandiq.model.db.TableroEditDb;
+import brandiq.brandiq.model.dto.CasillasEdit;
+import brandiq.brandiq.model.dto.CasillasInfo;
 import brandiq.brandiq.model.dto.TableroEdit;
 import brandiq.brandiq.model.dto.TableroInfo;
 import brandiq.brandiq.model.dto.TableroList;
 import brandiq.brandiq.repository.JugadorRepository;
 import brandiq.brandiq.repository.JugadorSalaEditRepository;
+import brandiq.brandiq.repository.CasillasEditRepository;
 import brandiq.brandiq.repository.CasillasRepository;
 import brandiq.brandiq.repository.JugadorSalaRepository;
 import brandiq.brandiq.repository.TableroEditRepository;
 import brandiq.brandiq.repository.TableroRepository;
+
 import brandiq.brandiq.srv.TableroService;
 import brandiq.brandiq.srv.mapper.TableroMapper;
 import lombok.NonNull;
 
 @Service
 public class TableroServiceImpl implements TableroService {
+
     private final TableroRepository tableroRepository;
     private final TableroEditRepository tableroEditRepository;
     private final JugadorSalaRepository jugadorSalaRepository;
+    private final JugadorSalaEditRepository jugadorSalaEditRepository;
     private final JugadorRepository jugadorRepository;
     private final CasillasRepository casillasRepository;
+    private final CasillasEditRepository casillasEditRepository;
 
     public TableroServiceImpl(TableroRepository tableroRepository, TableroEditRepository tableroEditRepository,
             JugadorSalaRepository jugadorSalaRepository, JugadorSalaEditRepository jugadorSalaEditRepository,
-            JugadorRepository jugadorRepository, CasillasRepository casillasRepository) {
+            JugadorRepository jugadorRepository, CasillasRepository casillasRepository,
+            CasillasEditRepository casillasEditRepository) {
         this.tableroRepository = tableroRepository;
         this.tableroEditRepository = tableroEditRepository;
         this.jugadorSalaRepository = jugadorSalaRepository;
         this.jugadorRepository = jugadorRepository;
         this.casillasRepository = casillasRepository;
+        this.casillasEditRepository = casillasEditRepository;
+        this.jugadorSalaEditRepository = jugadorSalaEditRepository;
     }
 
     @Override
@@ -255,5 +270,80 @@ public class TableroServiceImpl implements TableroService {
     // return tableroEditRepository.findLastTableroIdByJugador(id_jugador);
     // }
 
-   
+    /*
+     * @Override
+     * public BufferedImage deserializarImagen(byte[] imagenSerializada) {
+     * try (ByteArrayInputStream bis = new ByteArrayInputStream(imagenSerializada);
+     * ObjectInputStream ois = new ObjectInputStream(bis)) {
+     * 
+     * // Lee el objeto serializado que contiene los bytes de la imagen
+     * byte[] imageData = (byte[]) ois.readObject();
+     * 
+     * // Convierte los bytes de la imagen de nuevo a BufferedImage
+     * ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
+     * return ImageIO.read(bais);
+     * 
+     * } catch (IOException | ClassNotFoundException e) {
+     * // Maneja la excepción según tus necesidades
+     * e.printStackTrace();
+     * return null;
+     * }
+     * }
+     */
+
+    @Override
+    public byte[] deserializarImagen(byte[] imagenSerializada) {
+        try (ByteArrayInputStream bis = new ByteArrayInputStream(imagenSerializada);
+                ObjectInputStream ois = new ObjectInputStream(bis)) {
+
+            // Lee el objeto serializado que contiene los bytes de la imagen
+            return (byte[]) ois.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
+            // Maneja la excepción según tus necesidades
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /*
+     * @Override
+     * public Object[] obtenerCasillasParaElTablero(String id_jugador, Integer
+     * id_tablero) {
+     * 
+     * Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
+     * .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
+     * 
+     * Optional<CasillasEditDb> casillasEditDb =
+     * casillasEditRepository.findCasillasByPosicionAndTablero(
+     * jugadorSalaEditDb.get().getPosicionX(),
+     * jugadorSalaEditDb.get().getPosicionY(), id_tablero);
+     * 
+     * Object[] datosCasillas = new Object[] {
+     * deserializarImagen(casillasEditDb.get().getImagen()),
+     * casillasEditDb.get().getNombre() };
+     * 
+     * return datosCasillas;
+     * 
+     * }
+     */
+
+    @Override
+    public Map<String, Object> obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero) {
+        Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
+                .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
+
+        Optional<CasillasEditDb> casillasEditDb = casillasEditRepository.findCasillasByPosicionAndTablero(
+                jugadorSalaEditDb.get().getPosicionX(), jugadorSalaEditDb.get().getPosicionY(), id_tablero);
+
+        byte[] imagenDeserializada = deserializarImagen(casillasEditDb.get().getImagen());
+        String nombreImagen = casillasEditDb.get().getNombre();
+
+        Map<String, Object> resultado = new HashMap<>();
+        resultado.put("imagenDeserializada", imagenDeserializada);
+        resultado.put("nombreImagen", nombreImagen);
+
+        return resultado;
+    }
+
 }
