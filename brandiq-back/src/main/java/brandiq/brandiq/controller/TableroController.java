@@ -144,4 +144,12 @@ public class TableroController {
 
     }
 
+    @PutMapping("/cambiarTurno/{id_jugador}/{id_tablero}")
+    public String cambiarTurno(@PathVariable(value = "id_jugador") String idJugador,
+            @PathVariable(value = "id_tablero") Integer idTablero) {
+        
+        String resultado = tableroService.cambiarTurno(idJugador, idTablero);
+        return resultado;
+    }
+
 }

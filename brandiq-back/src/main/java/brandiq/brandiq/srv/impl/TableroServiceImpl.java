@@ -143,7 +143,7 @@ public class TableroServiceImpl implements TableroService {
                 tableroEdit.getId(), 0, 0, 0, 0, 0, true);
         jugadorSalaRepository.save(jugadorSalaEditDb);
 
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 28; i++) {
 
             int indice = generarNumerosAleatoriosSinRepeticion(numerosGenerados);
             try {
@@ -286,8 +286,10 @@ public class TableroServiceImpl implements TableroService {
                 jugadorSalaEditDb.get().getPosicionX(), jugadorSalaEditDb.get().getPosicionY(), id_tablero);
 
         if (casillasEditDb.isPresent()) {
+
             JugadorSalaEdit jugadorSalaEditar = JugadorSalaMapper.INSTANCE
                     .jugadorSalaEditDbToJugadorSalaEdit(jugadorSalaEditDb.get());
+
             String[] nombreImagenDb = casillasEditDb.get().getNombre().split("\\.");
 
             System.out.println(nombre);
@@ -309,11 +311,31 @@ public class TableroServiceImpl implements TableroService {
                         jugadorSalaEditRepository
                                 .save(JugadorSalaMapper.INSTANCE
                                         .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEditar))));
-
             }
         }
 
         return (String) "Fallo";
+    }
+
+    @Override
+    public String cambiarTurno(String id_jugador, Integer id_tablero) {
+
+        Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
+                .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
+
+        if (jugadorSalaEditDb.isPresent()) {
+            JugadorSalaEdit jugadorSalaEdit = JugadorSalaMapper.INSTANCE
+                    .jugadorSalaEditDbToJugadorSalaEdit(jugadorSalaEditDb.get());
+
+            jugadorSalaEdit.setTurno(true);
+            Optional.of(JugadorSalaMapper.INSTANCE.jugadorSalaEditDbToJugadorSalaEdit(
+                    jugadorSalaEditRepository
+                            .save(JugadorSalaMapper.INSTANCE
+                                    .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit))));
+            return "Turno cambiado";
+        }
+
+        return "Error";
     }
 
 }
