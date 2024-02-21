@@ -51,7 +51,8 @@ public class SecurityConfig {
             "/webjars/**",
             "/auth/login",
             "/api/v1/ranking",
-            "/auth/nuevo" };
+            "/auth/nuevo",
+            "/Logos/**" };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

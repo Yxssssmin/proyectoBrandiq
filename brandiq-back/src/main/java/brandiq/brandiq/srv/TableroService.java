@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.awt.image.BufferedImage;
+
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.ResponseEntity;
 
 import brandiq.brandiq.model.dto.CasillasEdit;
@@ -43,5 +45,7 @@ public interface TableroService {
      * id_tablero);
      */
 
-    public Map<String, Object> obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero);
+    public String obtenerCasillasParaElTablero(String id_jugador, Integer id_tablero);
+
+    /* public FileSystemResource getImagenUsuario(String fichero); */
 }
