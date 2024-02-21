@@ -13,5 +13,7 @@ public class JugadorSalaInfo implements Serializable{
     private Integer puntos;
     private Integer fallos;
     private Integer aciertos;
+    private Integer posicionX;
+    private Integer posicionY;
     private boolean turno;
 }
