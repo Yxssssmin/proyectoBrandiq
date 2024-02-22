@@ -86,28 +86,28 @@
 .player1 {
     border-radius: 5%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f0e68c;
     color: black;
 }
 
 .player2 {
     border-radius: 5%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f0e68c;
     color: black;
 }
 
 .player3 {
     border-radius: 5%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f0e68c;
     color: black;
 }
 
 .player4 {
     border-radius: 5%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #f0e68c;
     color: black;
 }
 
@@ -130,6 +130,7 @@
 }
 
 .loading-message::before {
+    color: aliceblue;
     display: inline-block;
     content: 'Espera tu turno';
     font-size: larger;

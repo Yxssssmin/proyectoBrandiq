@@ -1,14 +1,26 @@
 <div class="wrapper">
   <div class="form-box login">
     <h2>Login</h2>
-    <form (ngSubmit)="login()" #loginForm="ngForm">
+    
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <div
+      *ngIf="errorMessage"
+      id="loginError"
+      class="text-center text-danger mt-3"
+    >
+      {{ errorMessage }}
+    </div>
       <div class="input-box">
         <input
           type="text"
           id="nickname"
           class="form-control"
           name="nickname"
-          [(ngModel)]="nickname"
+          formControlName="nickname"
+          [ngClass]="{
+            'is-invalid': isInvalidAndTouched('nickname'),
+            'is-valid': !isInvalidAndTouched('nickname') && !isNullOrWhiteSpace(loginForm.get('nickname')?.value),
+          }"
           required
         />
         <label>Nickname</label>
@@ -20,7 +32,11 @@
           id="inputPassword"
           class="form-control"
           name="password"
-          [(ngModel)]="password"
+          formControlName="password"
+          [ngClass]="{
+            'is-invalid': isInvalidAndTouched('password'),
+              'is-valid': !isInvalidAndTouched('password') && !isNullOrWhiteSpace(loginForm.get('password')?.value),
+          }"
           required
         />
         <label>Password</label>
@@ -34,13 +50,7 @@
           <a [routerLink]="['/register']" class="register-link">Register</a>
         </p>
       </div>
-      <div
-        *ngIf="errorMessage"
-        id="loginError"
-        class="text-center text-danger mt-3"
-      >
-        {{ errorMessage }}
-      </div>
+
     </form>
   </div>
 </div>
