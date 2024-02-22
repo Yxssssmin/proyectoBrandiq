@@ -1,12 +1,13 @@
 <div
-  class="w-100 h-55 p-5 d-flex justify-content-center align-items-center flex-column meu"
+  class="text-center w-100 h-55 p-5 d-flex justify-content-center align-items-center flex-column meu"
 >
   <h2>
     Estadística de
     <strong> {{ getNicknameStorage() }}</strong>
   </h2>
+  <br/>
 
-  <table class="caja">
+  <!-- <table class="caja">
     <thead>
       <tr>
         <th>Nickname</th>
@@ -25,5 +26,22 @@
         <td>{{ partidas_jugadas }}</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+
+  <div>
+    <div style="display: block; width: 700px;">
+        <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+
+    <button class="btn btn-primary mt-3" style="background-color: rgb(92, 185, 248);" (click)="randomize()">Update</button>
+  
+  </div>
 </div>
