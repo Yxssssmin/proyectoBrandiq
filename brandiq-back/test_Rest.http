@@ -150,7 +150,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1NDAwN
 ###
 
 ## Comprueba, actualiza
-POST http://localhost:8090/api/v1/comprobarRespuesta/hugo/6 HTTP/1.1
+POST http://localhost:8090/api/v1/comprobarRespuesta/edu/6 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1NDAwNzgsImV4cCI6MTcwODU3NjA3OH0.kQ-GqPF1ALVM7iGmlzR20nsdh-JQU27AP-3KqmwZg2c
 
@@ -160,7 +160,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1NDAwN
 ###
 
 ## Cambiar turno
-PUT http://localhost:8090/api/v1/cambiarTurno/edu/6 HTTP/1.1
+PUT http://localhost:8090/api/v1/cambiarTurno/hugoSanchis/96 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHUiLCJpYXQiOjE3MDg1NDAwNzgsImV4cCI6MTcwODU3NjA3OH0.kQ-GqPF1ALVM7iGmlzR20nsdh-JQU27AP-3KqmwZg2c
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJMb21lbm9zMTYiLCJpYXQiOjE3MDg1NTE5NjEsImV4cCI6MTcwODU4Nzk2MX0.ITRT33tSVO7iE87fIgnVbUPZtRHjMTTZ1HWOmvsMLjo
 ###

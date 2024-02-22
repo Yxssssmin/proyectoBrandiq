@@ -1,6 +1,6 @@
 // tablero.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DadoComponent } from '../dado/dado.component';
 import { PlayerListComponent } from '../player-list/player-list.component';
 import { TableroServiceService } from '../../services/tablero-service.service';
@@ -27,10 +27,11 @@ export class TableroComponent {
   cols = 8;
   board: any[][] = [];
   colors: string[] = ['red', 'orange', 'green'];
-  jugadoresSala: any = {};
+  jugadoresSala: any = [];
   nicknameactivo = this.getNicknameStorage();
   mostrarModalResponderPregunta: boolean = false;
   nombreImagen: string | null = null;
+  siguienteTurno: string | null = null;
 
   estilosSiFalse(): any {
     return {
@@ -57,11 +58,9 @@ export class TableroComponent {
   constructor(
     private tableroService: TableroServiceService,
     private route: ActivatedRoute
-  ) {
-    this.getImagen();
-  }
+  ) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.initializeBoard();
     this.route.params.subscribe((params) => {
       this.roomId = params['id'];
@@ -70,6 +69,16 @@ export class TableroComponent {
       }
     });
   }
+
+  // ngOnInit() {
+  //   this.initializeBoard();
+  //   this.route.params.subscribe((params) => {
+  //     this.roomId = params['id'];
+  //     if (this.roomId) {
+  //       this.obtenerUsuariosSala(this.roomId);
+  //     }
+  //   });
+  // }
 
   getShow(): boolean {
     // Verificar si dadoComponent está definido antes de acceder a su método
@@ -89,8 +98,13 @@ export class TableroComponent {
     }
   }
 
+  // En tu componente TableroComponent
   esMiTurno(): boolean {
     const jugadorActual = this.getNicknameStorage();
+
+    const indexJugadorActual = this.jugadoresSala.findIndex(
+      (jugador: any) => jugador.id_jugador === jugadorActual
+    );
 
     // Verificar si el jugador actual está en la lista y es su turno
     const turnoDelJugador = this.jugadoresSala.find(
@@ -98,7 +112,23 @@ export class TableroComponent {
         jugador.id_jugador === jugadorActual && jugador.turno === true
     );
 
-    return turnoDelJugador !== undefined;
+    if (indexJugadorActual !== -1) {
+      // Calcular el índice del próximo jugador
+      const indexProximoJugador =
+        (indexJugadorActual + 1) % this.jugadoresSala.length;
+
+      // Asignar el nickname del próximo jugador a la variable siguienteTurno
+      this.siguienteTurno = this.jugadoresSala[indexProximoJugador].id_jugador;
+      if (this.siguienteTurno !== null) {
+        this.tableroService.addSiguienteJugador(this.siguienteTurno);
+      }
+      // Devolver true si es el turno del jugador actual
+      return turnoDelJugador !== undefined;
+    } else {
+      // Si no se encuentra el jugador actual en la lista, asignar null a la variable siguienteTurno
+      this.siguienteTurno = null;
+      return false;
+    }
   }
 
   createCell(row: number, col: number): any {
@@ -165,13 +195,55 @@ export class TableroComponent {
       .obtenerUsuarioSala(roomId)
       .subscribe((userList: any) => {
         this.userList = userList;
-        this.jugadoresSala = userList.jugadoresSalaInfoNombres; // Update this line
+        this.jugadoresSala = Array.isArray(userList.jugadoresSalaInfoNombres)
+          ? userList.jugadoresSalaInfoNombres
+          : [];
       });
   }
 
-  handleMostrarModalResponderPregunta(event: boolean) {
-    console.log({ event });
+  movimientos: number[][] = [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+    [6, 0],
+    [7, 0],
+    [7, 1],
+    [7, 2],
+    [7, 3],
+    [7, 4],
+    [7, 5],
+    [7, 6],
+    [7, 7],
+    [6, 7],
+    [5, 7],
+    [4, 7],
+    [3, 7],
+    [2, 7],
+    [1, 7],
+    [0, 7],
+    [0, 6],
+    [0, 5],
+    [0, 4],
+    [0, 3],
+    [0, 2],
+    [0, 1],
+  ];
 
-    this.mostrarModalResponderPregunta = event;
+  obtenerPosicionActual(jugador: any): number {
+    const posicionX = jugador.posicionX;
+    const posicionY = jugador.posicionY;
+
+    // Buscar la posición en el array movimientos
+    for (let i = 0; i < this.movimientos.length; i++) {
+      const [x, y] = this.movimientos[i];
+      if (x === posicionX && y === posicionY) {
+        return i;
+      }
+    }
+
+    return -1; // Devuelve -1 si la posición no se encuentra
   }
 }

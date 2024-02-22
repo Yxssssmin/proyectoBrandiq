@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TableroServiceService } from '../../services/tablero-service.service';
@@ -15,14 +15,16 @@ export class SalaDeEsperaComponent implements OnInit, OnDestroy {
   userList: any = {};
   pollSubscription: Subscription | null = null;
   roomId: string | null = null;
-  jugadoresSala: any = {};
+  jugadoresSala: any[] = [];
   usuarioActual: string | null = null;
 
   constructor(
     private tableroService: TableroServiceService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    siguienteJugador: tableroService.getSiguienteJugador();
+  }
 
   ngOnInit(): void {
     this.usuarioActual = localStorage.getItem('userNickname');
@@ -45,7 +47,7 @@ export class SalaDeEsperaComponent implements OnInit, OnDestroy {
       .obtenerUsuarioSala(roomId)
       .subscribe((userList: any) => {
         this.userList = userList;
-        this.jugadoresSala = this.userList.jugadoresSalaInfoNombres;
+        this.jugadoresSala = userList.jugadoresSalaInfoNombres || [];
       });
   }
 

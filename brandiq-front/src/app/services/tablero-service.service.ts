@@ -19,6 +19,8 @@ import { environment } from '../environments/environment';
 export class TableroServiceService {
   jugadoresSalaInfoNombres: any[] = [];
 
+  siguienteJugador: string | null = null;
+
   private pollInterval = 5000; // Intervalo de tiempo en milisegundos (en este caso, 5 segundos)
   private pollSubscription: Subscription | null = null;
 
@@ -44,6 +46,14 @@ export class TableroServiceService {
       body,
       { headers: headers }
     );
+  }
+
+  addSiguienteJugador(siguienteTurno: string) {
+    this.siguienteJugador = siguienteTurno;
+  }
+
+  getSiguienteJugador() {
+    return this.siguienteJugador;
   }
 
   listarTableros(): Observable<any[]> {
@@ -149,6 +159,55 @@ export class TableroServiceService {
       )
       .pipe(
         map((data: string) => data) // Devolver el texto sin intentar parsearlo como JSON
+      );
+  }
+  comprobarRespuesta(
+    nombreJugador: string,
+    idTablero: number,
+    respuesta: string
+  ): Observable<string> {
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    const body = {
+      nombre: respuesta,
+    };
+
+    // Indicar que esperas una respuesta de tipo texto
+    const options = {
+      headers: headers,
+      responseType: 'text' as 'json',
+    };
+
+    return this.http.post<string>(
+      `${environment.URL_SPRING}api/v1/comprobarRespuesta/${nombreJugador}/${idTablero}`,
+      body,
+      options
+    );
+  }
+
+  cambiarTurnoSiguienteJugador(idTablero: number): Observable<string> {
+    console.log('Y aqui tenemos: ' + this.siguienteJugador);
+    const token = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http
+      .put(
+        `${environment.URL_SPRING}api/v1/cambiarTurno/${this.siguienteJugador}/${idTablero}`,
+        null, // No estás enviando un cuerpo en la petición PUT
+        {
+          headers,
+          responseType: 'text', // Indicar que la respuesta no es JSON sino texto
+        }
+      )
+      .pipe(
+        map((data: any) => data) // Devolver el texto sin intentar parsearlo como JSON
       );
   }
 }

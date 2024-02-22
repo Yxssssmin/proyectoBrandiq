@@ -1,10 +1,15 @@
 <div class="overlay">
-  <div class="modal-container">
+  <div class="modal-container" [formGroup]="respuestaForm">
     <!-- Contenido del modal -->
     <h2>Vamos a responder</h2>
     <hr />
     <img src="http://localhost:8090/Logos/{{ nombreImagen }}" alt="Imagen" />
-    <input type="text" placeholder="Ingrese respuesta" />
+    <input
+      type="text"
+      placeholder="Ingrese respuesta"
+      formControlName="respuesta"
+      [ngClass]="{ 'invalid-input': respuestaForm.get('respuesta')?.invalid }"
+    />
     <button (click)="enviarRespuesta()">Enviar</button>
   </div>
 </div>

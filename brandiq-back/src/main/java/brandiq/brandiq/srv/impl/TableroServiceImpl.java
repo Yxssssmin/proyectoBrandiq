@@ -293,7 +293,7 @@ public class TableroServiceImpl implements TableroService {
             String[] nombreImagenDb = casillasEditDb.get().getNombre().split("\\.");
 
             System.out.println(nombre);
-            if (nombreImagenDb[0].equals(nombre)) {
+            if (nombreImagenDb[0].equals(nombre.toLowerCase())) {
 
                 jugadorSalaEditar.setPuntos(jugadorSalaEditar.getPuntos() + 10);
                 jugadorSalaEditar.setAciertos(jugadorSalaEditar.getAciertos() + 1);
@@ -332,10 +332,10 @@ public class TableroServiceImpl implements TableroService {
                     jugadorSalaEditRepository
                             .save(JugadorSalaMapper.INSTANCE
                                     .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit))));
-            return "Turno cambiado";
+            return (String) "Turno cambiado";
         }
 
-        return "Error";
+        return null;
     }
 
 }
