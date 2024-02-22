@@ -278,6 +278,7 @@ public class TableroServiceImpl implements TableroService {
     }
 
     @Override // ESTE METODO COMPARA EL NOMBRE INTRODUCIDO POR EL USUARIO Y ACTUALIZA LOS
+              // JUGADORES (comprobaRespuesta)
     public String updateDatosJugador(String id_jugador, Integer id_tablero, String nombre) {
         Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
                 .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
@@ -293,7 +294,7 @@ public class TableroServiceImpl implements TableroService {
             String[] nombreImagenDb = casillasEditDb.get().getNombre().split("\\.");
 
             System.out.println(nombre);
-            if (nombreImagenDb[0].equals(nombre)) {
+            if (nombreImagenDb[0].equals(nombre.toLowerCase())) {
 
                 jugadorSalaEditar.setPuntos(jugadorSalaEditar.getPuntos() + 10);
                 jugadorSalaEditar.setAciertos(jugadorSalaEditar.getAciertos() + 1);
@@ -332,10 +333,10 @@ public class TableroServiceImpl implements TableroService {
                     jugadorSalaEditRepository
                             .save(JugadorSalaMapper.INSTANCE
                                     .jugadorSalaEditToJugadorSalaEditDb(jugadorSalaEdit))));
-            return "Turno cambiado";
+            return (String) "Turno cambiado";
         }
 
-        return "Error";
+        return null;
     }
 
 }
