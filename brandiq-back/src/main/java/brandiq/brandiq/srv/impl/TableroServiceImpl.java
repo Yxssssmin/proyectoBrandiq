@@ -278,6 +278,7 @@ public class TableroServiceImpl implements TableroService {
     }
 
     @Override // ESTE METODO COMPARA EL NOMBRE INTRODUCIDO POR EL USUARIO Y ACTUALIZA LOS
+              // JUGADORES (comprobaRespuesta)
     public String updateDatosJugador(String id_jugador, Integer id_tablero, String nombre) {
         Optional<JugadorSalaEditDb> jugadorSalaEditDb = jugadorSalaEditRepository
                 .findByIdJugadorAndIdTablero(id_jugador, id_tablero);
